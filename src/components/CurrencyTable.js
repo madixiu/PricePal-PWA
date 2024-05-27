@@ -152,7 +152,7 @@ const CurrencyTableCulomns = [
 //   return createData(index, ...randomSelection);
 // });
 // console.log(rows);
-console.log(CurrencyData(Cdata));
+// console.log(CurrencyData(Cdata));
 
 
 const VirtuosoTableComponents = {
