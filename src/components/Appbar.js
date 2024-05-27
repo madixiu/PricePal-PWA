@@ -10,8 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
-const pages = ['Blog', 'About Us', 'Contact'];
+import { NavLink } from 'react-router-dom';
+const pages = [
+  {name: 'Blog',link:'blog'},
+  {name: 'About Us',link:'about'},
+  {name: 'Contact',link:'contact'},
+]
 
 function Appbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -29,7 +33,7 @@ function Appbar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
@@ -47,7 +51,7 @@ function Appbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            RIMA FINANCE
           </Typography>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -80,9 +84,12 @@ function Appbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}>
+                  <MenuItem onClick={handleCloseNavMenu}  sx={{ color: 'black' }}>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </MenuItem>
+                </NavLink>
+
               ))}
             </Menu>
           </Box>
@@ -109,19 +116,20 @@ function Appbar() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              RIMA FINANCE
             </Typography>
           </Box>
          
           <Box sx={{ flexGrow: 1,justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}> 
+                <Button 
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'black', display: 'block' }}
+                >
+                  {page.name}
+                </Button>
+              </NavLink>
             ))}
           </Box>
 
