@@ -13,55 +13,104 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 function ContactInfoCard() {
   return ( 
-    <Card sx={{ borderRadius:2,elevation:8 }} variant='outlined'>
-    {/* <CardActionArea> */}
-     
-      <CardContent sx={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',}}>
-        {/* <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography> */}
-        <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-          <CallIcon />
-          <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>Phone:</Typography>
-          {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>+90 554 197 1171</Typography> */}
-          {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>+90 (212) 830 39 09</Typography> */}
-          <Button size="small" sx={{color:'black'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-            +90 554 197 1171
-          </Button>
-          <Button size="small" sx={{color:'black'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-            +90 (212) 830 39 09
-          </Button>
-        </Box>
-        <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-          <MailIcon />
-          <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>E-mail:</Typography>
-          {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>rima@rimafinance.com</Typography> */}
-          <Button size="small" sx={{color:'black'}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
-            rima@rimafinance.com
-          </Button>
-        </Box>
-        <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-          <BusinessIcon />
-          <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>Address:</Typography>
-          {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
-          <Button size="small" sx={{color:'black'}} >
-            Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
-          </Button>
-        </Box>
-        <CardActions disableSpacing>
-          <IconButton aria-label="WhatsApp" sx={{'&:hover': { color: '#25D366' }}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-            <WhatsAppIcon  />
-          </IconButton>
-          <IconButton aria-label="Telegram" sx={{'&:hover': { color: '#2CA5E0' }}} onClick={()=>(window.open("https://t.me/rimafinans", "_blank"))}>
-            <TelegramIcon />
-          </IconButton>
-          <IconButton aria-label="Instagram" sx={{'&:hover': { color: '#FD1D1D' }}}>
-            <InstagramIcon  />
-          </IconButton>
-        </CardActions>
-      </CardContent>
-  </Card>  
-);
+    <>
+      <Card sx={{ borderRadius:2,elevation:8 ,display:{xs:'none',md:'flex'},flexDirection:'column',width:'100%' }} variant='outlined'>
+      {/* <CardActionArea> */}
+      
+        <CardContent sx={{display: 'flex', flexDirection: 'column', }}>
+          {/* <Typography gutterBottom variant="h5" component="div">
+            Lizard
+          </Typography> */}
+          <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
+            <CallIcon />
+            <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>Phone:</Typography>
+            {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>+90 554 197 1171</Typography> */}
+            {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>+90 (212) 830 39 09</Typography> */}
+            <Button size="small" sx={{color:'black'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+              +90 554 197 1171
+            </Button>
+            <Button size="small" sx={{color:'black'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+              +90 (212) 830 39 09
+            </Button>
+          </Box>
+          <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
+            <MailIcon />
+            <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>E-mail:</Typography>
+            <Button size="small" sx={{color:'black'}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
+              rima@rimafinance.com
+            </Button>
+          </Box>
+          <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
+            <BusinessIcon />
+            <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>Address:</Typography>
+            {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
+            <Button size="small" sx={{color:'black'}} >
+              Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
+            </Button>
+          </Box>
+          <CardActions disableSpacing>
+            <IconButton aria-label="WhatsApp" sx={{'&:hover': { color: '#25D366' }}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+              <WhatsAppIcon  />
+            </IconButton>
+            <IconButton aria-label="Telegram" sx={{'&:hover': { color: '#2CA5E0' }}} onClick={()=>(window.open("https://t.me/rimafinans", "_blank"))}>
+              <TelegramIcon />
+            </IconButton>
+            <IconButton aria-label="Instagram" sx={{'&:hover': { color: '#FD1D1D' }}}>
+              <InstagramIcon  />
+            </IconButton>
+          </CardActions>
+        </CardContent>
+      </Card>
+      <Card sx={{borderRadius:2,elevation:8,mt:1, display:{xs:'flex',md:'none'}}} variant='outlined'>
+          <CardContent>
+            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start',p:1}}>
+
+              <Box sx={{display:'flex',flexDirection:'row',alignItems:'flex-start',p:1,}}>
+                <CallIcon />
+                <Typography variant='body1' sx={{display:'flex',mx:1}}>Phone:</Typography>
+                <Box >
+                  <Button size="small" sx={{color:'black',fontSize:10}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                    +90 554 197 1171
+                  </Button>
+                  <Button size="small" sx={{color:'black',fontSize:10}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                    +90 (212) 830 39 09
+                  </Button>
+                </Box>
+              </Box>
+              <Box sx={{display:'flex',flexDirection:'row',alignItems:'flex-start',p:1,justifyContent: 'flex-start',}}>
+                <MailIcon />
+                <Typography variant='body1' sx={{display:'flex',mx:1}}>E-mail:</Typography>
+                <Button size="small" sx={{color:'black',fontSize:10}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
+                  rima@rimafinance.com
+                </Button>
+              </Box>
+              <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
+                <BusinessIcon />
+                <Typography variant='body1' sx={{display:'flex',mx:1,fontSize:12}}>Address:</Typography>
+                {/* <Typography  sx={{color:'black',fontSize:10,display:'flex',alignItems:'flex-start',justifyContent:'flex-start'}} >
+                  Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
+                </Typography> */}
+                <span style={{fontSize:10}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</span>
+              </Box>
+          
+            </Box>
+            <Box sx={{display:'flex',justifyContent:'space-evenly',flexDirection:'row',flexGrow:1,}}>
+
+              <IconButton aria-label="WhatsApp" sx={{  color: '#25D366'}}  onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                <WhatsAppIcon  />
+              </IconButton>
+              <IconButton aria-label="Telegram" sx={{  color: '#2CA5E0'}}  onClick={()=>(window.open("https://t.me/rimafinans", "_blank"))}>
+                <TelegramIcon />
+              </IconButton>
+              <IconButton aria-label="Instagram" sx={{color: '#FD1D1D' }}>
+                <InstagramIcon  />
+              </IconButton>
+            </Box>
+          
+        </CardContent>
+      </Card>  
+    </>
+  );
 }
 
 export default ContactInfoCard;

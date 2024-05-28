@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
+import BottomAppBar from './components/BottomAppBar';
+import { Box } from '@mui/material';
 const themeOptions = createTheme({
   palette: {
     mode: 'light',
@@ -32,6 +34,9 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
+        <Box sx={{display: {xs: 'flex', md:'none'},flexDirection:'column'}}>
+          <BottomAppBar style={{display: { xs: 'flex', md: 'none' }}} />
+        </Box>
       </div>
     </ThemeProvider>
   );
