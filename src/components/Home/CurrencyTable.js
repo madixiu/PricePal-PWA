@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import Cdata from '../../assets/data/data.json'
+import {formatTime} from '../../misc/dateFixer'
 
 
 
@@ -72,7 +73,7 @@ const CurrencyData = (Cdata) => {
     if (item.slug === "eur-hav" || item.slug === "eur-ist" )
       flag = 'eur'
 
-    res.push({id: counter,flag:flag, name: item.name, buy: item.price[0].hi, sell: item.price[0].low, updated_at: item.updated_at})
+    res.push({id: counter,flag:flag, name: item.name, buy: item.price[0].hi, sell: item.price[0].low, updated_at: formatTime(item.updated_at)})
     counter++
   } 
   return res;

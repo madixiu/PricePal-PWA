@@ -24,8 +24,6 @@ function GoogleMap() {
       };
     }
   }, []);
-  console.log(windowHeight);
-  console.log(windowWidth);
   return (
     <>
     <Box sx={{pt:2,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
