@@ -1,0 +1,75 @@
+{
+  "AppBarTitle": "Welcome to react using react-i18next",
+  "description": {
+    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
+    "part2": "Switch language between english and german using buttons above."
+  },
+  "langBTN": "EN",
+  "AppBar":{
+    "buttons":{
+      "Blog":"Blog",
+      "Contact":"Contact",
+      "Home":"Home",
+      "About Us":"About Us"
+    }
+  },
+  "Home":{
+    "flag":"flag",
+    "Currency":"Currency",
+    "Buy":"Buy",
+    "Sell":"Sell",
+    "Updated At":"Updated At",
+    "CurrencyList": {
+      "usd": "US Dollar Cash",
+      "usd-hav": "US Dollar",
+      "usd-ist": "Istanbul Dollar",
+      "usd-herat": "Herat Dollar",
+      "usd-sulaymaniyah": "Sulaymaniyah Dollar",
+      "eur": "Euro Cash",
+      "eur-hav": "Euro",
+      "eur-ist": "Istanbul Euro",
+      "try": "Turkish Lira",
+      "gbp": "British Pound",
+      "aed": "UAE Dirham",
+      "cad": "Canadian Dollar",
+      "cny": "Chinese Yuan",
+      "aud": "Australian Dollar",
+      "myr": "Malaysian Ringgit",
+      "rub": "Russian Ruble",
+      "iqd": "Iraqi Dinar",
+      "sek": "Swedish Krona",
+      "thb": "Thai Baht",
+      "amd": "Armenian Dram",
+      "azn": "Azerbaijani Manat",
+      "gel": "Georgian Lari",
+      "sar": "Saudi Riyal",
+      "inr": "Indian Rupee",
+      "jpy": "Japanese Yen",
+      "chf": "Swiss Franc",
+      "afn": "Afghan Afghani",
+      "sgd": "Singapore Dollar",
+      "brl": "Brazilian Real",
+      "dkk": "Danish Krone",
+      "kwd": "Kuwaiti Dinar",
+      "nok": "Norwegian Krone",
+      "nzd": "New Zealand Dollar",
+      "omr": "Omani Rial",
+      "pkr": "Pakistani Rupee",
+      "ars": "Argentine Peso",
+      "bhd": "Bahraini Dinar",
+      "krw": "South Korean Won",
+      "syp": "Syrian Pound",
+      "qar": "Qatari Riyal",
+      "hkd": "Hong Kong Dollar",
+      "kgs": "Kyrgyzstani Som",
+      "tjs": "Tajikistani Somoni",
+      "tmt": "Turkmenistani Manat"
+      }
+      
+  },
+  "Contact":{
+    "Phone":"Phone",
+    "Email":"E-mail",
+    "Address":"Address"
+  }
+}

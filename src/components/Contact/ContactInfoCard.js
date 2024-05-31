@@ -10,8 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { useTranslation } from 'react-i18next';
 
 function ContactInfoCard() {
+  const { t } = useTranslation('translation');
   return ( 
     <>
       <Card sx={{ borderRadius:2,elevation:8 ,display:{xs:'none',md:'flex'},flexDirection:'column',width:'100%' }} variant='outlined'>
@@ -22,29 +24,29 @@ function ContactInfoCard() {
             Lizard
           </Typography> */}
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <CallIcon />
-            <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>Phone:</Typography>
+            <CallIcon  sx={{ color:'ContactPage.icon.default'}}/>
+            <Typography variant='body1' color="ContactPage.text.main" sx={{display:'flex',mx:1,fontWeight:600}}>{t('Contact.Phone')+':'}</Typography>
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>+90 554 197 1171</Typography> */}
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>+90 (212) 830 39 09</Typography> */}
-            <Button size="small" sx={{color:'black'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+            <Button size="small" sx={{color:'ContactPage.text.main',direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
               +90 554 197 1171
             </Button>
-            <Button size="small" sx={{color:'black'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+            <Button size="small" sx={{color:'ContactPage.text.main',direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
               +90 (212) 830 39 09
             </Button>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <MailIcon />
-            <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>E-mail:</Typography>
-            <Button size="small" sx={{color:'black'}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
+            <MailIcon  sx={{ color:'ContactPage.icon.default'}}/>
+            <Typography variant='body1' color="ContactPage.text.main" sx={{display:'flex',mx:1,fontWeight:600}}>{t('Contact.Email')+':'}</Typography>
+            <Button size="small" sx={{color:'ContactPage.text.main'}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
               rima@rimafinance.com
             </Button>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <BusinessIcon />
-            <Typography variant='body1' sx={{display:'flex',mx:1,fontWeight:600}}>Address:</Typography>
+            <BusinessIcon sx={{ color:'ContactPage.icon.default'}}/>
+            <Typography variant='body1' color="ContactPage.text.main" sx={{display:'flex',mx:1,fontWeight:600}}>{t('Contact.Address')+':'}</Typography>
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
-            <Button size="small" sx={{color:'black'}} >
+            <Button size="small" sx={{color:'ContactPage.text.main'}} >
               Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
             </Button>
           </Box>
@@ -65,32 +67,32 @@ function ContactInfoCard() {
           <CardContent>
             <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start',p:1}}>
 
-              <Box sx={{display:'flex',flexDirection:'row',alignItems:'flex-start',p:1,}}>
-                <CallIcon />
-                <Typography variant='body1' sx={{display:'flex',mx:1}}>Phone:</Typography>
+              <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,}}>
+                <CallIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
+                <Typography variant='body1' color="ContactPage.text.main" sx={{display:'flex',mx:1,fontSize:12}}>{t('Contact.Phone')+':'}</Typography>
                 <Box >
-                  <Button size="small" sx={{color:'black',fontSize:10}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                  <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
                     +90 554 197 1171
                   </Button>
-                  <Button size="small" sx={{color:'black',fontSize:10}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                  <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
                     +90 (212) 830 39 09
                   </Button>
                 </Box>
               </Box>
-              <Box sx={{display:'flex',flexDirection:'row',alignItems:'flex-start',p:1,justifyContent: 'flex-start',}}>
-                <MailIcon />
-                <Typography variant='body1' sx={{display:'flex',mx:1}}>E-mail:</Typography>
-                <Button size="small" sx={{color:'black',fontSize:10}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
+              <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
+                <MailIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
+                <Typography variant='body1' sx={{display:'flex',mx:1,fontSize:12}}>{t('Contact.Email')+':'}</Typography>
+                <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
                   rima@rimafinance.com
                 </Button>
               </Box>
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
-                <BusinessIcon />
-                <Typography variant='body1' sx={{display:'flex',mx:1,fontSize:12}}>Address:</Typography>
+                <BusinessIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
+                <Typography variant='body1' sx={{display:'flex',mx:1,fontSize:12}}>{t('Contact.Address')+':'}</Typography>
                 {/* <Typography  sx={{color:'black',fontSize:10,display:'flex',alignItems:'flex-start',justifyContent:'flex-start'}} >
                   Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
                 </Typography> */}
-                <span style={{fontSize:10}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</span>
+                <span style={{fontSize:10,color:'ContactPage.text.main'}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</span>
               </Box>
           
             </Box>

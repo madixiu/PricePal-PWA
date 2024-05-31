@@ -10,6 +10,8 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import BottomAppBar from './components/BottomAppBar';
 import { Box } from '@mui/material';
+
+import { useTranslation } from 'react-i18next';
 const themeOptions = createTheme({
   palette: {
     mode: 'light',
@@ -19,10 +21,27 @@ const themeOptions = createTheme({
     secondary: {
       main: '#f50057',
     },
+    AppBarButtonColor:{
+      main: '#777',
+    },
+    ContactPage:{
+      text:{
+        main:"#333"
+      },
+      icon:{
+        default:"#666"
+      }
+    }
+
+  
   },
 });
 
 function App() {
+  const { i18n } = useTranslation();
+  // console.log(i18n.dir());
+  document.body.dir = i18n.dir();
+  
   return (
     <ThemeProvider theme={themeOptions}>
       <div className="App">

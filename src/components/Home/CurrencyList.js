@@ -2,8 +2,10 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Cdata from '../../assets/data/data.json'
 import { Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import {formatTime} from '../../misc/dateFixer'
 export default function CurrencyList() {
+  const { t } = useTranslation('translation');
   function RenderList(
   ) {
     var data = CurrencyData(Cdata);
@@ -25,7 +27,7 @@ export default function CurrencyList() {
       >
         <Box sx={{display:'flex',flex:2,justifyContent: 'flex-start',alignItems:'center'}}>
           <img src={getImageUrl(item.flag)} alt="flag" style={{ width: 18, height: 18 }} />
-          <Typography sx={{ mx: 1 , fontSize: 9 }}>{item.name}</Typography>
+          <Typography sx={{ mx: 1 , fontSize: 9 }}>{t('Home.CurrencyList.'+item.name)}</Typography>
         </Box>
         <Box sx={{display:'flex',flex:1,justifyContent: 'flex-start',alignItems:'center'}}>
           <Typography sx={{ mx: 1 , fontSize: 9 }}>{item.buy}</Typography>
@@ -45,20 +47,20 @@ export default function CurrencyList() {
   return ( 
     <>
       <Box
-        sx={{ width: '100%', bgcolor: 'background.paper' ,p:1}}>
+        sx={{ width: '100%', bgcolor: 'background.paper' ,p:1,flex:1}}>
         <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',backgroundColor: 'gainsboro',py:'1px',borderRadius:1}}>
 
           <Box sx={{display:'flex',flex:2,justifyContent: 'flex-start',alignItems:'center'}}>
-            <Typography sx={{mx: 1 , fontSize: 9 }}>Name</Typography>
+            <Typography sx={{mx: 1 , fontSize: 9 }}>{t('Home.Currency')}</Typography>
           </Box>
           <Box sx={{display:'flex',flex:1,justifyContent: 'flex-start',alignItems:'center'}}>
-            <Typography sx={{mx: 1 , fontSize: 9 }}>Buy</Typography>
+            <Typography sx={{mx: 1 , fontSize: 9 }}>{t('Home.Buy')}</Typography>
           </Box>
           <Box sx={{display:'flex',flex:1,justifyContent: 'flex-start',alignItems:'center'}}>
-            <Typography sx={{mx: 1 , fontSize: 9 }}>Sell</Typography>
+            <Typography sx={{mx: 1 , fontSize: 9 }}>{t('Home.Sell')}</Typography>
           </Box>
           <Box sx={{display:'flex',flex:1,justifyContent: 'flex-start',alignItems:'center'}}>
-            <Typography sx={{mx: 1 , fontSize: 9 }}>Updated</Typography>
+            <Typography sx={{mx: 1 , fontSize: 9 }}>{t('Home.Updated At')}</Typography>
           </Box>
         </Box>
         <RenderList />
@@ -124,7 +126,7 @@ const CurrencyData = (Cdata) => {
     if (item.slug === "eur-hav" || item.slug === "eur-ist" )
       flag = 'eur'
 
-    res.push({id: counter,flag:flag, name: item.name, buy: item.price[0].hi, sell: item.price[0].low, updated_at: formatTime(item.updated_at)})
+    res.push({id: counter,flag:flag, name: item.slug, buy: item.price[0].hi, sell: item.price[0].low, updated_at: formatTime(item.updated_at)})
     counter++
   } 
   return res;

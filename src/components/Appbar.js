@@ -10,14 +10,33 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 const pages = [
+  {name: 'Home',link:''},
   {name: 'Blog',link:'blog'},
   {name: 'About Us',link:'about'},
   {name: 'Contact',link:'contact'},
 ]
+const bundleImages = {
+  usd: require("../assets/flags/flag64/usd.png"),
+  irr: require("../assets/flags/flag64/irr.png"),
+};
+const getImageUrl = (code) => bundleImages[code];
 
 function Appbar() {
+  // console.log(window.matchMedia('(display-mode: standalone)').matches);
+  const { t, i18n } = useTranslation('translation');
+  function LanguageSwitcher(lng) {
+    if (lng == null)
+    i18n.changeLanguage(i18n.dir() === 'rtl'? 'en' : 'fa');
+  else if(lng === 'fa')
+    i18n.changeLanguage('fa');
+  else if(lng === 'en')
+    i18n.changeLanguage('en');
+
+  }
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -56,7 +75,7 @@ function Appbar() {
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
+              size="small"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
@@ -80,20 +99,28 @@ function Appbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none' }
               }}
-            >
-              {pages.map((page) => (
+            > 
+              <MenuItem onClick={()=>{handleCloseNavMenu();LanguageSwitcher('en')}} sx={{justifyContent: 'flex-start',alignContent:'center'}} >
+                  <img src={getImageUrl('usd')} alt="en" width="15" style={{marginInlineEnd:'5px'}} />
+                  <Typography sx={{fontSize:10}}>English</Typography>
+              </MenuItem>
+              <MenuItem onClick={()=>{handleCloseNavMenu();LanguageSwitcher('fa')}} sx={{justifyContent: 'flex-start',alignContent:'center',py:0}}>
+                <img src={getImageUrl('irr')} alt="en" width="15" style={{marginInlineEnd:'5px'}}/>
+                <Typography sx={{fontSize:10}}>فارسی</Typography>
+              </MenuItem>
+              {/* {pages.map((page) => (
                 <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}>
                   <MenuItem onClick={handleCloseNavMenu}  sx={{ color: 'black' }}>
-                    <Typography textAlign="center">{page.name}</Typography>
+                    <Typography textAlign="center">{doc}</Typography>
+                    <img src={getImageUrl(document.body.dir === 'ltr' ? 'usd' : 'irr')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
                   </MenuItem>
-                </NavLink>
-
-              ))}
+                </NavLink> 
+              ))} */}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',mr:5 }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:5 }}>
 
             <AdbIcon sx={{display: { xs: 'flex', md: 'none' },justifyContent: 'center',alignSelf: 'center'}} />
             <Typography
@@ -102,13 +129,9 @@ function Appbar() {
               component="a"
               href="/"
               sx={{
-                // mr: 5,
                 display: { xs: 'flex', md: 'none' },
-                // flexGrow: 1,
-                // flex:1,
-                // justifyContent: 'flex-start',
-                // flexDirection: 'column',
                 alignSelf:'center',
+                fontSize:'1rem',
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.2rem',
@@ -119,19 +142,48 @@ function Appbar() {
               RIMA FINANCE
             </Typography>
           </Box>
-         
-          <Box sx={{ flexGrow: 1,justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
+          
+          <Box sx={{ flexGrow: 1,justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' },px:10 }}>
             {pages.map((page) => (
               <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}> 
                 <Button 
+                  variant="outlined"
+                  color='AppBarButtonColor'
+                  size="medium"
+                  // fullWidth="true"
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'black', display: 'block' }}
+                  sx={{ mx:1, color: '#555',minWidth:101,borderRadius:2,'&:hover':{color:'#000'}}}
                 >
-                  {page.name}
+                  {t('AppBar.buttons.'+page.name)}
                 </Button>
               </NavLink>
             ))}
           </Box>
+            <Box sx={{display:{xs:'none',md:'flex'},flexDirection:'column',alignItems:'center',direction:'ltr'}}>
+              <PopupState variant="popover" popupId="demo-popup-menu">
+                {(popupState) => (
+                  <React.Fragment>
+                    <Button variant="outlined" color='AppBarButtonColor' {...bindTrigger(popupState)}>
+                      <img src={getImageUrl(document.body.dir === 'ltr' ? 'usd' : 'irr')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
+                      
+                      {t('langBTN')}
+                    </Button>
+                    <Menu {...bindMenu(popupState)} style={{direction:'ltr'}}>
+                      <MenuItem onClick={()=>{popupState.close();LanguageSwitcher('en')}} sx={{justifyContent: 'flex-start',}} >
+                        {/* <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',width:'100%',px:1,justifyContent: 'space-between',}}> */}
+                          <img src={getImageUrl('usd')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
+                          <span>English</span>
+                        {/* </Box> */}
+                      </MenuItem>
+                      <MenuItem onClick={()=>{popupState.close(); LanguageSwitcher('fa')}} sx={{justifyContent: 'flex-start',}}>
+                        <img src={getImageUrl('irr')} alt="en" width="20" style={{marginInlineEnd:'5px'}}/>
+                        <span>فارسی</span>
+                      </MenuItem>
+                    </Menu>
+                  </React.Fragment>
+                )}
+              </PopupState>
+            </Box>
         </Toolbar>
       </Container>
     </AppBar>

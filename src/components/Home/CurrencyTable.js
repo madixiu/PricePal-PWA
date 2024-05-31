@@ -9,7 +9,8 @@ import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import Cdata from '../../assets/data/data.json'
 import {formatTime} from '../../misc/dateFixer'
-
+import { useTranslation } from 'react-i18next';
+import { formatPrice,FarsiDigitPrice } from '../../misc/priceFixer';
 
 
 const bundleImages = {
@@ -73,7 +74,7 @@ const CurrencyData = (Cdata) => {
     if (item.slug === "eur-hav" || item.slug === "eur-ist" )
       flag = 'eur'
 
-    res.push({id: counter,flag:flag, name: item.name, buy: item.price[0].hi, sell: item.price[0].low, updated_at: formatTime(item.updated_at)})
+    res.push({id: counter,flag:flag, name: item.slug, buy: item.price[0].hi, sell: item.price[0].low, updated_at: formatTime(item.updated_at)})
     counter++
   } 
   return res;
@@ -120,55 +121,75 @@ const VirtuosoTableComponents = {
   TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
 };
 
-function fixedHeaderContent() {
+export function fixedHeaderContent(t) {
+  console.log(document.body.dir);
   return (
     <TableRow>
       {CurrencyTableCulomns.map((column) => (
         <TableCell
           key={column.dataKey}
           variant="head"
-          align={column.numeric || false ? 'right' : 'left'}
+          // align={column.numeric || false ? 'right' : 'left'}
+          // align={document.body.dir === 'rtl'? 'right' : 'left'}
+          align='center'
           style={{ width: column.width }}
           sx={{
-            backgroundColor: 'gainsboro',
+            backgroundColor: '#ededed',
           }}
         >
-          {column.label}
+          {t('Home.' + column.label)}
         </TableCell>
       ))}
     </TableRow>
   );
 }
 
-function rowContent(_index, row) {
-  return (
-   
-    <React.Fragment>
+
+
+export default function CurrencyTable() {
+  const { t } = useTranslation('translation');
+
+  const rowContent = (_index,row) => {
+    function renderer(key,row) {
+      if (key === 'name')
+        return t('Home.CurrencyList.'+row[key])
+      else if (key === 'buy' || key ==='sell'){
+
+        if (document.body.dir === 'rtl')
+          return FarsiDigitPrice(row[key])
+        else
+        return formatPrice(row[key])
+      }
+      else
+        return FarsiDigitPrice(row[key])
+    }
+    return (
+      <React.Fragment>
       {CurrencyTableCulomns.map((column) => (
         <TableCell
+          sx={{py:0}}
           key={column.dataKey}
-          align={column.numeric || false ? 'right' : 'left'}
+          // align={column.numeric || false ? 'right' : 'left'}
+          // align={document.body.dir === 'rtl'? 'right' : 'left'}
+          align='center'
           >
           {column.dataKey === 'flag' ? (
           <FlagColumn currencyCode={row[column.dataKey]} />
           ) : (
-            row[column.dataKey]
+            renderer(column.dataKey,row)
           )}        
         </TableCell>
       ))}
     </React.Fragment>
-  );
-}
-
-export default function CurrencyTable() {
-
+    )
+  }
   return (
     <Paper style={{ height: 600, width: '100%' }}>
       <TableVirtuoso
         data={CurrencyData(Cdata)}
         components={VirtuosoTableComponents}
-        fixedHeaderContent={fixedHeaderContent}
-        itemContent={rowContent}
+        fixedHeaderContent={() =>fixedHeaderContent(t)}
+        itemContent={(index,row) => rowContent(index,row)}
       />
     </Paper>
   );
