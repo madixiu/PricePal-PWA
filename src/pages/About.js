@@ -1,10 +1,11 @@
+import { Grid } from '@mui/material';
 import React from 'react';
 
 function About() {
   return ( 
-    <div>
+    <Grid container justifyContent= 'center'>
       This is About
-    </div>
+    </Grid>
    );
 }
 

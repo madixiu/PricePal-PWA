@@ -122,7 +122,6 @@ const VirtuosoTableComponents = {
 };
 
 export function fixedHeaderContent(t) {
-  console.log(document.body.dir);
   return (
     <TableRow>
       {CurrencyTableCulomns.map((column) => (

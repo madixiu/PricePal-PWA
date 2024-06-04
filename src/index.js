@@ -6,10 +6,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import './i18n'
-
+import { Provider } from 'react-redux';
+import store from './redux/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+  <Provider store={store}>
+
   <React.StrictMode>
     <BrowserRouter>
       <React.Suspense fallback="loading">
@@ -17,6 +20,7 @@ root.render(
       </React.Suspense>
     </BrowserRouter>
   </React.StrictMode>
+  </Provider>
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -13,6 +13,10 @@ import AdbIcon from '@mui/icons-material/Adb';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+// import  {useAuth}  from '../pages/Authentication/AuthContext';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/authSlice'
+
 const pages = [
   {name: 'Home',link:''},
   {name: 'Blog',link:'blog'},
@@ -25,7 +29,7 @@ const bundleImages = {
 };
 const getImageUrl = (code) => bundleImages[code];
 
-function Appbar() {
+function Appbar({isAuthenticated}) {
   // console.log(window.matchMedia('(display-mode: standalone)').matches);
   const { t, i18n } = useTranslation('translation');
   function LanguageSwitcher(lng) {
@@ -48,7 +52,48 @@ function Appbar() {
     setAnchorElNav(null);
   };
 
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+  
 
+// const { isAuthenticated,handleLogout } = useAuth()
+// const location = useLocation();
+// const LogoutButton = () => {
+//   if (isAuthenticated && location.pathname!== '/dashboard') {
+//    return (
+//     <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', marginInlineEnd: 5 }}>
+//       <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()}>Log out</Button>
+//     </Box>
+//   )
+// }
+//   else
+//     return null
+// }
+
+// const isAuthenticated = useSelector((state) => state.isAuthenticated);
+
+const LogoutButton = (
+) => {
+  const [showButton, setShowButton] = React.useState(false);
+  // console.log('isAuthenticated', isAuthenticated);
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      setShowButton(true);
+    }
+  }, []);
+
+  if (showButton) {
+    return (
+      <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', marginInlineEnd: 5 }}>
+        <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()}>Log out</Button>
+      </Box>
+    );
+  }
+
+  return null;
+};
 
   return (
     <AppBar position="static" elevation={0}>
@@ -159,6 +204,7 @@ function Appbar() {
               </NavLink>
             ))}
           </Box>
+          <LogoutButton />
             <Box sx={{display:{xs:'none',md:'flex'},flexDirection:'column',alignItems:'center',direction:'ltr'}}>
               <PopupState variant="popover" popupId="demo-popup-menu">
                 {(popupState) => (

@@ -1,13 +1,12 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Cdata from '../../assets/data/data.json'
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {formatTime} from '../../misc/dateFixer'
 export default function CurrencyList() {
   const { t } = useTranslation('translation');
-  function RenderList(
-  ) {
+  function RenderList() {
     var data = CurrencyData(Cdata);
     return data.map((item) => (
       <Box
@@ -46,8 +45,8 @@ export default function CurrencyList() {
 
   return ( 
     <>
-      <Box
-        sx={{ width: '100%', bgcolor: 'background.paper' ,p:1,flex:1}}>
+      <Grid
+        sx={{  bgcolor: 'background.paper' ,p:1,flex:1 ,flexDirection:'row'}}>
         <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'flex-start',backgroundColor: 'gainsboro',py:'1px',borderRadius:1}}>
 
           <Box sx={{display:'flex',flex:2,justifyContent: 'flex-start',alignItems:'center'}}>
@@ -65,7 +64,7 @@ export default function CurrencyList() {
         </Box>
         <RenderList />
 
-      </Box>
+      </Grid>
     </>
    );
   }

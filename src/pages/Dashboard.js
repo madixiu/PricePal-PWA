@@ -1,12 +1,11 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-
-function Blog() {
+function Dashboard() {
   return ( 
     <Grid justifyContent= 'center' alignContent={'center'} container>
-      This is Blog
+      this is Dashboard
     </Grid>
-   );
+);
 }
 
-export default Blog;
+export default Dashboard;

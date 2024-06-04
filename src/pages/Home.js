@@ -5,10 +5,10 @@ import CurrencyList from '../components/Home/CurrencyList';
 function Home() {
   return ( 
     <>
-     <Box sx={{p: 2,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
+     <Box id="HomeXS" sx={{px: 2,pt:2,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
       <CurrencyTable />
     </Box>
-    <Box sx={{display:{xs:'flex',md:'none'},flexDirection:'column',pb:8}}>
+    <Box sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flexWrap:'nowrap'}}>
 
       <CurrencyList />
     </Box>
