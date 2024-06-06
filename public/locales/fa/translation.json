@@ -10,7 +10,9 @@
       "Blog":"بلاگ",
       "Contact":"ارتباط با ما",
       "Home":"خانه",
-      "About Us":"درباره ما"
+      "About Us":"درباره ما",
+      "Dashboard":"داشبورد",
+      "Logout":"خروج"
     }
   },
   "Home":{

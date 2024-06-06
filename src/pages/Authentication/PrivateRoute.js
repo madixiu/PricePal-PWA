@@ -15,7 +15,7 @@ const PrivateRoute = ({isAuthenticated,children}) => {
     }
   }, [isAuthorized]);
 
-if (!isAuthorized) {
+if (!isAuthenticated) {
   console.log("here");
     return <Navigate to="/login" replace />; // Redirect to login page
 }

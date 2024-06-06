@@ -55,29 +55,14 @@ function Appbar({isAuthenticated}) {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
+    localStorage.removeItem('user')
   };
   
 
-// const { isAuthenticated,handleLogout } = useAuth()
-// const location = useLocation();
-// const LogoutButton = () => {
-//   if (isAuthenticated && location.pathname!== '/dashboard') {
-//    return (
-//     <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', marginInlineEnd: 5 }}>
-//       <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()}>Log out</Button>
-//     </Box>
-//   )
-// }
-//   else
-//     return null
-// }
 
-// const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
-const LogoutButton = (
-) => {
+const LogoutButton = () => {
   const [showButton, setShowButton] = React.useState(false);
-  // console.log('isAuthenticated', isAuthenticated);
   React.useEffect(() => {
     if (isAuthenticated) {
       setShowButton(true);
@@ -86,8 +71,12 @@ const LogoutButton = (
 
   if (showButton) {
     return (
+      
       <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', marginInlineEnd: 5 }}>
-        <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()}>Log out</Button>
+         <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
+          <Button variant="outlined" color='AppBarButtonColor'  sx={{marginInlineEnd:1,borderRadius:2}}>{t('AppBar.buttons.Dashboard')}</Button>
+         </NavLink>
+        <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()} sx={{borderRadius:2}}>{t('AppBar.buttons.Logout')}</Button>
       </Box>
     );
   }
@@ -155,14 +144,6 @@ const LogoutButton = (
                 <img src={getImageUrl('irr')} alt="en" width="15" style={{marginInlineEnd:'5px'}}/>
                 <Typography sx={{fontSize:10}}>فارسی</Typography>
               </MenuItem>
-              {/* {pages.map((page) => (
-                <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}>
-                  <MenuItem onClick={handleCloseNavMenu}  sx={{ color: 'black' }}>
-                    <Typography textAlign="center">{doc}</Typography>
-                    <img src={getImageUrl(document.body.dir === 'ltr' ? 'usd' : 'irr')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-                  </MenuItem>
-                </NavLink> 
-              ))} */}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:5 }}>

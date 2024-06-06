@@ -16,10 +16,10 @@ function ContactInfoCard() {
   const { t } = useTranslation('translation');
   return ( 
     <>
-      <Card sx={{ borderRadius:2,elevation:8 ,display:{xs:'none',md:'flex'},flexDirection:'column',width:'100%' }} variant='outlined'>
+      <Card sx={{ borderRadius:2,elevation:8 ,display:{xs:'none',md:'flex'},flexDirection:'column',marginInlineEnd:2,justifyContent: 'center', }} variant='outlined'>
       {/* <CardActionArea> */}
       
-        <CardContent sx={{display: 'flex', flexDirection: 'column', }}>
+        <CardContent sx={{display: 'flex', flexDirection: 'column',flex:1,justifyContent:'space-evenly' }}>
           {/* <Typography gutterBottom variant="h5" component="div">
             Lizard
           </Typography> */}

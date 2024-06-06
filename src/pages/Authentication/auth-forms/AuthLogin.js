@@ -148,8 +148,9 @@ export default function AuthLogin() {
                         checked={checked}
                         onChange={(event) => setChecked(event.target.checked)}
                         name="checked"
-                        color="primary"
+                        color="AppBarButtonColor"
                         size="small"
+                        sx={{color: 'gray'}}
                       />
                     }
                     label={<Typography variant="body1">Keep me signed in</Typography>}

@@ -6,7 +6,7 @@ import GoogleMap from '../components/Contact/GoogleMap';
 function Contact() {
   return (
     <>
-      <Box sx={{p:4,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
+      <Box sx={{p:4,display:{xs:'none',md:'flex',flexDirection:'row',justifyContent: 'center',}}}>
         <ContactInfoCard />
         <GoogleMap />
       </Box>

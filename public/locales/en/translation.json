@@ -10,7 +10,9 @@
       "Blog":"Blog",
       "Contact":"Contact",
       "Home":"Home",
-      "About Us":"About Us"
+      "About Us":"About Us",
+      "Dashboard":"Dashboard",
+      "Logout":"Log out"
     }
   },
   "Home":{
@@ -71,5 +73,8 @@
     "Phone":"Phone",
     "Email":"E-mail",
     "Address":"Address"
+  },
+  "Login":{
+    
   }
 }
