@@ -1,9 +1,4 @@
 {
-  "AppBarTitle": "Welcome to react using react-i18next",
-  "description": {
-    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-    "part2": "Switch language between english and german using buttons above."
-  },
   "langBTN": "فا",
   "AppBar":{
     "buttons":{
@@ -20,6 +15,7 @@
     "Currency":"ارز",
     "Buy":"خرید",
     "Sell":"فروش",
+    "Change":"تغییر",
     "Updated At":"بروز شده",
     "CurrencyList": {"usd": "دلار آمریکا", "usd-hav": "حواله دلار آمریکا", "usd-ist": "دلار استانبول", "usd-herat": "دلار هرات", "usd-sulaymaniyah": "دلار سلیمانیه", "eur": "یورو", "eur-hav": "حواله یورو", "eur-ist": "یورو استانبول", "try": "لیر ترکیه", "gbp": "پوند انگلستان", "aed": "درهم امارات", "cad": "دلار کانادا", "cny": "یوان چین", "aud": "دلار استرالیا", "myr": "رینگیت مالزی", "rub": "روبل روسیه", "iqd": "دینار عراق", "sek": "کرون سوئد", "thb": "بات تایلند", "amd": "درام ارمنستان", "azn": "مانات آذربایجان", "gel": "لاری گرجستان", "sar": "ریال عربستان", "inr": "روپیه هندوستان", "jpy": "ین ژاپن", "chf": "فرانک سوئیس", "afn": "افغانی افغانستان", "sgd": "دلار سنگاپور", "brl": "رئال برزیل", "dkk": "کرون دانمارک", "kwd": "دینار کویت", "nok": "کرون نروژ", "nzd": "دلار نیوزلند", "omr": "ریال عمان", "pkr": "روپیه پاکستان", "ars": "پزو آرژانتین", "bhd": "دینار بحرین", "krw": "وون کره جنوبی", "syp": "پوند سوریه", "qar": "ریال قطر", "hkd": "دلار هنگ کنگ", "kgs": "سوم قرقیزستان", "tjs": "سامانی تاجیکستان", "tmt": "منات ترکمنستان"}
   },
@@ -27,5 +23,35 @@
     "Phone":"تلفن",
     "Email":"ایمیل",
     "Address":"آدرس"
+  },
+  "Login":{
+    "Login":"ورود",
+    "Username":"نام کاربری",
+    "Password":"رمز عبور",
+    "Remember":"مرا به خاطر بسپار",
+    "placeholder":{
+      "Username":"نام کاربری را وارد کنید",
+      "Password":"رمز عبور را وارد کنید"
+    },
+    "Error":{
+      "IncorrectUsername":"نام کاربری صحیح نیست",
+      "IncorrectPassword":"رمز عبور صحیح نیست",
+      "RequiredUsername":"نام کاربری نیاز است",
+      "RequiredPassword":"رمز عبور نیاز است"
+    }
+  },
+  "Dashboard":{
+    "USD":"دلار",
+    "EUR":"یورو",
+    "Buy":"خرید",
+    "Sell":"فروش",
+    "Submit":"تائید",
+    "Reset":"تنظیم مجدد",
+  
+    "snack":{
+      "Done":"انجام شد",
+      "Failed":"خطا" 
+      }
   }
+ 
 }

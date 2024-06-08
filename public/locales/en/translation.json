@@ -1,9 +1,4 @@
 {
-  "AppBarTitle": "Welcome to react using react-i18next",
-  "description": {
-    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-    "part2": "Switch language between english and german using buttons above."
-  },
   "langBTN": "EN",
   "AppBar":{
     "buttons":{
@@ -20,7 +15,8 @@
     "Currency":"Currency",
     "Buy":"Buy",
     "Sell":"Sell",
-    "Updated At":"Updated At",
+    "Change":"Change",
+    "Updated At":"Last Update",
     "CurrencyList": {
       "usd": "US Dollar Cash",
       "usd-hav": "US Dollar",
@@ -75,6 +71,35 @@
     "Address":"Address"
   },
   "Login":{
+    "Login":"Login",
+    "Username":"Username",
+    "Password":"Password",
+    "Remember":"Remember me",
+    "placeholder":{
+      "Username":"Enter username",
+      "Password":"Enter password"
+    },
+    "Error":{
+      "IncorrectUsername":"Username is incorrect",
+      "IncorrectPassword":"Password is incorrect",
+      "RequiredUsername":"Username is required",
+      "RequiredPassword":"Password is required"
+    }
     
+
+
+  },
+  "Dashboard":{
+    "USD":"USD",
+    "EUR":"EUR",
+    "Buy":"Buy",
+    "Sell":"Sell",
+    "Submit":"Submit",
+    "Reset":"Reset",
+    "snack":{
+        "Done":"Done",
+        "Failed":"Failed" 
+      }
   }
+  
 }

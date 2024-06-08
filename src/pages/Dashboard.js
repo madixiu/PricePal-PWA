@@ -1,6 +1,13 @@
 import React from 'react';
 import { Card, Grid,Box,Typography,TextField, Button } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import { useTranslation } from 'react-i18next';
+
 function Dashboard() {
+  const { t } = useTranslation('translation');
+  const [openSnack,setOpenSnack] = React.useState(false);
+  const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
   const [loading,setLoading] = React.useState(true)
   const [ExcessValue,setExcessValue] = React.useState(
     {
@@ -16,9 +23,17 @@ function Dashboard() {
       }
   }
   );
-  
+  const handleClose = ( reason) => {
+    // console.log(event);
+    // event.preventDefault();
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnack(false);
+  };
   function setValue(val,cas){
-    console.log(val,cas);
+    // console.log(val,cas);
     let res = ExcessValue
     switch (cas) {
       case "EURIRR.sell":
@@ -36,7 +51,7 @@ function Dashboard() {
       default:
         break;
     }
-    console.log(res);
+    // console.log(res);
     setExcessValue(res);
   }
 
@@ -45,7 +60,7 @@ function Dashboard() {
     if (ExcessValue.USDIRR.buy === 0)
     getData();
 
-    console.log(ExcessValue);
+    // console.log(ExcessValue);
   },[ExcessValue]);
 
   async function getData() {
@@ -53,7 +68,7 @@ function Dashboard() {
    const data = await response.json();
    setExcessValue(data);
    setLoading(false);
-   console.log(data);
+  //  console.log(data);
   }
 
   const postData = async (url, dataToPost) => {
@@ -68,7 +83,9 @@ function Dashboard() {
         });
 
         const responseData = await response.json();
-        console.log(responseData);
+        setSuccessfulSubmit(true);
+        setOpenSnack(true);
+        console.log(responseData.message);
     } catch (error) {
         console.error('Error fetching data:', error);
     } finally {
@@ -119,12 +136,12 @@ function Dashboard() {
 
                 <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
                   <img src={getImageUrl('usd')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6'>USD</Typography>
+                  <Typography variant='h6'>{t('Dashboard.USD')}</Typography>
                 </Box>
                 <Box sx={{px:1}}>
                   <TextField
                     id="outlined-number"
-                    label="Buy"
+                    label={t('Dashboard.Buy')}
                     type="number"
                     color='success'
                     InputLabelProps={{
@@ -139,7 +156,7 @@ function Dashboard() {
                 <Box sx={{px:1}}>
                   <TextField
                     id="outlined-number"
-                    label="Sell"
+                    label={t('Dashboard.Sell')}
                     type="number"
                     color='error'
                     InputLabelProps={{
@@ -147,7 +164,7 @@ function Dashboard() {
                     }}
                     defaultValue={ExcessValue.USDIRR.sell}
                     onChange={(event) => {
-                      setValue(event.target.value,"USDIRR.buy");
+                      setValue(event.target.value,"USDIRR.sell");
                     }}
                   />
                 </Box>
@@ -159,14 +176,14 @@ function Dashboard() {
             <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
               <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                   <img src={getImageUrl('eur')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6'>EUR</Typography>
+                  <Typography variant='h6'>{t('Dashboard.EUR')}</Typography>
               </Box>
               {loading ? <p>Loading...</p> :
               <>
               <Box>
                 <TextField
                   id="outlined-number"
-                  label="Buy"
+                  label={t('Dashboard.Buy')}
                   type="number"
                   color='success'
                   InputLabelProps={{
@@ -181,7 +198,7 @@ function Dashboard() {
               <Box>
                 <TextField
                   id="outlined-number"
-                  label="Sell"
+                  label={t('Dashboard.Sell')}
                   type="number"
                   color='error'
                   InputLabelProps={{
@@ -198,13 +215,23 @@ function Dashboard() {
             </Box>
           </Card>
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="outlined" color='AppBarButtonColor' size='large'  sx={{borderRadius:2,minWidth:120,mx:4}} onClick={handleSubmit}>Submit</Button>
-            <Button variant="outlined" color='AppBarButtonColor' size='large' disabled sx={{borderRadius:2,minWidth:120,mx:4}}>Reset</Button>
+            <Button disableElevation variant="outlined" color='DashboardButtonColor' size='large'  sx={{borderRadius:2,minWidth:120,mx:4}} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
+            <Button variant="outlined" color='DashboardButtonColor' size='large' disabled sx={{borderRadius:2,minWidth:120,mx:4}}>{t('Dashboard.Reset')}</Button>
           </Box>
-
         </Card>
       </Box>
-     
+      <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity={successfulSubmit?'success' : 'error'}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          <Typography sx={{px:2}} variant='body3'>
+              {successfulSubmit ? t('Dashboard.snack.Done') : t('Dashboard.snack.Failed')}
+          </Typography>
+        </Alert>
+      </Snackbar>
     </Grid>
 );
 }

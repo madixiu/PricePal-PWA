@@ -24,10 +24,12 @@ import { useAuth } from '../AuthContext';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useTranslation } from 'react-i18next';
 
 // ============================|| JWT - LOGIN ||============================ //
 
 export default function AuthLogin() {
+  const { t } = useTranslation('translation');
 
   const {  handleLogin } = useAuth();
 
@@ -59,15 +61,15 @@ export default function AuthLogin() {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          username: Yup.string().max(255).required('Username is required')
-          .test('username-validation', 'Username is incorrect', function (value) {
+          username: Yup.string().max(255).required(t('Login.Error.RequiredUsername'))
+          .test('username-validation', t('Login.Error.IncorrectUsername'), function (value) {
             if (value === process.env.REACT_APP_ADMIN_USERNAME)
             return true; // Return true if the password is correct, false otherwise
             else
             return false;
           }),
-          password: Yup.string().max(255).required('Password is required')
-          .test('password-validation', 'Password is incorrect', function (value) {
+          password: Yup.string().max(255).required(t('Login.Error.RequiredPassword'))
+          .test('password-validation', t('Login.Error.IncorrectPassword'), function (value) {
             if (value === process.env.REACT_APP_ADMIN_PASSWORD)
             return true; // Return true if the password is correct, false otherwise
             else
@@ -86,7 +88,7 @@ export default function AuthLogin() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login">Username</InputLabel>
+                  <InputLabel htmlFor="email-login">{t('Login.Username')}</InputLabel>
                   <OutlinedInput
                     id="username-login"
                     type="email"
@@ -94,7 +96,7 @@ export default function AuthLogin() {
                     name="username"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter username"
+                    placeholder={t('Login.placeholder.Username')}
                     fullWidth
                     error={Boolean(touched.username && errors.username)}
                   />
@@ -107,7 +109,7 @@ export default function AuthLogin() {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="password-login">Password</InputLabel>
+                  <InputLabel htmlFor="password-login">{t('Login.Password')}</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
@@ -130,7 +132,7 @@ export default function AuthLogin() {
                         </IconButton>
                       </InputAdornment>
                     }
-                    placeholder="Enter password"
+                    placeholder={t('Login.placeholder.Password')}
                   />
                 </Stack>
                 {touched.password && errors.password && (
@@ -153,7 +155,7 @@ export default function AuthLogin() {
                         sx={{color: 'gray'}}
                       />
                     }
-                    label={<Typography variant="body1">Keep me signed in</Typography>}
+                    label={<Typography variant="body1">{t('Login.Remember')}</Typography>}
                   />
             
                 </Stack>
@@ -166,7 +168,7 @@ export default function AuthLogin() {
               <Grid item xs={12}>
                   <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary" 
                     >
-                    Login
+                    {t('Login.Login')}
                   </Button>
               </Grid>           
             </Grid>

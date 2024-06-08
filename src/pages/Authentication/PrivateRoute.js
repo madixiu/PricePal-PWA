@@ -3,9 +3,9 @@ import React from'react';
 
 const PrivateRoute = ({isAuthenticated,children}) => {
   // const {  handleLogin } = useAuth();
-  console.log('PrivateRoute component rendered');
+  // console.log('PrivateRoute component rendered');
   const [isAuthorized, setAuthorized] = React.useState(isAuthenticated);
-  console.log('isAuthenticated',isAuthenticated);;
+  // console.log('isAuthenticated',isAuthenticated);;
   React.useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     // const token = localStorage.getItem('token');
@@ -16,7 +16,6 @@ const PrivateRoute = ({isAuthenticated,children}) => {
   }, [isAuthorized]);
 
 if (!isAuthenticated) {
-  console.log("here");
     return <Navigate to="/login" replace />; // Redirect to login page
 }
 else

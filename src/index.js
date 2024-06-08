@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './i18n'
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import LoadingSpinner from './components/LoadingSpinner';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -15,7 +16,7 @@ root.render(
 
   <React.StrictMode>
     <BrowserRouter>
-      <React.Suspense fallback="loading">
+      <React.Suspense fallback={<LoadingSpinner />}>
         <App />
       </React.Suspense>
     </BrowserRouter>

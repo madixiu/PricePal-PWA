@@ -15,55 +15,22 @@ import { Box, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
+import palette from './misc/palette'
 // import { useAuth } from './pages/Authentication/AuthContext'
 const themeOptions = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#ededed  ',
-    },
-    secondary: {
-      main: '#f50057',
-    },
-    AppBarButtonColor:{
-      main: '#777',
-    },
-    ContactPage:{
-      text:{
-        main:"#333"
-      },
-      icon:{
-        default:"#666"
-      }
-    },
-    DashboardButtonColor:{
-      main: '#7fc8ef',
-    },
-    Dashboard:{
-      button:{
-        main:"#7fc8ef",
-      },
-      text:{
-        main:"#333"
-      },
-      icon:{
-        default:"#666"
-      }
-    }
-
-  
-  },
+  palette
 });
 
 
 function App() {
+  // console.log(process.env.URL);
   const { i18n } = useTranslation();
   document.body.dir = i18n.dir();
   const dispatch = useDispatch();
   React.useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) {
-      console.log(user);
+      // console.log(user);
       // dispatch action to set isAuthenticated to true
       dispatch(setAuthenticated(true));
     }

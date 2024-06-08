@@ -183,7 +183,7 @@ export default function CurrencyTable() {
     )
   }
   return (
-    <Paper style={{ height: 600, width: '100%' }}>
+    <Paper style={{ height: 400, width: '100%' }}>
       <TableVirtuoso
         data={CurrencyData(Cdata)}
         components={VirtuosoTableComponents}
