@@ -8,7 +8,7 @@ function Home() {
   const [CurrencyData,setCurrencyData] = React.useState([])
 
   function getCurrencyData() {
-    fetch('http://localhost:8000/pricev2').then(res => res.json()).then(data => {
+    fetch(`${process.env.REACT_APP_BASE_URL}pricev2`).then(res => res.json()).then(data => {
       setCurrencyData(data)
     }).catch(err => console.log(err))
   }

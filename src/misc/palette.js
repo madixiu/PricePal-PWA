@@ -1,3 +1,4 @@
+
 const palette = {
   mode: 'light',
   primary: {
@@ -26,6 +27,9 @@ const palette = {
   },
   DashboardButtonColor:{
     main: '#444',
+  },
+  DashboardMobileButton:{
+    main:'#7fc8af'
   },
   Dashboard:{
     button:{

@@ -23,7 +23,6 @@ const themeOptions = createTheme({
 
 
 function App() {
-  // console.log(process.env.URL);
   const { i18n } = useTranslation();
   document.body.dir = i18n.dir();
   const dispatch = useDispatch();

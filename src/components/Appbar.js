@@ -71,13 +71,21 @@ const LogoutButton = () => {
 
   if (showButton) {
     return (
+      <>
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'center',alignItems:'center' }}>
+          <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
+            <Button variant="outlined" color='AppBarButtonColor' size='small' sx={{marginInlineEnd:1,borderRadius:2,fontSize:'0.5rem'}}>{t('AppBar.buttons.Dashboard')}</Button>
+          </NavLink>
+          <Button variant="outlined" color='AppBarButtonColor' size='small' onClick={()=> handleLogout()} sx={{borderRadius:2,fontSize:'0.5rem'}}>{t('AppBar.buttons.Logout')}</Button>
+        </Box>
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center',alignItems:'center', marginInlineEnd: 5 }}>
+          <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
+            <Button variant="outlined" color='AppBarButtonColor'  sx={{marginInlineEnd:1,borderRadius:2}}>{t('AppBar.buttons.Dashboard')}</Button>
+          </NavLink>
+          <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()} sx={{borderRadius:2}}>{t('AppBar.buttons.Logout')}</Button>
+        </Box>
+      </>
       
-      <Box sx={{ display: { xs: 'flex', md: 'flex' }, justifyContent: 'center', marginInlineEnd: 5 }}>
-         <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
-          <Button variant="outlined" color='AppBarButtonColor'  sx={{marginInlineEnd:1,borderRadius:2}}>{t('AppBar.buttons.Dashboard')}</Button>
-         </NavLink>
-        <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()} sx={{borderRadius:2}}>{t('AppBar.buttons.Logout')}</Button>
-      </Box>
     );
   }
 

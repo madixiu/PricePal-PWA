@@ -14,9 +14,6 @@ import { useTranslation } from 'react-i18next';
 import { formatPrice,FarsiDigitPrice } from '../../misc/priceFixer';
 import {formatTime,formatTimeFarsiDigit} from '../../misc/dateFixer'
 
-// import RimaData from '../../assets/data/rimaMockDataPrice.json'
-
-
 const bundleImages = {
   usd: require("../../assets/flags/flag128/usd.png"),
   eur: require("../../assets/flags/flag128/eur.png"),
