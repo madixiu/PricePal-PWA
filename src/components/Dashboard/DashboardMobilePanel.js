@@ -15,7 +15,7 @@ function DashboardMobile({ExcessData}) {
 
   React.useEffect(() => {
       if(Object.keys(ExcessValue).length === 0){
-        setExcessValue({...ExcessData});
+        setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
 
         setLoading(false)
       }
@@ -31,7 +31,7 @@ function DashboardMobile({ExcessData}) {
   const handleReset = () => {
 
     // setExcessValue(ExcessData);
-    setExcessValue({...ExcessData});
+    setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
     setLoading(true)
     setTimeout(() => {
       setLoading(false)

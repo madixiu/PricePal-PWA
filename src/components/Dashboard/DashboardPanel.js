@@ -10,6 +10,9 @@ function DashboardPanel({ExcessData}) {
   const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
   const [loading,setLoading] = React.useState(true)
   const [ExcessValue,setExcessValue] = React.useState({});
+  // const ResetData = {...ExcessData};
+  // const ResetData = JSON.parse(JSON.stringify(ExcessData));
+
   const handleClose = ( reason ) => {
     if (reason === 'clickaway') {
       return;
@@ -17,8 +20,15 @@ function DashboardPanel({ExcessData}) {
 
     setOpenSnack(false);
   };
+  // const handleLogs=() => {
+  //   console.log('data',ExcessData);
+  //   console.log('value',ExcessValue);
+  //   console.log('reset Data',ResetData);
+
+  // }
   const handleReset = () => {
-    setExcessValue({...ExcessData});
+    setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
+    
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
@@ -48,7 +58,7 @@ function DashboardPanel({ExcessData}) {
 
   React.useEffect(() => {
       if(Object.keys(ExcessValue).length === 0){
-        setExcessValue({...ExcessData});
+        setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
         setLoading(false)
       }
   },[ExcessData,ExcessValue]);
@@ -67,8 +77,11 @@ function DashboardPanel({ExcessData}) {
 
         const responseData = await response.json();
         setSuccessfulSubmit(true);
-        if (responseData.message === 'Excess updated successfully')
-        setOpenSnack(true);
+        if (responseData.message === 'Excess updated successfully'){
+          setOpenSnack(true);
+          // ExcessData = ExcessValue
+        }
+        
     } catch (error) {
         console.error('Error fetching data:', error);
     } finally {
