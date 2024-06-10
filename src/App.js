@@ -16,7 +16,8 @@ import { useTranslation } from 'react-i18next';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import palette from './misc/palette'
-// import { useAuth } from './pages/Authentication/AuthContext'
+import CryptoJS from 'crypto-js';
+
 const themeOptions = createTheme({
   palette
 });
@@ -27,10 +28,14 @@ function App() {
   document.body.dir = i18n.dir();
   const dispatch = useDispatch();
   React.useEffect(() => {
-    const user = localStorage.getItem('user');
+    var user = localStorage.getItem('user');
     if (user) {
+      var bytes  = CryptoJS.AES.decrypt(user, process.env.REACT_APP_PRIVATE_KEY);
+      var originalText = bytes.toString(CryptoJS.enc.Utf8);
+      user = JSON.parse(originalText);
       // console.log(user);
       // dispatch action to set isAuthenticated to true
+      if (user.username === process.env.REACT_APP_ADMIN_USERNAME && user.password === process.env.REACT_APP_ADMIN_PASSWORD) 
       dispatch(setAuthenticated(true));
     }
   }, [dispatch])

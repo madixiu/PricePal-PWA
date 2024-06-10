@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
+import CryptoJS from 'crypto-js';
 import { useDispatch } from 'react-redux';
 import { login,logout } from '../../redux/authSlice';
 
@@ -14,8 +14,11 @@ const useAuth = (
     
     dispatch(login({ username, password }));
 
-    if(KeepSignedIn)
-    localStorage.setItem('user', JSON.stringify({ username: username, password: password }));
+    if(KeepSignedIn){
+      var ciphertext = CryptoJS.AES.encrypt(JSON.stringify({ username: username, password: password }), process.env.REACT_APP_PRIVATE_KEY).toString();
+
+      localStorage.setItem('user', ciphertext);
+    }
    
 
     navigate('/dashboard', { replace: true }); // Redirect to the dashboard page
