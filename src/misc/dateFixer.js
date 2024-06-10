@@ -20,3 +20,21 @@ export function formatTimeFarsiDigit(isoString) {
   // Persian ("fa") locale
   return date.toLocaleString('fa-IR', options);
 }
+export const sortDataArray = (dataArray) => {
+  const sortOrder = {"usd": 0,"eur": 1,"gbp": 2, "chf": 3,"cad": 4,"aud": 5,"try": 6};
+  
+  return dataArray.sort((a, b) => {
+    // Sort based on the `slug` property
+    const slugA = a.slug;
+    const slugB = b.slug;
+
+    // Compare slugA and slugB based on their order in the sortOrder object
+    if (sortOrder[slugA] < sortOrder[slugB]) {
+      return -1;
+    } else if (sortOrder[slugA] > sortOrder[slugB]) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+};
