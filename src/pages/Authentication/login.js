@@ -26,7 +26,7 @@ export default function Login() {
               <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-                      <Typography variant="h5">{t('Login.Login')}</Typography>
+                      <Typography variant="h5" sx={{fontFamily:'Vazir'}}>{t('Login.Login')}</Typography>
                       {/* <Typography component={Link} to="#" variant="body1" sx={{ textDecoration: 'none' }} color="black">
                         Don&apos;t have an account?
                       </Typography> */}

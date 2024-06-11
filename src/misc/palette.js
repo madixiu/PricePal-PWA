@@ -1,5 +1,20 @@
+import VazirWoff2 from '../fonts/Vazir.woff2'
+
 
 const palette = {
+  typography:{
+    fontFamily: 'Vazirmatn'
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'Vazirmatn';
+          src: local('Vazir'), url(${VazirWoff2}) format('woff2');
+        }
+      `,
+    },
+  },
   mode: 'light',
   primary: {
     main: '#ededed  ',

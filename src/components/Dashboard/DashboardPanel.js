@@ -6,12 +6,13 @@ import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../LoadingSpinner'
 function DashboardPanel({ExcessData}) {
   const { t } = useTranslation('translation');
+  const fontStyle = {
+    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+  }
   const [openSnack,setOpenSnack] = React.useState(false);
   const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
   const [loading,setLoading] = React.useState(true)
   const [ExcessValue,setExcessValue] = React.useState({});
-  // const ResetData = {...ExcessData};
-  // const ResetData = JSON.parse(JSON.stringify(ExcessData));
 
   const handleClose = ( reason ) => {
     if (reason === 'clickaway') {
@@ -20,12 +21,7 @@ function DashboardPanel({ExcessData}) {
 
     setOpenSnack(false);
   };
-  // const handleLogs=() => {
-  //   console.log('data',ExcessData);
-  //   console.log('value',ExcessValue);
-  //   console.log('reset Data',ResetData);
 
-  // }
   const handleReset = () => {
     setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
     
@@ -133,11 +129,12 @@ function DashboardPanel({ExcessData}) {
               <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
                 <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
                   <img src={getImageUrl('usd')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6'>{t('Dashboard.USD')}</Typography>
+                  <Typography variant='h6' sx={fontStyle}>{t('Dashboard.USD')}</Typography>
                 </Box>
                 <Box sx={{px:1}}>
                   <TextField
                     id="outlined-number"
+                    sx={fontStyle}
                     label={t('Dashboard.Buy')}
                     type="number"
                     color='success'
@@ -173,7 +170,7 @@ function DashboardPanel({ExcessData}) {
             <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
               <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                   <img src={getImageUrl('eur')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6'>{t('Dashboard.EUR')}</Typography>
+                  <Typography variant='h6' sx={fontStyle}>{t('Dashboard.EUR')}</Typography>
               </Box>
          
             
@@ -205,6 +202,7 @@ function DashboardPanel({ExcessData}) {
                   onChange={(event) => {
                     setValue(event.target.value,"EURIRR.sell");
                   }}
+                  sx={fontStyle}
                 />
               </Box>
               
@@ -212,8 +210,8 @@ function DashboardPanel({ExcessData}) {
             </Box>
           </Card>
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={{borderRadius:2,minWidth:120,mx:4}} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={{borderRadius:2,minWidth:120,mx:4}} onClick={handleReset}>{t('Dashboard.Reset')}</Button>
+            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
+            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>{t('Dashboard.Reset')}</Button>
           </Box>
         </Card>
       </Box>
@@ -224,7 +222,7 @@ function DashboardPanel({ExcessData}) {
           variant="filled"
           sx={{ width: '100%' }}
         >
-          <Typography sx={{px:2}} variant='body3'>
+          <Typography sx={[{px:2},fontStyle]} variant='body3'>
               {successfulSubmit ? t('Dashboard.snack.Done') : t('Dashboard.snack.Failed')}
           </Typography>
         </Alert>

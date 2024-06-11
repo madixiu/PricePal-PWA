@@ -26,6 +26,13 @@ const bundleImages = {
 const getImageUrl = (code) => bundleImages[code];
 
 function CurrencyTableV2({CurrencyData}) {
+  const tableHeaderStyle = {
+    fontWeight: document.body.dir === "ltr" ? 500 : 700,
+    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+  }
+  const tableCellStyle = {
+    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+  }
   const { t } = useTranslation('translation');
   function ChangeIcon({direction}) {
     if (direction === 'positive') {
@@ -44,12 +51,12 @@ function CurrencyTableV2({CurrencyData}) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>
           <TableHead sx={{backgroundColor: '#eeee'}}>
             <TableRow>
-              <TableCell align='center'>{t('Home.flag')}</TableCell>
-              <TableCell align="center">{t('Home.Currency')}</TableCell>
-              <TableCell align="center">{t('Home.Buy')}</TableCell>
-              <TableCell align="center">{t('Home.Sell')}</TableCell>
-              <TableCell align="center">{t('Home.Change')}</TableCell>
-              <TableCell align="center">{t('Home.Updated At')}</TableCell>
+              {/* <TableCell align="center" sx={tableHeaderStyle}>{t('Home.flag')}</TableCell> */}
+              <TableCell align={document.body.dir === "ltr" ? "left" : "right"} sx={tableHeaderStyle}>{t('Home.Currency')}</TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Buy')}</TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Sell')}</TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Change')}(%)</TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Updated At')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -58,26 +65,31 @@ function CurrencyTableV2({CurrencyData}) {
                 key={row.code}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } ,py:0 }}
               >
-                <TableCell align='center' component="th" scope="row" sx={{py:0}}>
-                  <img style={{width:32,height:32}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
-
-                  {row.name}
+                <TableCell align='left' component="th" scope="row" sx={{py:0}}>
+                <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'flex-start', }}>
+                  <img style={{width:32,height:32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
+                  <Typography sx={tableCellStyle}>
+                      {t('Home.CurrencyList.'+row.slug)}
+                  </Typography>
+                </Box>
                 </TableCell>
-                <TableCell align="center">{t('Home.CurrencyList.'+row.slug)}</TableCell>
-                <TableCell align="center">
+                {/* <TableCell align="center" sx={tableCellStyle}>{t('Home.CurrencyList.'+row.slug)}</TableCell> */}
+                <TableCell align="center" sx={tableCellStyle}>
                   {document.body.dir === "rtl" ? FarsiDigitPrice(row.prices.buy.price): formatPrice(row.prices.buy.price)}
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="center" sx={tableCellStyle}>
                 {document.body.dir === "rtl" ? FarsiDigitPrice(row.prices.sell.price): formatPrice(row.prices.sell.price)}
                 </TableCell>
                 <TableCell align="center">
 
                   <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', }}>
                       <ChangeIcon direction={row.change_direction} />
-                      <Typography sx={{color: ChangeColor(row.change_direction)}}>{row.change_percentage === 0 ? "-" : document.body.dir === 'ltr' ? row.change_percentage : FarsiDigitPrice(row.change_percentage)}</Typography>
+                      <Typography sx={[tableCellStyle,{color: ChangeColor(row.change_direction)}]}>
+                          {row.change_percentage === 0 ? "-" : document.body.dir === 'ltr' ? row.change_percentage : FarsiDigitPrice(row.change_percentage)}
+                      </Typography>
                   </Box>
                 </TableCell>
-                <TableCell align="center">{document.body.dir === "ltr" ? formatTime(row.lastUpdate) : formatTimeFarsiDigit(row.lastUpdate)}</TableCell>
+                <TableCell align="center" sx={tableCellStyle}>{document.body.dir === "ltr" ? formatTime(row.lastUpdate) : formatTimeFarsiDigit(row.lastUpdate)}</TableCell>
               </TableRow>
             ))}
             

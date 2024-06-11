@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './index.css'
 import Appbar from './components/Appbar';
 import { createTheme,ThemeProvider } from '@mui/material/styles';
 import { Routes, Route } from 'react-router-dom';
@@ -11,7 +11,7 @@ import BottomAppBar from './components/BottomAppBar';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './pages/Authentication/PrivateRoute';
 import Login from './pages/Authentication/login';
-import { Box, Grid } from '@mui/material';
+import { Box, CssBaseline, Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
@@ -24,25 +24,32 @@ const themeOptions = createTheme({
 
 
 function App() {
+  // console.log(window.matchMedia('(display-mode: standalone)').matches);
+
   const { i18n } = useTranslation();
   document.body.dir = i18n.dir();
   const dispatch = useDispatch();
   React.useEffect(() => {
     var user = localStorage.getItem('user');
     if (user) {
-      var bytes  = CryptoJS.AES.decrypt(user, process.env.REACT_APP_PRIVATE_KEY);
-      var originalText = bytes.toString(CryptoJS.enc.Utf8);
-      user = JSON.parse(originalText);
-      // console.log(user);
-      // dispatch action to set isAuthenticated to true
-      if (user.username === process.env.REACT_APP_ADMIN_USERNAME && user.password === process.env.REACT_APP_ADMIN_PASSWORD) 
-      dispatch(setAuthenticated(true));
+      try {
+        var bytes  = CryptoJS.AES.decrypt(user, process.env.REACT_APP_PRIVATE_KEY);
+        var originalText = bytes.toString(CryptoJS.enc.Utf8);
+        user = JSON.parse(originalText);
+        if (user.username === process.env.REACT_APP_ADMIN_USERNAME && user.password === process.env.REACT_APP_ADMIN_PASSWORD) 
+        dispatch(setAuthenticated(true));
+        
+      } catch (error) {
+        localStorage.removeItem('user');
+        return
+      }
     }
   }, [dispatch])
   const { isAuthenticated } = useSelector((state) => state.auth);
   return (
 
     <ThemeProvider theme={themeOptions}>
+      <CssBaseline />
       <Appbar isAuthenticated={isAuthenticated} />
       <Grid container sx={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
         {/* <CurrencyTable /> */}

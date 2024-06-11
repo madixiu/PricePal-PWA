@@ -7,6 +7,7 @@ import LoadingSpinner from '../LoadingSpinner'
 
 function DashboardMobile({ExcessData}) {
   const { t } = useTranslation('translation');
+  const fontStyle = {fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'}
   const [openSnack,setOpenSnack] = React.useState(false);
   const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
   const [loading,setLoading] = React.useState(true)
@@ -122,7 +123,7 @@ else
         <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
             <img src={getImageUrl('usd')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-            <Typography variant='h6' sx={{fontSize:'0.9rem'}}>{t('Dashboard.USD')}</Typography>
+            <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>{t('Dashboard.USD')}</Typography>
           </Box>
           <Box sx={{px:1,py:2,justifyContent: 'center',display:'flex' ,flexDirection:'column'}}>
             <Box sx={{py:2}}>
@@ -165,7 +166,7 @@ else
         <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
             <img src={getImageUrl('eur')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-            <Typography variant='h6' sx={{fontSize:'0.9rem'}}>{t('Dashboard.EUR')}</Typography>
+            <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>{t('Dashboard.EUR')}</Typography>
           </Box>
           <Box sx={{px:1,py:2,justifyContent: 'center',display:'flex',flexDirection:'column'}}>
             <Box sx={{py:2}}>
@@ -204,9 +205,9 @@ else
           </Box>
         </Box>
       </Card>
-      <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="contained"  size='samll' sx={{borderRadius:2,minWidth:100,mx:4,color:'black',backgroundColor: '#7fc8af',}} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
-            <Button variant="contained"  size='samll' sx={{borderRadius:2,mx:4,minWidth:100}} onClick={handleReset}>{t('Dashboard.Reset')}</Button>
+      <Box sx={{justifyContent:'space-evenly',alignItems:'center',display:'flex',my:1}}>
+            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
+            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleReset}>{t('Dashboard.Reset')}</Button>
       </Box>
       <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
         <Alert
@@ -215,7 +216,7 @@ else
           variant="filled"
           sx={{ width: '100%' }}
         >
-          <Typography sx={{px:2}} variant='body3'>
+          <Typography sx={[{px:2},fontStyle]} variant='body3'>
               {successfulSubmit ? t('Dashboard.snack.Done') : t('Dashboard.snack.Failed')}
           </Typography>
         </Alert>

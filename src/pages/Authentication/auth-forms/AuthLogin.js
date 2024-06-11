@@ -30,7 +30,9 @@ import { useTranslation } from 'react-i18next';
 
 export default function AuthLogin() {
   const { t } = useTranslation('translation');
-
+  const fontStyle = {
+    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+  }
   const {  handleLogin } = useAuth();
 
   const [checked, setChecked] = React.useState(false);
@@ -88,7 +90,7 @@ export default function AuthLogin() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login">{t('Login.Username')}</InputLabel>
+                  <InputLabel htmlFor="email-login" sx={fontStyle}>{t('Login.Username')}</InputLabel>
                   <OutlinedInput
                     id="username-login"
                     type="email"
@@ -99,6 +101,7 @@ export default function AuthLogin() {
                     placeholder={t('Login.placeholder.Username')}
                     fullWidth
                     error={Boolean(touched.username && errors.username)}
+                    sx={fontStyle}
                   />
                 </Stack>
                 {touched.username && errors.username && (
@@ -109,7 +112,7 @@ export default function AuthLogin() {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="password-login">{t('Login.Password')}</InputLabel>
+                  <InputLabel htmlFor="password-login" sx={fontStyle}>{t('Login.Password')}</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
@@ -133,6 +136,7 @@ export default function AuthLogin() {
                       </InputAdornment>
                     }
                     placeholder={t('Login.placeholder.Password')}
+                    sx={fontStyle}
                   />
                 </Stack>
                 {touched.password && errors.password && (
@@ -155,7 +159,7 @@ export default function AuthLogin() {
                         sx={{color: 'gray'}}
                       />
                     }
-                    label={<Typography variant="body1">{t('Login.Remember')}</Typography>}
+                    label={<Typography variant="body1" sx={fontStyle}>{t('Login.Remember')}</Typography>}
                   />
             
                 </Stack>
@@ -166,8 +170,7 @@ export default function AuthLogin() {
                 </Grid>
               )}
               <Grid item xs={12}>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary" 
-                    >
+                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary" sx={fontStyle}>
                     {t('Login.Login')}
                   </Button>
               </Grid>           
