@@ -80,9 +80,9 @@ const LogoutButton = () => {
         </Box>
         <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center',alignItems:'center', marginInlineEnd: 5 }}>
           <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
-            <Button variant="outlined" color='AppBarButtonColor'  sx={{marginInlineEnd:1,borderRadius:2}}>{t('AppBar.buttons.Dashboard')}</Button>
+            <Button variant="outlined" color='AppBarButtonColor' size='medium'  sx={{marginInlineEnd:1,borderRadius:2,color: '#555','&:hover':{color:'#000'}}}>{t('AppBar.buttons.Dashboard')}</Button>
           </NavLink>
-          <Button variant="outlined" color='AppBarButtonColor' onClick={()=> handleLogout()} sx={{borderRadius:2}}>{t('AppBar.buttons.Logout')}</Button>
+          <Button variant="outlined" color='AppBarButtonColor' size='medium' onClick={()=> handleLogout()} sx={{borderRadius:2,color: '#555','&:hover':{color:'#000'}}}>{t('AppBar.buttons.Logout')}</Button>
         </Box>
       </>
       
@@ -177,7 +177,7 @@ const LogoutButton = () => {
             </Typography>
           </Box>
           
-          <Box sx={{ flexGrow: 1,justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' },px:10 }}>
+          <Box sx={{ flexGrow: 1,justifyContent: 'flex-start', display: { xs: 'none', md: 'flex' },px:2}}>
             {pages.map((page) => (
               <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}> 
                 <Button 
