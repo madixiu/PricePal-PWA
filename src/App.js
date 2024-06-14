@@ -24,8 +24,18 @@ const themeOptions = createTheme({
 
 
 function App() {
-  // console.log(window.matchMedia('(display-mode: standalone)').matches);
-
+// //   console.log(process.env.REACT_APP_BASE_URL);
+// //   // console.log(window.matchMedia('(display-mode: standalone)').matches);
+//   const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+//   const isMinimal = window.matchMedia('(display-mode: minimal-ui)').matches;
+//   const isBrowser = window.matchMedia('(display-mode: browser)').matches;
+// if (isStandalone) {
+//   alert('Display type: Standalone');
+// } else if (isMinimal) {
+//   alert('Display type: Minimal UI');
+// } else if (isBrowser){
+//   alert('Display type: Browser');
+// }
   const { i18n } = useTranslation();
   document.body.dir = i18n.dir();
   const dispatch = useDispatch();

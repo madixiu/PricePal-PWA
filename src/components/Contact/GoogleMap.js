@@ -2,23 +2,23 @@ import {useEffect,useState} from 'react';
 import { Box } from '@mui/material';
 import Card from '@mui/material/Card';
 function GoogleMap() {
-  const [windowWidth, setWindowWidth] = useState(null);
+  // const [windowWidth, setWindowWidth] = useState(null);
   const [windowHeight, setWindowHeight] = useState(null);
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setWindowWidth(window.innerWidth);
+      // setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
   
       // Optionally, you can also listen for window resize events and update dimensions accordingly:
       window.addEventListener('resize', () => {
-        setWindowWidth(window.innerWidth);
+        // setWindowWidth(window.innerWidth);
         setWindowHeight(window.innerHeight);
       });
   
       // Don't forget to clean up the event listener when unmounting the component:
       return () => {
         window.removeEventListener('resize', () => {
-          setWindowWidth(window.innerWidth);
+          // setWindowWidth(window.innerWidth);
           setWindowHeight(window.innerHeight);
         });
       };
