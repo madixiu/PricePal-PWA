@@ -11,7 +11,7 @@ function Home() {
 
   function getCurrencyData() {
     fetch(`${process.env.REACT_APP_BASE_URL}pricev2`).then(res => res.json()).then(data => {
-      // console.log(data);
+      console.log(data);
       let CurrencyData = sortDataArray(data.assets);
       setCurrencyData(CurrencyData)
     }).catch(err => console.log(err))

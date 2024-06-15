@@ -1,5 +1,6 @@
 export function formatTime(isoString) {
-  const date = new Date(isoString);
+  const date = new Date(isoString.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+  
   const hours = date.getHours().toString().padStart(2, '0');
   const minutes = date.getMinutes().toString().padStart(2, '0');
   const seconds = date.getSeconds().toString().padStart(2, '0');
@@ -8,15 +9,16 @@ export function formatTime(isoString) {
 
 
 export function formatTimeFarsiDigit(isoString) {
-  const date = new Date(isoString);
+  const date = new Date(isoString.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+
   const options = {
     hour12: false, // 24-hour format
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    numberingSystem: 'arab' // Use Arabic-Indic digits, which are the same as Persian digits
+    numberingSystem: 'arabext' // Use Arabic-Indic digits, which are the same as Persian digits
   };
-
+  // console.log(date);
   // Persian ("fa") locale
   return date.toLocaleString('fa-IR', options);
 }
