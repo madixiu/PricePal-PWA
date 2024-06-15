@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 // import  {useAuth}  from '../pages/Authentication/AuthContext';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/authSlice'
+import { useNavigate } from 'react-router-dom';
 
 const pages = [
   {name: 'Home',link:''},
@@ -30,6 +31,7 @@ const bundleImages = {
 const getImageUrl = (code) => bundleImages[code];
 
 function Appbar({isAuthenticated}) {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation('translation');
   const fontStyle = {fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'}
   function LanguageSwitcher(lng) {
@@ -54,8 +56,12 @@ function Appbar({isAuthenticated}) {
 
   const dispatch = useDispatch();
   const handleLogout = () => {
+
+    
+    // console.log(location.pathname);
     dispatch(logout());
     localStorage.removeItem('user')
+    navigate('/', { replace: true }); // Redirect to the dashboard page
   };
   
 
