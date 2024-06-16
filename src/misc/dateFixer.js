@@ -3,8 +3,8 @@ export function formatTime(isoString) {
   
   const hours = date.getHours().toString().padStart(2, '0');
   const minutes = date.getMinutes().toString().padStart(2, '0');
-  const seconds = date.getSeconds().toString().padStart(2, '0');
-  return `${hours}:${minutes}:${seconds}`;
+  // const seconds = date.getSeconds().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
 }
 
 
@@ -23,7 +23,7 @@ export function formatTimeFarsiDigit(isoString) {
   return date.toLocaleString('fa-IR', options);
 }
 export const sortDataArray = (dataArray) => {
-  const sortOrder = {"usd": 0,"eur": 1,"gbp": 2, "chf": 3,"cad": 4,"aud": 5,"try": 6};
+  const sortOrder = {"try": 0, "usd": 1,"eur": 2,"gbp": 3, "cad": 4,"aud": 5,"chf":6};
   
   return dataArray.sort((a, b) => {
     // Sort based on the `slug` property

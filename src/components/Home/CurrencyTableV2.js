@@ -11,8 +11,8 @@ import Typography from '@mui/material/Typography';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
-import { formatPrice,FarsiDigitPrice,ChangeColor } from '../../misc/priceFixer';
-import {formatTime,formatTimeFarsiDigit} from '../../misc/dateFixer'
+import { formatPrice,ChangeColor } from '../../misc/priceFixer';
+import {formatTime} from '../../misc/dateFixer'
 
 const bundleImages = {
   usd: require("../../assets/flags/flag128/usd.png"),
@@ -51,12 +51,41 @@ function CurrencyTableV2({CurrencyData}) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>
           <TableHead sx={{backgroundColor: '#eeee'}}>
             <TableRow>
-              {/* <TableCell align="center" sx={tableHeaderStyle}>{t('Home.flag')}</TableCell> */}
-              <TableCell align={document.body.dir === "ltr" ? "left" : "right"} sx={tableHeaderStyle}>{t('Home.Currency')}</TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Buy')}</TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Sell')}</TableCell>
+              <TableCell align={document.body.dir === "ltr" ? "left" : "right"} sx={tableHeaderStyle}>
+                <Box>
+                  <Typography sx={tableCellStyle}>
+                      ارز
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Currency
+                  </Typography>
+                </Box>
+              </TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>
+                  <Typography sx={tableCellStyle}>
+                      خرید
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Buy
+                  </Typography>
+              </TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>
+                  <Typography sx={tableCellStyle}>
+                      فروش
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Sell
+                  </Typography>
+              </TableCell>
               <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Change')}(%)</TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>{t('Home.Updated At')}</TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>
+                  <Typography sx={tableCellStyle}>
+                      بروز شده
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Updated
+                  </Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -65,7 +94,7 @@ function CurrencyTableV2({CurrencyData}) {
                 key={row.code}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } ,py:0 }}
               >
-                <TableCell align='left' component="th" scope="row" sx={{py:0}}>
+                <TableCell align='left' component="th" scope="row">
                 <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'flex-start', }}>
                   <img style={{width:32,height:32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
                   <Typography sx={tableCellStyle}>
@@ -73,26 +102,25 @@ function CurrencyTableV2({CurrencyData}) {
                   </Typography>
                 </Box>
                 </TableCell>
-                {/* <TableCell align="center" sx={tableCellStyle}>{t('Home.CurrencyList.'+row.slug)}</TableCell> */}
+
                 <TableCell align="center" sx={tableCellStyle}>
-                  {document.body.dir === "rtl" ? FarsiDigitPrice(row.prices.buy.price): formatPrice(row.prices.buy.price)}
+                  {formatPrice(row.prices.buy.price)}
                 </TableCell>
                 <TableCell align="center" sx={tableCellStyle}>
-                {document.body.dir === "rtl" ? FarsiDigitPrice(row.prices.sell.price): formatPrice(row.prices.sell.price)}
+                {formatPrice(row.prices.sell.price)}
                 </TableCell>
                 <TableCell align="center">
 
                   <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', }}>
                       <ChangeIcon direction={row.change_direction} />
                       <Typography sx={[tableCellStyle,{color: ChangeColor(row.change_direction)}]}>
-                          {row.change_percentage === 0 ? "-" : document.body.dir === 'ltr' ? row.change_percentage : FarsiDigitPrice(row.change_percentage)}
+                          {row.change_percentage === 0 ? "-" : row.change_percentage}
                       </Typography>
                   </Box>
                 </TableCell>
-                <TableCell align="center" sx={tableCellStyle}>{document.body.dir === "ltr" ? formatTime(row.lastUpdate) : formatTimeFarsiDigit(row.lastUpdate)}</TableCell>
+                <TableCell align="center" sx={tableCellStyle}>{formatTime(row.lastUpdate)}</TableCell>
               </TableRow>
             ))}
-            
           </TableBody>
         </Table>
       </TableContainer>
