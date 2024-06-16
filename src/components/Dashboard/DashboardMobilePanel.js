@@ -126,7 +126,7 @@ else
             <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>{t('Dashboard.USD')}</Typography>
           </Box>
           <Box sx={{px:1,py:2,justifyContent: 'center',display:'flex' ,flexDirection:'column'}}>
-            <Box sx={{py:2}}>
+            <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
                 label={t('Dashboard.Buy')}
@@ -143,7 +143,7 @@ else
               />
             </Box>
 
-            <Box sx={{py:2}}>
+            <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
                 label={t('Dashboard.Sell')}
@@ -169,7 +169,7 @@ else
             <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>{t('Dashboard.EUR')}</Typography>
           </Box>
           <Box sx={{px:1,py:2,justifyContent: 'center',display:'flex',flexDirection:'column'}}>
-            <Box sx={{py:2}}>
+            <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
                 label={t('Dashboard.Buy')}
@@ -186,7 +186,7 @@ else
               />
             </Box>
 
-            <Box sx={{py:2}}>
+            <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
                 label={t('Dashboard.Sell')}

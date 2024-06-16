@@ -131,10 +131,9 @@ function DashboardPanel({ExcessData}) {
                   <img src={getImageUrl('usd')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
                   <Typography variant='h6' sx={fontStyle}>{t('Dashboard.USD')}</Typography>
                 </Box>
-                <Box sx={{px:1}}>
+                <Box sx={{px:1,direction:'ltr'}}>
                   <TextField
                     id="outlined-number"
-                    sx={fontStyle}
                     label={t('Dashboard.Buy')}
                     type="number"
                     color='success'
@@ -147,7 +146,7 @@ function DashboardPanel({ExcessData}) {
                     }}
                   />
                 </Box>
-                <Box sx={{px:1}}>
+                <Box sx={{px:1,direction:'ltr'}}>
                   <TextField
                     id="outlined-number"
                     label={t('Dashboard.Sell')}
@@ -174,7 +173,7 @@ function DashboardPanel({ExcessData}) {
               </Box>
          
             
-              <Box>
+              <Box sx={{direction:'ltr'}}>
                 <TextField
                   id="outlined-number"
                   label={t('Dashboard.Buy')}
@@ -189,7 +188,7 @@ function DashboardPanel({ExcessData}) {
                   }}
                 />
               </Box>
-              <Box>
+              <Box sx={{direction:'ltr'}}>
                 <TextField
                   id="outlined-number"
                   label={t('Dashboard.Sell')}

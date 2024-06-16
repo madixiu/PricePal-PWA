@@ -17,8 +17,7 @@ function Dashboard() {
           "buy": 0,
           "sell": 0
       }
-  }
-  );
+  });
 
 
 
@@ -51,7 +50,6 @@ function Dashboard() {
         }     
       </Box>
     </>
-   
   );
 }
 
