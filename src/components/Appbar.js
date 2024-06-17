@@ -10,39 +10,25 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+// import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { NavLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-// import  {useAuth}  from '../pages/Authentication/AuthContext';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/authSlice'
 import { useNavigate } from 'react-router-dom';
 
 const pages = [
-  {name: 'Home',link:''},
-  {name: 'Blog',link:'blog'},
-  {name: 'About Us',link:'about'},
-  {name: 'Contact',link:'contact'},
+  {name: 'خانه',link:''},
+  {name: 'بلاگ',link:'blog'},
+  {name: 'درباره ما',link:'about'},
+  {name: 'ارتباط با ما',link:'contact'},
 ]
-const bundleImages = {
-  usd: require("../assets/flags/flag64/usd.png"),
-  irr: require("../assets/flags/flag64/irr.png"),
-};
-const getImageUrl = (code) => bundleImages[code];
+
 
 function Appbar({isAuthenticated}) {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation('translation');
   const fontStyle = {fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'}
-  function LanguageSwitcher(lng) {
-    if (lng == null)
-    i18n.changeLanguage(i18n.dir() === 'rtl'? 'en' : 'fa');
-  else if(lng === 'fa')
-    i18n.changeLanguage('fa');
-  else if(lng === 'en')
-    i18n.changeLanguage('en');
+  const dispatch = useDispatch();
 
-  }
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -54,41 +40,34 @@ function Appbar({isAuthenticated}) {
     setAnchorElNav(null);
   };
 
-  const dispatch = useDispatch();
   const handleLogout = () => {
-
-    
-    // console.log(location.pathname);
     dispatch(logout());
     localStorage.removeItem('user')
+    // setShowButton(false);
     navigate('/', { replace: true }); // Redirect to the dashboard page
   };
-  
+  const handleDashboard = () => {
+    navigate('/dashboard', { replace: true }); // Redirect to the dashboard page
+  };
 
-
+  // const [showButton, setShowButton] = React.useState(false);
+  // React.useEffect(() => {
+  //   if (isAuthenticated) {
+  //     setShowButton(true);
+  //   }
+  // }, [isAuthenticated]);
 
 const LogoutButton = () => {
-  const [showButton, setShowButton] = React.useState(false);
-  React.useEffect(() => {
-    if (isAuthenticated) {
-      setShowButton(true);
-    }
-  }, []);
 
-  if (showButton) {
+
+  if (isAuthenticated) {
     return (
       <>
-        <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'center',alignItems:'center' }}>
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center',alignItems:'center' }}>
           <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
-            <Button variant="outlined" color='AppBarButtonColor' size='small' sx={[{marginInlineEnd:1,borderRadius:2,fontSize:'0.5rem'},fontStyle]}>{t('AppBar.buttons.Dashboard')}</Button>
+            <Button variant="outlined" color='AppBarButtonColor' size='medium'  sx={[{marginInlineEnd:1,borderRadius:2,color: '#555','&:hover':{color:'#000'}},fontStyle]}>داشبورد</Button>
           </NavLink>
-          <Button variant="outlined" color='AppBarButtonColor' size='small' onClick={()=> handleLogout()} sx={[{borderRadius:2,fontSize:'0.5rem'},fontStyle]}>{t('AppBar.buttons.Logout')}</Button>
-        </Box>
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center',alignItems:'center', marginInlineEnd: 5 }}>
-          <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
-            <Button variant="outlined" color='AppBarButtonColor' size='medium'  sx={[{marginInlineEnd:1,borderRadius:2,color: '#555','&:hover':{color:'#000'}},fontStyle]}>{t('AppBar.buttons.Dashboard')}</Button>
-          </NavLink>
-          <Button variant="outlined" color='AppBarButtonColor' size='medium' onClick={()=> handleLogout()} sx={[{borderRadius:2,color: '#555','&:hover':{color:'#000'}},fontStyle]}>{t('AppBar.buttons.Logout')}</Button>
+          <Button variant="outlined" color='AppBarButtonColor' size='medium' onClick={()=> handleLogout()} sx={[{borderRadius:2,color: '#555','&:hover':{color:'#000'}},fontStyle]}>خروج</Button>
         </Box>
       </>
       
@@ -121,7 +100,7 @@ const LogoutButton = () => {
             RIMA FINANCE
           </Typography>
 
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' } }}>
             <IconButton
               size="small"
               aria-label="account of current user"
@@ -150,17 +129,15 @@ const LogoutButton = () => {
                 display: { xs: 'block', md: 'none' }
               }}
             > 
-              <MenuItem onClick={()=>{handleCloseNavMenu();LanguageSwitcher('en')}} sx={{justifyContent: 'flex-start',alignContent:'center'}} >
-                  <img src={getImageUrl('usd')} alt="en" width="15" style={{marginInlineEnd:'5px'}} />
-                  <Typography sx={{fontSize:10}}>English</Typography>
+              <MenuItem onClick={()=>{handleCloseNavMenu();handleDashboard();}} sx={{justifyContent: 'flex-start',alignContent:'center'}} >
+                  <Typography sx={{fontSize:10}}>داشبورد</Typography>
               </MenuItem>
-              <MenuItem onClick={()=>{handleCloseNavMenu();LanguageSwitcher('fa')}} sx={{justifyContent: 'flex-start',alignContent:'center',py:0}}>
-                <img src={getImageUrl('irr')} alt="en" width="15" style={{marginInlineEnd:'5px'}}/>
-                <Typography sx={{fontSize:10,fontFamily:'Vazir'}}>فارسی</Typography>
+              <MenuItem onClick={()=>{handleCloseNavMenu();handleLogout();}} sx={{justifyContent: 'flex-start',alignContent:'center',py:0}}>
+                <Typography sx={{fontSize:10,fontFamily:'Vazir'}}>خروج</Typography>
               </MenuItem>
             </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:5 }}>
+        </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:isAuthenticated ? 5: 0 }}>
 
             <AdbIcon sx={{display: { xs: 'flex', md: 'none' },justifyContent: 'center',alignSelf: 'center'}} />
             <Typography
@@ -194,37 +171,14 @@ const LogoutButton = () => {
                   onClick={handleCloseNavMenu}
                   sx={{ mx:1, color: '#555',minWidth:101,borderRadius:2,'&:hover':{color:'#000'},fontFamily: document.body.dir === 'ltr'? 'Roboto' : 'Vazir'}}
                 >
-                  {t('AppBar.buttons.'+page.name)}
+                  {page.name}
                 </Button>
               </NavLink>
             ))}
           </Box>
           <LogoutButton />
-            <Box sx={{display:{xs:'none',md:'flex'},flexDirection:'column',alignItems:'center',direction:'ltr'}}>
-              <PopupState variant="popover" popupId="demo-popup-menu">
-                {(popupState) => (
-                  <React.Fragment>
-                    <Button variant="outlined" color='AppBarButtonColor' {...bindTrigger(popupState)}>
-                      <img src={getImageUrl(document.body.dir === 'ltr' ? 'usd' : 'irr')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-                      
-                      {t('langBTN')}
-                    </Button>
-                    <Menu {...bindMenu(popupState)} style={{direction:'ltr'}}>
-                      <MenuItem onClick={()=>{popupState.close();LanguageSwitcher('en')}} sx={{justifyContent: 'flex-start',}} >
-                        {/* <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',width:'100%',px:1,justifyContent: 'space-between',}}> */}
-                          <img src={getImageUrl('usd')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-                          <span style={{fontFamily:'Roboto'}}>English</span>
-                        {/* </Box> */}
-                      </MenuItem>
-                      <MenuItem onClick={()=>{popupState.close(); LanguageSwitcher('fa')}} sx={{justifyContent: 'flex-start',}}>
-                        <img src={getImageUrl('irr')} alt="en" width="20" style={{marginInlineEnd:'5px'}}/>
-                        <span style={{fontFamily:'Vazir'}}>فارسی</span>
-                      </MenuItem>
-                    </Menu>
-                  </React.Fragment>
-                )}
-              </PopupState>
-            </Box>
+       
+            
         </Toolbar>
       </Container>
     </AppBar>

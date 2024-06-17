@@ -8,12 +8,10 @@ import {Card} from '@mui/material';
 // project import
 // import AuthWrapper from './AuthWrapper';
 import AuthLogin from './auth-forms/AuthLogin';
-import { useTranslation } from 'react-i18next';
 
 // ================================|| LOGIN ||================================ //
 
 export default function Login() {
-  const { t } = useTranslation('translation');
 
   return (
     <Grid id="hereis" container direction="column" justifyContent="center" alignItems="center" flex='1' sx={{flex:1 ,flexGrow:1,display:'flex',flexDirection:'column'}}>
@@ -26,7 +24,7 @@ export default function Login() {
               <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-                      <Typography variant="h5" sx={{fontFamily:'Vazir'}}>{t('Login.Login')}</Typography>
+                      <Typography variant="h5" sx={{fontFamily:'Vazir'}}>ورود</Typography>
                       {/* <Typography component={Link} to="#" variant="body1" sx={{ textDecoration: 'none' }} color="black">
                         Don&apos;t have an account?
                       </Typography> */}

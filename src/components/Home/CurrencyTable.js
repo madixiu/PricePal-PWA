@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,13 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { TableVirtuoso } from 'react-virtuoso';
-import Cdata from '../../assets/data/data.json'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { formatPrice,ChangeColor } from '../../misc/priceFixer';
 import {formatTime} from '../../misc/dateFixer'
-import { useTranslation } from 'react-i18next';
-import { formatPrice,FarsiDigitPrice } from '../../misc/priceFixer';
-
-
+import { CurrencyName } from '../../misc/CurrencyNameList';
 const bundleImages = {
   usd: require("../../assets/flags/flag128/usd.png"),
   eur: require("../../assets/flags/flag128/eur.png"),
@@ -20,176 +20,112 @@ const bundleImages = {
   chf: require("../../assets/flags/flag128/chf.png"),
   cad: require("../../assets/flags/flag128/cad.png"),
   aud: require("../../assets/flags/flag128/aud.png"),
-  sek: require("../../assets/flags/flag128/sek.png"),
-  nok: require("../../assets/flags/flag128/nok.png"),
-  rub: require("../../assets/flags/flag128/rub.png"),
-  thb: require("../../assets/flags/flag128/thb.png"),
-  sgd: require("../../assets/flags/flag128/sgd.png"),
-  hkd: require("../../assets/flags/flag128/hkd.png"),
-  azn: require("../../assets/flags/flag128/azn.png"),
-  amd: require("../../assets/flags/flag128/amd.png"),
-  dkk: require("../../assets/flags/flag128/dkk.png"),
-  aed: require("../../assets/flags/flag128/aed.png"),
-  jpy: require("../../assets/flags/flag128/jpy.png"),
   try: require("../../assets/flags/flag128/try.png"),
-  cny: require("../../assets/flags/flag128/cny.png"),
-  sar: require("../../assets/flags/flag128/sar.png"),
-  inr: require("../../assets/flags/flag128/inr.png"),
-  myr: require("../../assets/flags/flag128/myr.png"),
-  afn: require("../../assets/flags/flag128/afn.png"),
-  kwd: require("../../assets/flags/flag128/kwd.png"),
-  iqd: require("../../assets/flags/flag128/iqd.png"),
-  bhd: require("../../assets/flags/flag128/bhd.png"),
-  omr: require("../../assets/flags/flag128/omr.png"),
-  qar: require("../../assets/flags/flag128/qar.png"),
-  gel: require("../../assets/flags/flag128/gel.png"),
-  brl: require("../../assets/flags/flag128/brl.png"),
-  nzd: require("../../assets/flags/flag128/nzd.png"),
-  pkr: require("../../assets/flags/flag128/pkr.png"),
-  ars: require("../../assets/flags/flag128/ars.png"),
-  krw: require("../../assets/flags/flag128/krw.png"),
-  syp: require("../../assets/flags/flag128/syp.png"),
-  kgs: require("../../assets/flags/flag128/kgs.png"),
-  tjs: require("../../assets/flags/flag128/tjs.png"),
-  tmt: require("../../assets/flags/flag128/tmt.png"),
 };
-
 const getImageUrl = (code) => bundleImages[code];
-function FlagColumn({ currencyCode }) {
-  const flagPath = getImageUrl(currencyCode);
 
-  return (
-    <img style={{width:32,height:32}} src={flagPath} alt={`Flag of ${currencyCode}`} />
-  );
-}
-const CurrencyData = (Cdata) => {
-  let data = Cdata.arz;
-  var res = []
-  let counter = 0
-  for (let item of data) {
-    let flag = item.slug;
-    
-    if (item.slug === "usd-hav" || item.slug === "usd-ist" || item.slug === "usd-herat" || item.slug === "usd-sulaymaniyah")
-      flag = "usd"
-    if (item.slug === "eur-hav" || item.slug === "eur-ist" )
-      flag = 'eur'
-
-    res.push({id: counter,flag:flag, name: item.slug, buy: item.price[0].hi, sell: item.price[0].low, updated_at: formatTime(item.updated_at)})
-    counter++
-  } 
-  return res;
-}
-
-// }
-const CurrencyTableCulomns = [
-  { width:20,
-    label:'flag',
-    dataKey: 'flag'
-  },
-  {
-    width: 100,
-    label: 'Currency',
-    dataKey: 'name'
-  },
-  {
-    width:111,
-    label:'Buy',
-    dataKey: 'buy'
-  },
-  {
-    width: 111,
-    label:'Sell',
-    dataKey:'sell'
-  },
-  {
-    width:200,
-    label:'Updated At',
-    dataKey: 'updated_at'
+function CurrencyTable({CurrencyData}) {
+  const tableHeaderStyle = {
+    fontWeight: document.body.dir === "ltr" ? 500 : 700,
+    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
   }
-]
-
-
-const VirtuosoTableComponents = {
-  Scroller: React.forwardRef((props, ref) => (
-    <TableContainer component={Paper} {...props} ref={ref} />
-  )),
-  Table: (props) => (
-    <Table     {...props} size='small' sx={{ borderCollapse: 'separate', tableLayout: 'fixed'}} />
-  ),
-  TableHead,
-  TableRow: ({ item: _item, ...props }) => <TableRow {...props} />,
-  TableBody: React.forwardRef((props, ref) => <TableBody {...props} ref={ref} />),
-};
-
-export function fixedHeaderContent(t) {
-  return (
-    <TableRow>
-      {CurrencyTableCulomns.map((column) => (
-        <TableCell
-          key={column.dataKey}
-          variant="head"
-          // align={column.numeric || false ? 'right' : 'left'}
-          // align={document.body.dir === 'rtl'? 'right' : 'left'}
-          align='center'
-          style={{ width: column.width }}
-          sx={{
-            backgroundColor: '#ededed',
-          }}
-        >
-          {t('Home.' + column.label)}
-        </TableCell>
-      ))}
-    </TableRow>
-  );
-}
-
-
-
-export default function CurrencyTable() {
-  const { t } = useTranslation('translation');
-
-  const rowContent = (_index,row) => {
-    function renderer(key,row) {
-      if (key === 'name')
-        return t('Home.CurrencyList.'+row[key])
-      else if (key === 'buy' || key ==='sell'){
-
-        if (document.body.dir === 'rtl')
-          return FarsiDigitPrice(row[key])
-        else
-        return formatPrice(row[key])
-      }
-      else
-        return FarsiDigitPrice(row[key])
+  const tableCellStyle = {
+    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+  }
+  function ChangeIcon({direction}) {
+    if (direction === 'positive') {
+      return <ExpandLessIcon fontSize='small' sx={{color: 'HomePage.changeUp'}}/>;
     }
-    return (
-      <React.Fragment>
-      {CurrencyTableCulomns.map((column) => (
-        <TableCell
-          sx={{py:0}}
-          key={column.dataKey}
-          // align={column.numeric || false ? 'right' : 'left'}
-          // align={document.body.dir === 'rtl'? 'right' : 'left'}
-          align='center'
-          >
-          {column.dataKey === 'flag' ? (
-          <FlagColumn currencyCode={row[column.dataKey]} />
-          ) : (
-            renderer(column.dataKey,row)
-          )}        
-        </TableCell>
-      ))}
-    </React.Fragment>
-    )
+    else if (direction === 'negative') {
+      return <ExpandMoreIcon fontSize='small' sx={{color: 'HomePage.changeDown'}}/>;
+    }
+    else
+    return <></>;
   }
-  return (
-    <Paper style={{ height: 400, width: '100%' }}>
-      <TableVirtuoso
-        data={CurrencyData(Cdata)}
-        components={VirtuosoTableComponents}
-        fixedHeaderContent={() =>fixedHeaderContent(t)}
-        itemContent={(index,row) => rowContent(index,row)}
-      />
-    </Paper>
-  );
+
+  return ( 
+    <>
+      <TableContainer component={Paper} sx={{mt:2}}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>
+          <TableHead sx={{backgroundColor: '#eeee'}}>
+            <TableRow>
+              <TableCell align={document.body.dir === "ltr" ? "left" : "right"} sx={tableHeaderStyle}>
+                <Box>
+                  <Typography sx={tableCellStyle}>
+                      ارز
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Currency
+                  </Typography>
+                </Box>
+              </TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>
+                  <Typography sx={tableCellStyle}>
+                      خرید
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Buy
+                  </Typography>
+              </TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>
+                  <Typography sx={tableCellStyle}>
+                      فروش
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Sell
+                  </Typography>
+              </TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>Change(%)</TableCell>
+              <TableCell align="center" sx={tableHeaderStyle}>
+                  <Typography sx={tableCellStyle}>
+                      بروز شده
+                  </Typography>
+                  <Typography sx={tableCellStyle}>
+                      Updated
+                  </Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {CurrencyData.map((row) => (
+              <TableRow
+                key={row.code}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } ,py:0 }}
+              >
+                <TableCell align='left' component="th" scope="row">
+                <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'flex-start', }}>
+                  <img style={{width:32,height:32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
+                  <Typography sx={tableCellStyle}>
+                      {CurrencyName(row.slug)}
+                  </Typography>
+                </Box>
+                </TableCell>
+
+                <TableCell align="center" sx={tableCellStyle}>
+                  {formatPrice(row.prices.buy.price)}
+                </TableCell>
+                <TableCell align="center" sx={tableCellStyle}>
+                {formatPrice(row.prices.sell.price)}
+                </TableCell>
+                <TableCell align="center">
+
+                  <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', }}>
+                      <ChangeIcon direction={row.change_direction} />
+                      <Typography sx={[tableCellStyle,{color: ChangeColor(row.change_direction)}]}>
+                          {row.change_percentage === 0 ? "-" : row.change_percentage}
+                      </Typography>
+                  </Box>
+                </TableCell>
+                <TableCell align="center" sx={tableCellStyle}>{formatTime(row.lastUpdate)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+   );
 }
+
+export default CurrencyTable;
+
+

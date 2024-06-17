@@ -5,7 +5,6 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import './i18n'
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -13,14 +12,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <Provider store={store}>
-
-  <React.StrictMode>
-    <BrowserRouter>
-      <React.Suspense fallback={<LoadingSpinner />}>
-        <App />
-      </React.Suspense>
-    </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+      <BrowserRouter>
+        <React.Suspense fallback={<LoadingSpinner />}>
+          <App />
+        </React.Suspense>
+      </BrowserRouter>
+    </React.StrictMode>
   </Provider>
 );
 

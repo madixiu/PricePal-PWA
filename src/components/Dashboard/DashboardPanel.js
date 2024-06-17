@@ -2,10 +2,8 @@ import React from 'react';
 import { Card, Grid,Box,Typography,TextField, Button } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../LoadingSpinner'
 function DashboardPanel({ExcessData}) {
-  const { t } = useTranslation('translation');
   const fontStyle = {
     fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
   }
@@ -129,12 +127,12 @@ function DashboardPanel({ExcessData}) {
               <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
                 <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
                   <img src={getImageUrl('usd')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6' sx={fontStyle}>{t('Dashboard.USD')}</Typography>
+                  <Typography variant='h6' sx={fontStyle}>دلار</Typography>
                 </Box>
                 <Box sx={{px:1,direction:'ltr'}}>
                   <TextField
                     id="outlined-number"
-                    label={t('Dashboard.Buy')}
+                    label={'خرید'}
                     type="number"
                     color='success'
                     InputLabelProps={{
@@ -149,7 +147,7 @@ function DashboardPanel({ExcessData}) {
                 <Box sx={{px:1,direction:'ltr'}}>
                   <TextField
                     id="outlined-number"
-                    label={t('Dashboard.Sell')}
+                    label={'فروش'}
                     type="number"
                     color='error'
                     InputLabelProps={{
@@ -169,14 +167,14 @@ function DashboardPanel({ExcessData}) {
             <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
               <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                   <img src={getImageUrl('eur')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6' sx={fontStyle}>{t('Dashboard.EUR')}</Typography>
+                  <Typography variant='h6' sx={fontStyle}>یورو</Typography>
               </Box>
          
             
               <Box sx={{direction:'ltr'}}>
                 <TextField
                   id="outlined-number"
-                  label={t('Dashboard.Buy')}
+                  label={'خرید'}
                   type="number"
                   color='success'
                   InputLabelProps={{
@@ -191,7 +189,7 @@ function DashboardPanel({ExcessData}) {
               <Box sx={{direction:'ltr'}}>
                 <TextField
                   id="outlined-number"
-                  label={t('Dashboard.Sell')}
+                  label={'فروش'}
                   type="number"
                   color='error'
                   InputLabelProps={{
@@ -209,8 +207,8 @@ function DashboardPanel({ExcessData}) {
             </Box>
           </Card>
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>{t('Dashboard.Reset')}</Button>
+            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
+            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
           </Box>
         </Card>
       </Box>
@@ -222,7 +220,7 @@ function DashboardPanel({ExcessData}) {
           sx={{ width: '100%' }}
         >
           <Typography sx={[{px:2},fontStyle]} variant='body3'>
-              {successfulSubmit ? t('Dashboard.snack.Done') : t('Dashboard.snack.Failed')}
+              {successfulSubmit ? 'ثبت شد' : 'خطا'}
           </Typography>
         </Alert>
       </Snackbar>

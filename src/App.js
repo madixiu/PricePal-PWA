@@ -12,7 +12,6 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './pages/Authentication/PrivateRoute';
 import Login from './pages/Authentication/login';
 import { Box, CssBaseline, Grid } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import palette from './misc/palette'
@@ -36,8 +35,9 @@ function App() {
 // } else if (isBrowser){
 //   alert('Display type: Browser');
 // }
-  const { i18n } = useTranslation();
-  document.body.dir = i18n.dir();
+
+  document.body.dir = 'rtl';
+
   const dispatch = useDispatch();
   React.useEffect(() => {
     var user = localStorage.getItem('user');
@@ -76,7 +76,6 @@ function App() {
         <BottomAppBar style={{ display: { xs: 'flex', md: 'none' } }} />
       </Box>
     </ThemeProvider>
-
   );
 }
 

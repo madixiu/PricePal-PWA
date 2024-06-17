@@ -24,12 +24,10 @@ import { useAuth } from '../AuthContext';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useTranslation } from 'react-i18next';
 
 // ============================|| JWT - LOGIN ||============================ //
 
 export default function AuthLogin() {
-  const { t } = useTranslation('translation');
   const fontStyle = {
     fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
   }
@@ -63,15 +61,15 @@ export default function AuthLogin() {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          username: Yup.string().max(255).required(t('Login.Error.RequiredUsername'))
-          .test('username-validation', t('Login.Error.IncorrectUsername'), function (value) {
+          username: Yup.string().max(255).required('نام کاربری نیاز است')
+          .test('username-validation', 'نام کاربری صحیح نیست', function (value) {
             if (value === process.env.REACT_APP_ADMIN_USERNAME)
             return true; // Return true if the password is correct, false otherwise
             else
             return false;
           }),
-          password: Yup.string().max(255).required(t('Login.Error.RequiredPassword'))
-          .test('password-validation', t('Login.Error.IncorrectPassword'), function (value) {
+          password: Yup.string().max(255).required('رمز عبور نیاز است')
+          .test('password-validation', 'رمز عبور صحیح نیست', function (value) {
             if (value === process.env.REACT_APP_ADMIN_PASSWORD)
             return true; // Return true if the password is correct, false otherwise
             else
@@ -90,7 +88,7 @@ export default function AuthLogin() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="email-login" sx={fontStyle}>{t('Login.Username')}</InputLabel>
+                  <InputLabel htmlFor="email-login" sx={fontStyle}>نام کاربری</InputLabel>
                   <OutlinedInput
                     id="username-login"
                     type="email"
@@ -98,7 +96,7 @@ export default function AuthLogin() {
                     name="username"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder={t('Login.placeholder.Username')}
+                    placeholder={"نام کاربری را وارد کنید"}
                     fullWidth
                     error={Boolean(touched.username && errors.username)}
                     sx={fontStyle}
@@ -112,7 +110,7 @@ export default function AuthLogin() {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="password-login" sx={fontStyle}>{t('Login.Password')}</InputLabel>
+                  <InputLabel htmlFor="password-login" sx={fontStyle}>رمز عبور</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
@@ -135,7 +133,7 @@ export default function AuthLogin() {
                         </IconButton>
                       </InputAdornment>
                     }
-                    placeholder={t('Login.placeholder.Password')}
+                    placeholder={"رمز عبور را وارد کنید"}
                     sx={fontStyle}
                   />
                 </Stack>
@@ -159,7 +157,7 @@ export default function AuthLogin() {
                         sx={{color: 'gray'}}
                       />
                     }
-                    label={<Typography variant="body1" sx={fontStyle}>{t('Login.Remember')}</Typography>}
+                    label={<Typography variant="body1" sx={fontStyle}>مرا به خاطر بسپار</Typography>}
                   />
             
                 </Stack>
@@ -171,7 +169,7 @@ export default function AuthLogin() {
               )}
               <Grid item xs={12}>
                   <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary" sx={fontStyle}>
-                    {t('Login.Login')}
+                    ورود
                   </Button>
               </Grid>           
             </Grid>

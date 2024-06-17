@@ -2,11 +2,9 @@ import React from 'react';
 import { Box,Grid,Card,Typography,TextField,Button } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { useTranslation } from 'react-i18next';
 import LoadingSpinner from '../LoadingSpinner'
 
 function DashboardMobile({ExcessData}) {
-  const { t } = useTranslation('translation');
   const fontStyle = {fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'}
   const [openSnack,setOpenSnack] = React.useState(false);
   const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
@@ -123,13 +121,13 @@ else
         <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
             <img src={getImageUrl('usd')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-            <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>{t('Dashboard.USD')}</Typography>
+            <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>دلار</Typography>
           </Box>
           <Box sx={{px:1,py:2,justifyContent: 'center',display:'flex' ,flexDirection:'column'}}>
             <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
-                label={t('Dashboard.Buy')}
+                label={'خرید'}
                 type="number"
                 color='success'
                 size='small'
@@ -146,7 +144,7 @@ else
             <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
-                label={t('Dashboard.Sell')}
+                label={'فروش'}
                 type="number"
                 color='error'
                 size='small'
@@ -166,13 +164,13 @@ else
         <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
             <img src={getImageUrl('eur')} alt="en" width="20" style={{marginInlineEnd:'5px'}} />
-            <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>{t('Dashboard.EUR')}</Typography>
+            <Typography variant='h6' sx={[{fontSize:'0.9rem'},fontStyle]}>یورو</Typography>
           </Box>
           <Box sx={{px:1,py:2,justifyContent: 'center',display:'flex',flexDirection:'column'}}>
             <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
-                label={t('Dashboard.Buy')}
+                label={'خرید'}
                 type="number"
                 color='success'
                 size='small'
@@ -189,7 +187,7 @@ else
             <Box sx={{py:2,direction:'ltr'}}>
               <TextField
                 id="outlined-number"
-                label={t('Dashboard.Sell')}
+                label={'فروش'}
                 type="number"
                 color='error'
                 size='small'
@@ -206,8 +204,8 @@ else
         </Box>
       </Card>
       <Box sx={{justifyContent:'space-evenly',alignItems:'center',display:'flex',my:1}}>
-            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleSubmit}>{t('Dashboard.Submit')}</Button>
-            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleReset}>{t('Dashboard.Reset')}</Button>
+            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleSubmit}>تائید</Button>
+            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
       </Box>
       <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
         <Alert
@@ -217,7 +215,7 @@ else
           sx={{ width: '100%' }}
         >
           <Typography sx={[{px:2},fontStyle]} variant='body3'>
-              {successfulSubmit ? t('Dashboard.snack.Done') : t('Dashboard.snack.Failed')}
+              {successfulSubmit ? 'ثبت شد' :'خطا'}
           </Typography>
         </Alert>
       </Snackbar>
