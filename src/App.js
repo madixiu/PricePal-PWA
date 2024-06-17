@@ -36,8 +36,6 @@ function App() {
 //   alert('Display type: Browser');
 // }
 
-  document.body.dir = 'rtl';
-
   const dispatch = useDispatch();
   React.useEffect(() => {
     var user = localStorage.getItem('user');
