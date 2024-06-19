@@ -2,7 +2,8 @@ import React from 'react';
 // import CurrencyTable from '../components/Home/CurrencyTable'
 import { Box } from '@mui/material';
 // import CurrencyList from '../components/Home/CurrencyList';
-import CurrencyList from '../components/Home/CurrencyList';
+import CurrencyGrid from '../components/Home/CurrencyGrid';
+// import CurrencyList from '../components/Home/CurrencyList';
 import CurrencyTable from '../components/Home/CurrencyTable';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { sortDataArray } from '../misc/dateFixer';
@@ -30,8 +31,9 @@ function Home() {
       <Box id="HomeXS" sx={{px: 2,pt:2,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
         <CurrencyTable CurrencyData={CurrencyData}/>
       </Box>
-      <Box sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flexWrap:'nowrap'}}>
-        <CurrencyList CurrencyData={CurrencyData}/>
+      <Box sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1,backgroundColor: '#efefef', }}>
+        {/* <CurrencyList CurrencyData={CurrencyData}/> */}
+        <CurrencyGrid CurrencyData={CurrencyData}/>
       </Box>
       </>
     );

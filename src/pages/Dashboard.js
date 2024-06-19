@@ -5,31 +5,41 @@ import DashboardMobile from '../components/Dashboard/DashboardMobilePanel';
 import LoadingSpinner from '../components/LoadingSpinner';
 function Dashboard() {
   const [loading,setLoading] = React.useState(true)
-  const [ExcessData,setExcessData] = React.useState(
-    {
-      "EURIRR": {
-          "code": "EURIRR",
-          "buy": 0,
-          "sell": 0
-      },
-      "USDIRR": {
-          "code": "USDIRR",
-          "buy": 0,
-          "sell": 0
-      }
-  });
+  const [ExcessData,setExcessData] = React.useState(null)
+  //   {
+  //     "EURIRR": {
+  //         "code": "EURIRR",
+  //         "buy": 0,
+  //         "sell": 0
+  //     },
+  //     "USDIRR": {
+  //         "code": "USDIRR",
+  //         "buy": 0,
+  //         "sell": 0
+  //     }
+  // });
 
 
 
   React.useEffect(() => {
-    if (ExcessData.USDIRR.buy === 0)
+    if (ExcessData  === null)
     getData();
   },[ExcessData]);
 
   async function getData() {
    const response =  await fetch(`${process.env.REACT_APP_BASE_URL}excess`);
    const data = await response.json();
-   setExcessData(data);
+   const updatedObj = Object.fromEntries(Object.entries(data).map(([key, value]) => {
+    if (key === 'AUDIRR')
+      return [key,value]
+    else if (key === 'AUD') {
+      return ['AUDIRR', { ...value, code: 'AUDIRR' }];
+    }
+    return [key, value];
+  }));
+  //  console.log(updatedObj);
+
+   setExcessData(updatedObj);
    setLoading(false);
   }
 
@@ -39,12 +49,12 @@ function Dashboard() {
 
   return ( 
     <>
-      <Box id="DashboardPanel" sx={{display:{md:'flex',xs:'none'}}}>
+      <Box id="DashboardPanel" sx={{display:{md:'flex',xs:'none',flexDirection:'column'}}} height={'100%'} overflow={'auto'}>
         {loading ? <LoadingSpinner /> :
-          <DashboardPanel  ExcessData={ExcessData} loading={loading} />
+          <DashboardPanel ExcessData={ExcessData} loading={loading} />
         }  
       </Box> 
-      <Box id="DashboardMobilePanel" sx={{display:{md:'none',xs:'flex'},flexWrap:'nowrap',flex:1}}>
+      <Box id="DashboardMobilePanel" sx={{display:{md:'none',xs:'flex'},flex:1,flexDirection:'column'}}>
         {loading ? <LoadingSpinner /> :
           <DashboardMobile ExcessData={ExcessData} loading={loading}/>
         }     

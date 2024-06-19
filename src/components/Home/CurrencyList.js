@@ -12,12 +12,12 @@ function CurrencyList({CurrencyData}) {
   const typographyHeaderStyle = {
     fontSize: 11 ,
     fontWeight: 600,
-    fontFamily:document.body.dir === 'ltr'? 'Roboto' : 'Vazir'
+    fontFamily:'Vazir'
   };
   const typographyListStyle = {
     fontSize: 11,
     alignSelf:'flex-end',
-    fontFamily:document.body.dir === 'ltr'? 'Roboto' : 'Vazir'
+    fontFamily: 'Vazir'
   }
 function ChangeIcon({direction}) {
     if (direction === 'positive') {

@@ -26,18 +26,23 @@ const getImageUrl = (code) => bundleImages[code];
 
 function CurrencyTable({CurrencyData}) {
   const tableHeaderStyle = {
-    fontWeight: document.body.dir === "ltr" ? 500 : 700,
-    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+    fontWeight: 600,
+    fontFamily: 'Vazir'
   }
+  const tableHeaderEnStyle = {
+    fontFamily: 'Vazir',
+    color:'#555',
+    fontSize:'0.8rem'
+  };
   const tableCellStyle = {
-    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+    fontFamily: 'Vazir'
   }
   function ChangeIcon({direction}) {
     if (direction === 'positive') {
-      return <ExpandLessIcon fontSize='small' sx={{color: 'HomePage.changeUp'}}/>;
+      return <ExpandLessIcon fontSize='small' sx={{color:'HomePage.changeUp'}}/>;
     }
     else if (direction === 'negative') {
-      return <ExpandMoreIcon fontSize='small' sx={{color: 'HomePage.changeDown'}}/>;
+      return <ExpandMoreIcon fontSize='small' sx={{color:'HomePage.changeDown'}}/>;
     }
     else
     return <></>;
@@ -49,38 +54,41 @@ function CurrencyTable({CurrencyData}) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>
           <TableHead sx={{backgroundColor: '#eeee'}}>
             <TableRow>
-              <TableCell align={document.body.dir === "ltr" ? "left" : "right"} sx={tableHeaderStyle}>
-                <Box>
-                  <Typography sx={tableCellStyle}>
-                      ارز
+              <TableCell align="right" sx={tableHeaderStyle}>
+              <Box id="booo" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <Typography sx={tableHeaderStyle}>
+                    ارز
                   </Typography>
-                  <Typography sx={tableCellStyle}>
-                      Currency
+                  <Typography sx={tableHeaderEnStyle}>
+                    Currency
                   </Typography>
                 </Box>
+              </Box>
+
               </TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>
-                  <Typography sx={tableCellStyle}>
+              <TableCell align="center">
+                  <Typography sx={tableHeaderStyle}>
                       خرید
                   </Typography>
-                  <Typography sx={tableCellStyle}>
+                  <Typography sx={tableHeaderEnStyle}>
                       Buy
                   </Typography>
               </TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>
-                  <Typography sx={tableCellStyle}>
+              <TableCell align="center">
+                  <Typography sx={tableHeaderStyle}>
                       فروش
                   </Typography>
-                  <Typography sx={tableCellStyle}>
+                  <Typography sx={tableHeaderEnStyle}>
                       Sell
                   </Typography>
               </TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>Change(%)</TableCell>
-              <TableCell align="center" sx={tableHeaderStyle}>
-                  <Typography sx={tableCellStyle}>
+              <TableCell align="center">Change(%)</TableCell>
+              <TableCell align="center">
+                  <Typography sx={tableHeaderStyle}>
                       بروز شده
                   </Typography>
-                  <Typography sx={tableCellStyle}>
+                  <Typography sx={tableHeaderEnStyle}>
                       Updated
                   </Typography>
               </TableCell>

@@ -29,7 +29,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function AuthLogin() {
   const fontStyle = {
-    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+    fontFamily:'Vazir'
   }
   const {  handleLogin } = useAuth();
 

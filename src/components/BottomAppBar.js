@@ -47,9 +47,6 @@ export default function BottomAppBar() {
               </IconButton>
             </NavLink>            
           </Box>
-          {/* <IconButton color="inherit">
-            <MoreIcon />
-          </IconButton> */}
         </Toolbar>
       </AppBar>
     </React.Fragment>

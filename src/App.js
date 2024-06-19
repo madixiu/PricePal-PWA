@@ -11,7 +11,7 @@ import BottomAppBar from './components/BottomAppBar';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './pages/Authentication/PrivateRoute';
 import Login from './pages/Authentication/login';
-import { Box, CssBaseline, Grid } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import palette from './misc/palette'
@@ -59,8 +59,7 @@ function App() {
     <ThemeProvider theme={themeOptions}>
       <CssBaseline />
       <Appbar isAuthenticated={isAuthenticated} />
-      <Grid container sx={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
-        {/* <CurrencyTable /> */}
+      <Box sx={{ display: 'flex', flexDirection: 'column', height: '90vh',gap: 0}}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -69,7 +68,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<PrivateRoute isAuthenticated={isAuthenticated}><Dashboard /></PrivateRoute>} />
         </Routes>
-      </Grid>
+      </Box>
       <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column' }}>
         <BottomAppBar style={{ display: { xs: 'flex', md: 'none' } }} />
       </Box>

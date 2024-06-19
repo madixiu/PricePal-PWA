@@ -10,11 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-// import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/authSlice'
 import { useNavigate } from 'react-router-dom';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const pages = [
   {name: 'خانه',link:''},
@@ -26,7 +27,6 @@ const pages = [
 
 function Appbar({isAuthenticated}) {
   const navigate = useNavigate();
-  const fontStyle = {fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'}
   const dispatch = useDispatch();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -65,9 +65,15 @@ const LogoutButton = () => {
       <>
         <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center',alignItems:'center' }}>
           <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
-            <Button variant="outlined" color='AppBarButtonColor' size='medium'  sx={[{marginInlineEnd:1,borderRadius:2,color: '#555','&:hover':{color:'#000'}},fontStyle]}>داشبورد</Button>
+            <Button variant="outlined" color='AppBarButtonColor' size='medium'  sx={{marginInlineEnd:1,borderRadius:2,color: '#555','&:hover':{color:'#000'}}}>
+              <DashboardIcon sx={{marginInlineEnd:1,fontSize:'1rem'}}/>
+              <Typography sx={{fontFamily:'Vazir',fontSize:'0.8rem'}}>داشبورد</Typography>
+            </Button>
           </NavLink>
-          <Button variant="outlined" color='AppBarButtonColor' size='medium' onClick={()=> handleLogout()} sx={[{borderRadius:2,color: '#555','&:hover':{color:'#000'}},fontStyle]}>خروج</Button>
+          <Button variant="outlined" color='AppBarButtonColor' size='medium' onClick={()=> handleLogout()} sx={{borderRadius:2,color: '#555','&:hover':{color:'#000'}}}>
+            <LogoutIcon sx={{marginInlineEnd:1,fontSize:'1rem'}}/>
+            <Typography sx={{fontFamily:'Vazir',fontSize:'0.8rem'}}>خروج</Typography>
+          </Button>
         </Box>
       </>
       
@@ -130,7 +136,7 @@ const LogoutButton = () => {
               }}
             > 
               <MenuItem onClick={()=>{handleCloseNavMenu();handleDashboard();}} sx={{justifyContent: 'flex-start',alignContent:'center'}} >
-                  <Typography sx={{fontSize:10}}>داشبورد</Typography>
+                  <Typography sx={{fontSize:10,fontFamily:'Vazir'}}>داشبورد</Typography>
               </MenuItem>
               <MenuItem onClick={()=>{handleCloseNavMenu();handleLogout();}} sx={{justifyContent: 'flex-start',alignContent:'center',py:0}}>
                 <Typography sx={{fontSize:10,fontFamily:'Vazir'}}>خروج</Typography>
@@ -169,16 +175,14 @@ const LogoutButton = () => {
                   size="medium"
                   // fullWidth="true"
                   onClick={handleCloseNavMenu}
-                  sx={{ mx:1, color: '#555',minWidth:101,borderRadius:2,'&:hover':{color:'#000'},fontFamily: document.body.dir === 'ltr'? 'Roboto' : 'Vazir'}}
+                  sx={{ mx:1, color: '#555',minWidth:101,borderRadius:2,'&:hover':{color:'#000'},fontFamily:'Vazir'}}
                 >
                   {page.name}
                 </Button>
               </NavLink>
             ))}
           </Box>
-          <LogoutButton />
-       
-            
+          <LogoutButton />           
         </Toolbar>
       </Container>
     </AppBar>

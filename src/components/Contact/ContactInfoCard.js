@@ -16,13 +16,13 @@ function ContactInfoCard() {
     display:'flex',
     mx:1,
     fontWeight:600,
-    fontFamily:document.body.dir === 'ltr'? 'Roboto' : 'Vazir'
+    fontFamily:'Vazir'
   };
   const typographyMobileStyle = {
     display:'flex',
     mx:1,
     fontSize:12,
-    fontFamily:document.body.dir === 'ltr'? 'Roboto' : 'Vazir'
+    fontFamily:'Vazir'
   };
   return ( 
     <>

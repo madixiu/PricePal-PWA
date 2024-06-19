@@ -4,8 +4,9 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import LoadingSpinner from '../LoadingSpinner'
 function DashboardPanel({ExcessData}) {
+  const items = [{slug: "try", name: 'لیر',code:'TRYIRR'},{slug: "usd", name: 'دلار',code:'USDIRR'},{slug: "eur", name: 'یورو',code:'EURIRR'},  {slug: "gbp", name: 'پوند',code:'GBPIRR'},{slug: "cad", name: 'دلار کانادا',code:'CADIRR'},{slug: "aud", name: 'دلار استرالیا',code:'AUDIRR'}];
   const fontStyle = {
-    fontFamily: document.body.dir === "ltr" ? 'Roboto' : 'Vazir'
+    fontFamily:'Vazir'
   }
   const [openSnack,setOpenSnack] = React.useState(false);
   const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
@@ -28,22 +29,16 @@ function DashboardPanel({ExcessData}) {
       setLoading(false)
     }, 1000);
   }
-  function setValue(val,cas){
+  function setValue(val,cas,typ){
     let res = ExcessValue
-    switch (cas) {
-      case "EURIRR.sell":
-        res.EURIRR.sell = val;
+    switch (typ) {
+      case "sell":
+        res[cas].sell = val;
         break;
-      case "EURIRR.buy":
-        res.EURIRR.buy = val;
+      case "buy":
+        res[cas].buy = val;
         break;
-      case "USDIRR.sell":
-        res.USDIRR.sell = val;
-        break;
-      case "USDIRR.buy":
-        res.USDIRR.buy = val;
-        break;
-      default:
+        default:
         break;
     }
     setExcessValue(res);
@@ -70,8 +65,8 @@ function DashboardPanel({ExcessData}) {
         });
 
         const responseData = await response.json();
-        setSuccessfulSubmit(true);
         if (responseData.message === 'Excess updated successfully'){
+          setSuccessfulSubmit(true);
           setOpenSnack(true);
           // ExcessData = ExcessValue
         }
@@ -100,7 +95,6 @@ function DashboardPanel({ExcessData}) {
         }
       ];
     });
-    // console.log(transformedData);
     try {
       await postData(`${process.env.REACT_APP_BASE_URL}update_excess`,  transformedData )
           
@@ -114,104 +108,73 @@ function DashboardPanel({ExcessData}) {
   const bundleImages = {
     usd: require("../../assets/flags/flag128/usd.png"),
     eur: require("../../assets/flags/flag128/eur.png"),
+    gbp: require("../../assets/flags/flag128/gbp.png"),
+    cad: require("../../assets/flags/flag128/cad.png"),
+    aud: require("../../assets/flags/flag128/aud.png"),
+    try: require("../../assets/flags/flag128/try.png")
   };
   const getImageUrl = (code) => bundleImages[code];
   if (loading)
     return <LoadingSpinner />
   else
   return ( 
-    <Grid id="test" justifyContent= 'center' alignContent={'center'} container sx={{p:4,justifyContent: 'center',flex:1}}>
-      <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex'}}} >
-        <Card variant='outlined' sx={{flex:1,backgroundColor:'#ffffff',py:5,px:5,borderRadius:2}}>        
-          <Card variant='outlined' sx={{py:5, px:2,marginBottom:2,borderRadius:2}}>
+    <Grid id="test" justifyContent= 'center' alignContent={'center'} container sx={{p:1,justifyContent: 'center',flex:1}}>
+      <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex',width:'50%'}}} >
+        <Card variant='elevation' elevation={0} sx={{flex:1,backgroundColor:'#efefef',borderRadius:2,flexDirection:'column',p:1}}>        
+
+
+          {items.map((item) => (
+            <Card key={item.code} variant='elevation' elevation={0} sx={{ marginBottom:1,borderRadius:2,width:'100%',py:2,px:1,backgroundColor: 'rgba(255, 255, 255, 0.9)',border: '1px solid rgba(209, 213, 219, 0.8)'}}>
               <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-                <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',px:1}}>
-                  <img src={getImageUrl('usd')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6' sx={fontStyle}>دلار</Typography>
+                <Box sx={{display:'flex',justifyContent:'flex-start',alignItems:'center',flex:1}}>
+                  <img src={getImageUrl(item.slug)} alt="en" width="35" style={{marginInlineEnd:'5px'}} />
+                  <Typography variant='h7' sx={fontStyle}>{item.name}</Typography>
                 </Box>
-                <Box sx={{px:1,direction:'ltr'}}>
+                  <Box sx={{direction:'ltr',flex:2,justifyContent: 'center',alignItems:'center',display:'flex'}}>
                   <TextField
                     id="outlined-number"
+                    size='small'
                     label={'خرید'}
                     type="number"
                     color='success'
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    defaultValue={ExcessValue.USDIRR.buy}
+                    defaultValue={ExcessValue[item.code].buy}
                     onChange={(event) => {
-                      setValue(event.target.value,"USDIRR.buy");
+                      setValue(event.target.value,item.code,"buy");
                     }}
                   />
                 </Box>
-                <Box sx={{px:1,direction:'ltr'}}>
+                <Box sx={{direction:'ltr',flex:2,justifyContent: 'center',alignItems:'center',display:'flex'}}>
                   <TextField
                     id="outlined-number"
+                    size='small'
                     label={'فروش'}
                     type="number"
                     color='error'
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    defaultValue={ExcessValue.USDIRR.sell}
+                    defaultValue={ExcessValue[item.code].sell}
                     onChange={(event) => {
-                      setValue(event.target.value,"USDIRR.sell");
+                      setValue(event.target.value,item.code,"sell");
                     }}
                   />
                 </Box>
               </Box>
-          </Card>
+            </Card>
+          ))}
 
 
-          <Card variant='outlined' sx={{ py:5,px:2 ,marginBottom:5,borderRadius:2}}>
-            <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-              <Box sx={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-                  <img src={getImageUrl('eur')} alt="en" width="50" style={{marginInlineEnd:'5px'}} />
-                  <Typography variant='h6' sx={fontStyle}>یورو</Typography>
-              </Box>
-         
-            
-              <Box sx={{direction:'ltr'}}>
-                <TextField
-                  id="outlined-number"
-                  label={'خرید'}
-                  type="number"
-                  color='success'
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  defaultValue={ExcessValue.EURIRR.buy}
-                  onChange={(event) => {
-                    setValue(event.target.value,"EURIRR.buy");
-                  }}
-                />
-              </Box>
-              <Box sx={{direction:'ltr'}}>
-                <TextField
-                  id="outlined-number"
-                  label={'فروش'}
-                  type="number"
-                  color='error'
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  defaultValue={ExcessValue.EURIRR.sell}
-                  onChange={(event) => {
-                    setValue(event.target.value,"EURIRR.sell");
-                  }}
-                  sx={fontStyle}
-                />
-              </Box>
-              
-              
-            </Box>
-          </Card>
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
             <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
             <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
           </Box>
         </Card>
       </Box>
+
+
       <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
