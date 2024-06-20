@@ -8,8 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+// import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatPrice,ChangeColor } from '../../misc/priceFixer';
 import {formatTime} from '../../misc/dateFixer'
 import { CurrencyName } from '../../misc/CurrencyNameList';
@@ -39,10 +41,10 @@ function CurrencyTable({CurrencyData}) {
   }
   function ChangeIcon({direction}) {
     if (direction === 'positive') {
-      return <ExpandLessIcon fontSize='small' sx={{color:'HomePage.changeUp'}}/>;
+      return <ArrowDropUpIcon fontSize='medium' sx={{color:'HomePage.changeUp'}}/>;
     }
     else if (direction === 'negative') {
-      return <ExpandMoreIcon fontSize='small' sx={{color:'HomePage.changeDown'}}/>;
+      return <ArrowDropDownIcon fontSize='medium' sx={{color:'HomePage.changeDown'}}/>;
     }
     else
     return <></>;
@@ -109,22 +111,29 @@ function CurrencyTable({CurrencyData}) {
                 </Box>
                 </TableCell>
 
-                <TableCell align="center" sx={tableCellStyle}>
-                  {formatPrice(row.prices.buy.price)}
-                </TableCell>
-                <TableCell align="center" sx={tableCellStyle}>
-                {formatPrice(row.prices.sell.price)}
+                <TableCell align="center">
+                  <Typography>
+                    {formatPrice(row.prices.buy.price)}
+                  </Typography>
                 </TableCell>
                 <TableCell align="center">
-
+                  <Typography>
+                    {formatPrice(row.prices.sell.price)}
+                  </Typography>
+                </TableCell>
+                <TableCell align="center">
                   <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', }}>
-                      <ChangeIcon direction={row.change_direction} />
-                      <Typography sx={[tableCellStyle,{color: ChangeColor(row.change_direction)}]}>
-                          {row.change_percentage === 0 ? "-" : row.change_percentage}
+                      <Typography sx={{color: ChangeColor(row.change_direction)}}>
+                          {row.change_percentage === 0 ? "-" : `${row.change_percentage}%`}
                       </Typography>
+                      <ChangeIcon direction={row.change_direction} />
                   </Box>
                 </TableCell>
-                <TableCell align="center" sx={tableCellStyle}>{formatTime(row.lastUpdate)}</TableCell>
+                <TableCell align="center" sx={tableCellStyle}>
+                  <Typography>
+                    {formatTime(row.lastUpdate)}
+                  </Typography>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

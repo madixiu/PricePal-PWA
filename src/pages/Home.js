@@ -1,9 +1,6 @@
 import React from 'react';
-// import CurrencyTable from '../components/Home/CurrencyTable'
 import { Box } from '@mui/material';
-// import CurrencyList from '../components/Home/CurrencyList';
 import CurrencyGrid from '../components/Home/CurrencyGrid';
-// import CurrencyList from '../components/Home/CurrencyList';
 import CurrencyTable from '../components/Home/CurrencyTable';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { sortDataArray } from '../misc/dateFixer';
