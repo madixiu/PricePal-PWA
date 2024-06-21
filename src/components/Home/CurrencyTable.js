@@ -10,8 +10,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-// import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatPrice,ChangeColor } from '../../misc/priceFixer';
 import {formatTime} from '../../misc/dateFixer'
 import { CurrencyName } from '../../misc/CurrencyNameList';
@@ -27,6 +25,8 @@ const bundleImages = {
 const getImageUrl = (code) => bundleImages[code];
 
 function CurrencyTable({CurrencyData}) {
+ const[oldChange,setOldChange] = React.useState([]);
+ const[cellColor,setCellColor] = React.useState({});
   const tableHeaderStyle = {
     fontWeight: 600,
     fontFamily: 'Vazir'
@@ -49,6 +49,37 @@ function CurrencyTable({CurrencyData}) {
     else
     return <></>;
   }
+  React.useEffect(() => {
+    if (oldChange.length === 0){
+      let change =[];
+      for (let i=0;i<CurrencyData.length;i++){
+          change[i] = CurrencyData[i].change_percentage;
+      }
+      setOldChange(change);
+     
+    }else {
+      let change = [];
+      let color ={}
+      for(let i=0;i<CurrencyData.length;i++){
+        if (oldChange[i] > CurrencyData[i].change_percentage){
+          color[CurrencyData[i].slug]= 'green';
+          change[i] = CurrencyData[i].change_percentage;
+        }else if (oldChange[i] < CurrencyData[i].change_percentage){
+          color[CurrencyData[i].slug]= 'red';
+          change[i] = CurrencyData[i].change_percentage;
+        }else {
+          color[CurrencyData[i].slug]= 'black';
+          change[i] = CurrencyData[i].change_percentage;
+        }
+      }
+      // console.log('Color:',cellColor);
+      // console.log('oldChange:',oldChange);
+      // console.log('newChange:',change);
+      setCellColor(color);
+      setOldChange(change);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[CurrencyData]);
 
   return ( 
     <>
@@ -85,7 +116,14 @@ function CurrencyTable({CurrencyData}) {
                       Sell
                   </Typography>
               </TableCell>
-              <TableCell align="center">Change(%)</TableCell>
+              <TableCell align="center">
+                  <Typography sx={tableHeaderStyle}>
+                      تغییر
+                  </Typography>
+                  <Typography sx={tableHeaderEnStyle}>
+                      Change
+                  </Typography>
+              </TableCell>
               <TableCell align="center">
                   <Typography sx={tableHeaderStyle}>
                       بروز شده
@@ -105,32 +143,38 @@ function CurrencyTable({CurrencyData}) {
                 <TableCell align='left' component="th" scope="row">
                 <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'flex-start', }}>
                   <img style={{width:32,height:32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
-                  <Typography sx={tableCellStyle}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', }}>
+                    <Box sx={{backgroundColor: '#efefef',borderRadius:1,p:0.2}}>
+                    <Typography sx={{fontSize:'0.7rem',color:'black'}}>
+                      {(row.slug).toUpperCase()}
+                    </Typography>
+                    </Box>
+                    <Typography sx={tableCellStyle}>
                       {CurrencyName(row.slug)}
-                  </Typography>
+                    </Typography>
+                  </Box>
                 </Box>
                 </TableCell>
-
                 <TableCell align="center">
-                  <Typography>
+                  <Typography sx={{color: cellColor[row.slug]}}>
                     {formatPrice(row.prices.buy.price)}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
-                  <Typography>
+                  <Typography sx={{color: cellColor[row.slug]}}>
                     {formatPrice(row.prices.sell.price)}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
-                  <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center' }}>
                       <Typography sx={{color: ChangeColor(row.change_direction)}}>
                           {row.change_percentage === 0 ? "-" : `${row.change_percentage}%`}
                       </Typography>
                       <ChangeIcon direction={row.change_direction} />
                   </Box>
                 </TableCell>
-                <TableCell align="center" sx={tableCellStyle}>
-                  <Typography>
+                <TableCell align="center" sx={tableCellStyle} >
+                  <Typography >
                     {formatTime(row.lastUpdate)}
                   </Typography>
                 </TableCell>
