@@ -17,6 +17,6 @@
 - [x] Home mobile view overhaul
 - [ ] Change "comes" under prices
 - [ ] Add a page for a calculator
-- [ ] Home live
+- [x] Home live
 
 
