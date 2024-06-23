@@ -22,6 +22,7 @@ const pages = [
   {name: 'بلاگ',link:'blog'},
   {name: 'درباره ما',link:'about'},
   {name: 'ارتباط با ما',link:'contact'},
+  {name: 'ماشین حساب',link:'calculator'},
 ]
 
 

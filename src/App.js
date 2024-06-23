@@ -16,7 +16,9 @@ import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import palette from './misc/palette'
 import CryptoJS from 'crypto-js';
-
+//! *******************TEMPORARY*******************************
+import Calculator from './pages/Calculator';
+//! ***********************************************************
 const themeOptions = createTheme({
   palette
 });
@@ -65,6 +67,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/calculator" element={<Calculator />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<PrivateRoute isAuthenticated={isAuthenticated}><Dashboard /></PrivateRoute>} />
         </Routes>

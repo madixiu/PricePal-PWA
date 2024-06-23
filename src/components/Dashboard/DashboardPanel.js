@@ -118,7 +118,7 @@ function DashboardPanel({ExcessData}) {
     return <LoadingSpinner />
   else
   return ( 
-    <Grid id="test" justifyContent= 'center' alignContent={'center'} container sx={{p:1,justifyContent: 'center',flex:1}}>
+    <Grid id="dashboard-grid" justifyContent= 'center' alignContent={'center'} container sx={{p:1,justifyContent: 'center',flex:1}}>
       <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex',width:'50%'}}} >
         <Card variant='elevation' elevation={0} sx={{flex:1,backgroundColor:'#efefef',borderRadius:2,flexDirection:'column',p:1}}>        
 
