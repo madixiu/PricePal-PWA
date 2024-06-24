@@ -28,7 +28,7 @@ function GoogleMap() {
     <>
     <Box sx={{display:{xs:'none',md:'flex',flexDirection:'column',flex:1}}}>
       <Card sx={{borderRadius:2}} variant='outlined'>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d500.64168809717034!2d28.968668621797395!3d41.01246846666801!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab993bcd07255%3A0x7c7c061923787f3b!2zVGF5YSBIYXR1biwgVGFyYWvDp8SxbGFyIENkLiBObzoxNiBEOjI2LCAzNDEyMCBGYXRpaC_EsHN0YW5idWwsIFTDvHJraXll!5e0!3m2!1sen!2srs!4v1716816235120!5m2!1sen!2srs"
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.358252514907!2d28.627319!3d41.0174175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f003aacb281%3A0x82c467f977f846d7!2sResort%20M%20Bangkok!5e0!3m2!1sen!2sdk!4v1719246129864!5m2!1sen!2sdk"
           width={'100%'}
           height={windowHeight*0.4}
           style={{ border: 0,borderRadius:8 }}
@@ -43,7 +43,7 @@ function GoogleMap() {
     </Box>
     <Box sx={{pt:2,display:{xs:'flex',md:'none'},flexDirection:'column'}}>
       <Card sx={{borderRadius:2}} variant='outlined'>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d500.64168809717034!2d28.968668621797395!3d41.01246846666801!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab993bcd07255%3A0x7c7c061923787f3b!2zVGF5YSBIYXR1biwgVGFyYWvDp8SxbGFyIENkLiBObzoxNiBEOjI2LCAzNDEyMCBGYXRpaC_EsHN0YW5idWwsIFTDvHJraXll!5e0!3m2!1sen!2srs!4v1716816235120!5m2!1sen!2srs"
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.358252514907!2d28.627319!3d41.0174175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f003aacb281%3A0x82c467f977f846d7!2sResort%20M%20Bangkok!5e0!3m2!1sen!2sdk!4v1719246129864!5m2!1sen!2sdk"
           width={'100%'}
           height={windowHeight*0.2}
           style={{ border: 0,borderRadius:8 }}
@@ -54,7 +54,6 @@ function GoogleMap() {
         >
         </iframe>
       </Card>
-  
     </Box>
     
     </>

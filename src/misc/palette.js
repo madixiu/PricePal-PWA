@@ -2,6 +2,7 @@ import VazirWoff2 from '../fonts/Vazir.woff2'
 
 
 const palette = {
+  mode: 'light',
   typography:{
     fontFamily: 'Vazirmatn'
   },
@@ -15,7 +16,6 @@ const palette = {
       `,
     },
   },
-  mode: 'light',
   primary: {
     main: '#ededed  ',
   },

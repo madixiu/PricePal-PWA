@@ -37,17 +37,17 @@ function ContactInfoCard() {
             <CallIcon  sx={{ color:'ContactPage.icon.default'}}/>
             <Typography variant='body1' color="ContactPage.text.main" sx={typographyStyle}>تلفن:</Typography>
             <Button size="small" sx={{color:'ContactPage.text.main',direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-              +90 554 197 1171
+              +905318608573
             </Button>
             <Button size="small" sx={{color:'ContactPage.text.main',direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-              +90 (212) 830 39 09
+              +905318608573
             </Button>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
             <MailIcon  sx={{ color:'ContactPage.icon.default'}}/>
             <Typography variant='body1' color="ContactPage.text.main" sx={typographyStyle}>ایمیل:</Typography>
-            <Button size="small" sx={{color:'ContactPage.text.main'}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
-              rima@rimafinance.com
+            <Button size="small" sx={{color:'ContactPage.text.main'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
+              info@istapex.com
             </Button>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
@@ -55,7 +55,7 @@ function ContactInfoCard() {
             <Typography variant='body1' color="ContactPage.text.main" sx={typographyStyle}>آدرس:</Typography>
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
             <Button size="small" sx={{color:'ContactPage.text.main'}} >
-              Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
+              CUMHURİYET MAH., GÜRPINAR YOLU CAD., BEYKENT İŞ MERKEZI, NO. 348, BÜYÜKÇEKMECE, İSTANBUL            
             </Button>
           </Box>
           <CardActions disableSpacing>
@@ -80,18 +80,18 @@ function ContactInfoCard() {
                 <Typography variant='body1' color="ContactPage.text.main" sx={typographyMobileStyle}>تلفن:</Typography>
                 <Box >
                   <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-                    +90 554 197 1171
+                    +905318608573
                   </Button>
                   <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-                    +90 (212) 830 39 09
+                    +905318608573
                   </Button>
                 </Box>
               </Box>
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
                 <MailIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
                 <Typography variant='body1' sx={typographyMobileStyle}>ایمیل:</Typography>
-                <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
-                  rima@rimafinance.com
+                <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10}} onClick={() => window.location = 'mailto:info@istapex.com'}>
+                  info@istapex.com
                 </Button>
               </Box>
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
@@ -100,7 +100,7 @@ function ContactInfoCard() {
                 {/* <Typography  sx={{color:'black',fontSize:10,display:'flex',alignItems:'flex-start',justifyContent:'flex-start'}} >
                   Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
                 </Typography> */}
-                <span style={{fontSize:10,color:'ContactPage.text.main'}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</span>
+                <span style={{fontSize:10,color:'ContactPage.text.main'}}>CUMHURİYET MAH., GÜRPINAR YOLU CAD., BEYKENT İŞ MERKEZI, NO. 348, BÜYÜKÇEKMECE, İSTANBUL</span>
               </Box>
           
             </Box>
