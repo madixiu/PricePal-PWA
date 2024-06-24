@@ -3,11 +3,11 @@ import { Box,Typography } from '@mui/material';
 import { CurrencyName } from '../../misc/CurrencyNameList';
 import UpdateIcon from '@mui/icons-material/Update';
 import {formatTime} from '../../misc/dateFixer'
-import { formatPrice,ChangeColor } from '../../misc/priceFixer';
+import { formatPrice } from '../../misc/priceFixer';
 import Divider from '@mui/material/Divider';
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 function CurrencyGrid({CurrencyData}) {
   const[oldChange,setOldChange] = React.useState([]);
@@ -21,18 +21,19 @@ function CurrencyGrid({CurrencyData}) {
     cad: require("../../assets/flags/flag64/cad.png"),
     aud: require("../../assets/flags/flag64/aud.png"),
     try: require("../../assets/flags/flag64/try.png"),
+    usdt: require("../../assets/flags/flag64/usdt.png"),
   };
 const getImageUrl = (code) => bundleImages[code];
-function ChangeIcon({direction}) {
-  if (direction === 'positive') {
-    return <ArrowDropUpIcon sx={{color:'HomePage.changeUp',fontSize:'1rem'}}/>;
-  }
-  else if (direction === 'negative') {
-    return <ArrowDropDownIcon  sx={{color:'HomePage.changeDown',fontSize:'1rem'}}/>;
-  }
-  else
-  return <></>;
-}
+// function ChangeIcon({direction}) {
+//   if (direction === 'positive') {
+//     return <ArrowDropUpIcon sx={{color:'HomePage.changeUp',fontSize:'1rem'}}/>;
+//   }
+//   else if (direction === 'negative') {
+//     return <ArrowDropDownIcon  sx={{color:'HomePage.changeDown',fontSize:'1rem'}}/>;
+//   }
+//   else
+//   return <></>;
+// }
 
 React.useEffect(() => {
   if (oldChange.length === 0){
@@ -70,35 +71,25 @@ React.useEffect(() => {
           <Box sx={{display:'flex',flexDirection:'column',flex:1}}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',p:1}}>
               <Box sx={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-                <Typography sx={[{fontSize:'0.9rem'},FontStyle]}>{CurrencyName(item.slug)}</Typography>
+                <Typography sx={[{fontSize:'1.1rem'},FontStyle]}>{CurrencyName(item.slug)}</Typography>
                 <Typography sx={{color:'gray',fontSize:'0.7rem'}}>{(item.slug).toUpperCase()}</Typography>
               </Box> 
               <Box sx={{display:'flex',flexDirection:'column'}}>
-                <img style={{width:32,height:32}} src={getImageUrl(item.slug)} alt={`Flag of ${item.code}`} />
+                <img style={{width:32,height:item.slug === "usdt" ? 28 : 32}} src={getImageUrl(item.slug)} alt={`Flag of ${item.code}`} />
               </Box> 
             </Box>
           </Box>
-          <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',alignItems:'center',flex:1}}>
+          {/* <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',alignItems:'center',flex:1}}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center',p:0.5}}>
               <Typography sx={{fontSize:'0.9rem'}}>{formatTime(item.lastUpdate)}</Typography>
               <UpdateIcon sx={{fontSize:'0.9rem',color:'gray'}}/>
             </Box>
-          </Box>
-          <Box sx={{display:'flex',flexDirection:'column',flex:1}}>
-             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',px:1}}>
+          </Box> */}
+          <Box sx={{display:'flex',flexDirection:'column',flex:1,p:0.5}}>
+             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',px:0.5}}>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{color:cellColor[item.slug]}}>{formatPrice(item.prices.buy.price)}</Typography>
-                
-                {/* <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-                  <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" : item.change_percentage}%</Typography>
-                  <ChangeIcon direction={item.change_direction} />
-                </Box> */}
+                <Typography sx={{fontSize:'1.3rem',fontWeight:'700',color:cellColor[item.slug]}}>{formatPrice(item.prices.buy.price)}</Typography>
               </Box>
-              {/* //! change in center */}
-              {/* <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-                  <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" : item.change_percentage}</Typography>
-                  <ChangeIcon direction={item.change_direction} />
-              </Box> */}
               <Box sx={{display:'flex',flexDirection:'column'}}>
                 <Box>
                   <Typography sx={{fontSize:'0.9rem'}}>Buy</Typography>
@@ -106,20 +97,17 @@ React.useEffect(() => {
                 </Box>
               </Box>
             </Box>
-            {/* <Divider variant="middle"/> */}
             <Divider variant="middle">
                 <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-                  <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" :  `${item.change_percentage}%`}</Typography>
-                  <ChangeIcon direction={item.change_direction} />
+                  {/* <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" :  `${item.change_percentage}%`}</Typography>
+                  <ChangeIcon direction={item.change_direction} /> */}
+                  <Typography sx={{fontSize:'0.9rem'}}>{formatTime(item.lastUpdate)}</Typography>
+                  <UpdateIcon sx={{fontSize:'0.9rem',color:'gray'}}/>
                 </Box>
             </Divider>
-            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',px:1}}>
+            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',px:0.5}}>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{color:cellColor[item.slug]}}>{formatPrice(item.prices.sell.price)}</Typography>
-                {/* <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-                  <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" : item.change_percentage}%</Typography>
-                  <ChangeIcon direction={item.change_direction} />
-                </Box> */}
+                <Typography sx={{fontSize:'1.3rem',fontWeight:'700',color:cellColor[item.slug]}}>{formatPrice(item.prices.sell.price)}</Typography>
               </Box>
               <Box sx={{display:'flex',flexDirection:'column'}}>
               

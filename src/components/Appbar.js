@@ -19,8 +19,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const pages = [
   {name: 'خانه',link:''},
-  {name: 'بلاگ',link:'blog'},
-  {name: 'درباره ما',link:'about'},
+  {name: 'حواله جات ارزی',link:'payment'},
+  {name: 'سوالات متداول',link:'faq'},
   {name: 'ارتباط با ما',link:'contact'},
   {name: 'ماشین حساب',link:'calculator'},
 ]

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 
-function Blog() {
+function PaymentOrder() {
   return ( 
     <Grid justifyContent= 'center' alignContent={'center'} container>
-      This is Blog
+      حواله جات ارزی
     </Grid>
    );
 }
 
-export default Blog;
+export default PaymentOrder;

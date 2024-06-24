@@ -21,6 +21,7 @@ const bundleImages = {
   cad: require("../../assets/flags/flag128/cad.png"),
   aud: require("../../assets/flags/flag128/aud.png"),
   try: require("../../assets/flags/flag128/try.png"),
+  usdt: require("../../assets/flags/flag128/usdt.png"),
 };
 const getImageUrl = (code) => bundleImages[code];
 
@@ -142,7 +143,7 @@ function CurrencyTable({CurrencyData}) {
               >
                 <TableCell align='left' component="th" scope="row">
                 <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'flex-start', }}>
-                  <img style={{width:32,height:32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
+                  <img style={{width:32,height:row.slug === "usdt" ? 28 : 32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', }}>
                     <Box sx={{backgroundColor: '#efefef',borderRadius:1,p:0.2}}>
                     <Typography sx={{fontSize:'0.7rem',color:'black'}}>
