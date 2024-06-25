@@ -2,7 +2,8 @@ import VazirWoff2 from '../fonts/Vazir.woff2'
 
 
 const palette = {
-  mode: 'light',
+  // mode: 'light',
+  mode: 'dark',
   typography:{
     fontFamily: 'Vazirmatn'
   },
@@ -17,10 +18,15 @@ const palette = {
     },
   },
   primary: {
-    main: '#ededed  ',
+    main: '#C7B40A',
   },
+  // primary: '#C7B40A',
   secondary: {
     main: '#f50057',
+  },
+  background: {
+    default: '#303030',
+    paper: '#424242',
   },
   black: {
     main: '#000',

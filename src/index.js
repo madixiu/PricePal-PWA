@@ -8,6 +8,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import LoadingSpinner from './components/LoadingSpinner';
+import { createTheme,ThemeProvider } from '@mui/material/styles';
+import palette from './misc/palette'
+import { CssBaseline } from '@mui/material';
+
+const themeOptions = createTheme({
+  palette
+});
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -15,7 +23,10 @@ root.render(
     <React.StrictMode>
       <BrowserRouter>
         <React.Suspense fallback={<LoadingSpinner />}>
-          <App />
+          <ThemeProvider theme={themeOptions}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
         </React.Suspense>
       </BrowserRouter>
     </React.StrictMode>

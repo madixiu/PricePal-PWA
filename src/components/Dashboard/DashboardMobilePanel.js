@@ -157,8 +157,8 @@ else
           </Card>
       )}
       <Box sx={{justifyContent:'space-evenly',alignItems:'center',display:'flex',my:1,mb:10}}>
-            <Button variant="outlined" color='DashboardButtonColor' size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleSubmit}>تائید</Button>
-            <Button variant="outlined" color='DashboardButtonColor' size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
+            <Button variant="contained"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleSubmit}>تائید</Button>
+            <Button variant="outlined"  size='samll' sx={[{borderRadius:2,minWidth:100},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
       </Box>
       <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
         <Alert

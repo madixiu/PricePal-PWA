@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css'
 import Appbar from './components/Appbar';
-import { createTheme,ThemeProvider } from '@mui/material/styles';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Faq from './pages/Faq';
@@ -11,17 +10,14 @@ import BottomAppBar from './components/BottomAppBar';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './pages/Authentication/PrivateRoute';
 import Login from './pages/Authentication/login';
-import { Box, CssBaseline } from '@mui/material';
+import { Box } from '@mui/material';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
-import palette from './misc/palette'
 import CryptoJS from 'crypto-js';
 //! *******************TEMPORARY*******************************
 import Calculator from './pages/Calculator';
 //! ***********************************************************
-const themeOptions = createTheme({
-  palette
-});
+
 
 
 function App() {
@@ -57,9 +53,7 @@ function App() {
   }, [dispatch])
   const { isAuthenticated } = useSelector((state) => state.auth);
   return (
-
-    <ThemeProvider theme={themeOptions}>
-      <CssBaseline />
+    <>
       <Appbar isAuthenticated={isAuthenticated} />
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '90vh',gap: 0}}>
         <Routes>
@@ -75,7 +69,7 @@ function App() {
       <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column' }}>
         <BottomAppBar style={{ display: { xs: 'flex', md: 'none' } }} />
       </Box>
-    </ThemeProvider>
+    </>
   );
 }
 

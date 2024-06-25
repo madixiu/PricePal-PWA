@@ -67,13 +67,13 @@ React.useEffect(() => {
     <Box sx={{ display: 'flex', flexWrap: 'wrap',mb:10}}>
     {CurrencyData.map((item) => (
       <Box key={item.code} sx={{ width: '50%', textAlign: 'center' }}>
-        <Box sx={{ m:0.5,backgroundColor: '#fff', borderRadius:3}}>
+        <Box sx={{ m:0.5,backgroundColor: '#2c2a2a', borderRadius:3}}>
           <Box sx={{display:'flex',flexDirection:'column',flex:1}}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',p:1}}>
               <Box sx={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
                 <Typography sx={[{fontSize:'1.1rem'},FontStyle]}>{CurrencyName(item.slug)}</Typography>
                 <Typography sx={{color:'gray',fontSize:'0.7rem'}}>{(item.slug).toUpperCase()}</Typography>
-              </Box> 
+              </Box>
               <Box sx={{display:'flex',flexDirection:'column'}}>
                 <img style={{width:32,height:item.slug === "usdt" ? 28 : 32}} src={getImageUrl(item.slug)} alt={`Flag of ${item.code}`} />
               </Box> 
@@ -101,7 +101,7 @@ React.useEffect(() => {
                 <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
                   {/* <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" :  `${item.change_percentage}%`}</Typography>
                   <ChangeIcon direction={item.change_direction} /> */}
-                  <Typography sx={{fontSize:'0.9rem'}}>{formatTime(item.lastUpdate)}</Typography>
+                  <Typography sx={{fontSize:'0.9rem', color:'gray'}}>{formatTime(item.lastUpdate)}</Typography>
                   <UpdateIcon sx={{fontSize:'0.9rem',color:'gray'}}/>
                 </Box>
             </Divider>

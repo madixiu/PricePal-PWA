@@ -12,7 +12,14 @@ function Home() {
     fetch(`${process.env.REACT_APP_BASE_URL}pricev2`)
       .then(res => res.json())
       .then(data => {
-        let CurrencyData = sortDataArray(data.assets);
+        let tetherData = (data.parity)
+        tetherData = tetherData.filter(item => item.code === 'USDIRRt')
+        tetherData = tetherData[0];
+        tetherData.slug = 'usdt'
+        tetherData.code = 'USDTIRR'
+        let CurrencyData = data.assets;
+        CurrencyData.push(tetherData);
+        CurrencyData = sortDataArray(CurrencyData);
         setCurrencyData(CurrencyData);
       })  
       .catch(err => console.log(err));
@@ -34,34 +41,34 @@ function Home() {
       <Box id="HomeMD" sx={{px: 2,pt:2,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
           <Box sx={{flex:1,p:0.5,justifyContent: 'center', }}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-              <ErrorOutlineIcon sx={{color:'#555',fontSize:'1rem',marginInlineEnd:0.5}}/>
-              <Typography sx={{fontSize: '1rem',color: '#555',fontWeight: 'normal'}}>
+              <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'1rem',marginInlineEnd:0.5}}/>
+              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal'}}>
                 نرخ ها صرفا جهت ملاحظه می باشد
               </Typography>
             </Box>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-              <ErrorOutlineIcon sx={{color:'#555',fontSize:'1rem',marginInlineEnd:0.5}}/>
-              <Typography sx={{fontSize: '1rem',color: '#555',fontWeight: 'normal'}}>
+              <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'1rem',marginInlineEnd:0.5}}/>
+              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal'}}>
                 نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
               </Typography>
             </Box>
           </Box> 
         <CurrencyTable CurrencyData={CurrencyData} />
       </Box>
-      <Box id="HomeXS" sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1,backgroundColor: '#efefef', }}>
+      <Box id="HomeXS" sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1 }}>
         {/* <CurrencyList CurrencyData={CurrencyData}/> */}
         <Box sx={{flex:1,p:0.5, }}>
           <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
-            <ErrorOutlineIcon sx={{color:'#555',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
-            <Typography sx={{fontSize: '0.7rem',color: '#555',fontWeight: 'normal'}}>
+            <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
+            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal'}}>
               نرخ ها صرفا جهت ملاحظه می باشد
             </Typography>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
-            <ErrorOutlineIcon sx={{color:'#555',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
-            <Typography sx={{fontSize: '0.7rem',color: '#555',fontWeight: 'normal'}}>
+            <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
+            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal'}}>
               نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
             </Typography>
           </Box>

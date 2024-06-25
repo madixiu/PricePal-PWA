@@ -120,11 +120,9 @@ function DashboardPanel({ExcessData}) {
   return ( 
     <Grid id="dashboard-grid" justifyContent= 'center' alignContent={'center'} container sx={{p:1,justifyContent: 'center',flex:1}}>
       <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex',width:'50%'}}} >
-        <Card variant='elevation' elevation={0} sx={{flex:1,backgroundColor:'#efefef',borderRadius:2,flexDirection:'column',p:1}}>        
-
-
+        <Card variant='elevation' elevation={0} sx={{flex:1,borderRadius:2,flexDirection:'column',p:1}}>        
           {items.map((item) => (
-            <Card key={item.code} variant='elevation' elevation={0} sx={{ marginBottom:1,borderRadius:2,width:'100%',py:2,px:1,backgroundColor: 'rgba(255, 255, 255, 0.9)',border: '1px solid rgba(209, 213, 219, 0.8)'}}>
+            <Card key={item.code} variant='elevation' elevation={0} sx={{ marginBottom:1,borderRadius:2,width:'100%',py:2,px:1,backgroundColor: 'rgba(0, 0, 0, 0.4)',border: '1px solid rgba(209, 213, 219, 0.8)'}}>
               <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
                 <Box sx={{display:'flex',justifyContent:'flex-start',alignItems:'center',flex:1}}>
                   <img src={getImageUrl(item.slug)} alt="en" width="35" style={{marginInlineEnd:'5px'}} />
@@ -168,12 +166,14 @@ function DashboardPanel({ExcessData}) {
 
 
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
+            <Button variant="contained"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
+            <Button variant="outlined"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
           </Box>
         </Card>
       </Box>
-
+      {/* <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex',width:'100%',backgroundColor: 'red',}}}>
+        here
+      </Box> */}
 
       <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
         <Alert

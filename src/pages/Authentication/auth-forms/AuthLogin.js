@@ -112,6 +112,7 @@ export default function AuthLogin() {
                 <Stack spacing={1}>
                   <InputLabel htmlFor="password-login" sx={fontStyle}>رمز عبور</InputLabel>
                   <OutlinedInput
+                    
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
                     id="-password-login"
@@ -134,7 +135,7 @@ export default function AuthLogin() {
                       </InputAdornment>
                     }
                     placeholder={"رمز عبور را وارد کنید"}
-                    sx={fontStyle}
+                    sx={[fontStyle,{'-webkit-box-shadow': '0 0 0 100px #266798 inset;'}]}
                   />
                 </Stack>
                 {touched.password && errors.password && (

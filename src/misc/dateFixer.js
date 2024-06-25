@@ -25,27 +25,27 @@ export function formatTimeFarsiDigit(isoString) {
 
 
 export const sortDataArray = (dataArray) => {
-  const usdIRR = dataArray.find(item => item.code === 'USDIRR');
-  var tether = {
-    "code": "USDTIRR",
-    "lastUpdate": usdIRR.lastUpdate,
-    "change_direction": usdIRR.change_direction,
-    "change_percentage": usdIRR.change_percentage,
-    "prices": {
-        "buy": {
-            "type": "buy",
-            "price": usdIRR.prices.buy.price
-        },
-        "sell": {
-            "type": "sell",
-            "price": usdIRR.prices.sell.price
-        }
-    },
-    "slug": "usdt"
-};
-  dataArray.push(tether)
+//   const usdIRR = dataArray.find(item => item.code === 'USDIRR');
+//   var tether = {
+//     "code": "USDTIRR",
+//     "lastUpdate": usdIRR.lastUpdate,
+//     "change_direction": usdIRR.change_direction,
+//     "change_percentage": usdIRR.change_percentage,
+//     "prices": {
+//         "buy": {
+//             "type": "buy",
+//             "price": usdIRR.prices.buy.price
+//         },
+//         "sell": {
+//             "type": "sell",
+//             "price": usdIRR.prices.sell.price
+//         }
+//     },
+//     "slug": "usdt"
+// };
+//   dataArray.push(tether)
   const sortOrder = {"try": 0, "usd": 1,"eur": 2,"usdt":3,"gbp": 4, "cad": 5,"aud": 6,"chf":7};
-  
+  dataArray = dataArray.filter(item => item.code !== 'AEDIRR');
   return dataArray.sort((a, b) => {
     // Sort based on the `slug` property
     const slugA = a.slug;
