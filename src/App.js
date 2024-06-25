@@ -15,7 +15,7 @@ import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import CryptoJS from 'crypto-js';
 //! *******************TEMPORARY*******************************
-import Calculator from './pages/Calculator';
+// import Calculator from './pages/Calculator';
 //! ***********************************************************
 
 
@@ -61,7 +61,7 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/payment" element={<PaymentOrder />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/calculator" element={<Calculator />} />
+          {/* <Route path="/calculator" element={<Calculator />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<PrivateRoute isAuthenticated={isAuthenticated}><Dashboard /></PrivateRoute>} />
         </Routes>

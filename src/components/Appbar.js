@@ -21,7 +21,7 @@ const pages = [
   {name: 'حواله جات ارزی',link:'payment'},
   {name: 'سوالات متداول',link:'faq'},
   {name: 'ارتباط با ما',link:'contact'},
-  {name: 'ماشین حساب',link:'calculator'},
+  // {name: 'ماشین حساب',link:'calculator'},
 ]
 
 
@@ -177,6 +177,7 @@ const LogoutButton = () => {
                   // fullWidth="true"
                   onClick={handleCloseNavMenu}
                   sx={{ mx:1,minWidth:101,borderRadius:2,fontFamily:'Vazir'}}
+                  // disabled
                 >
                   {page.name}
                 </Button>
