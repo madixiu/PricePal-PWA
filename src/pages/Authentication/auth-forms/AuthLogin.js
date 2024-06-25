@@ -135,7 +135,7 @@ export default function AuthLogin() {
                       </InputAdornment>
                     }
                     placeholder={"رمز عبور را وارد کنید"}
-                    sx={[fontStyle,{'-webkit-box-shadow': '0 0 0 100px #266798 inset;'}]}
+                    sx={[fontStyle,{WebkitBoxShadow: '0 0 0 100px #266798 inset;'}]}
                   />
                 </Stack>
                 {touched.password && errors.password && (

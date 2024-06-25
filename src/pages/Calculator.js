@@ -14,9 +14,8 @@ function Calculator() {
       .then(data => {
         let Data = data.assets;
         setData(Data);
-        console.log(Data);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }
   React.useEffect(() => {
     getData(); // Fetch data initially
