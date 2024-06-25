@@ -1,12 +1,12 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 
-function About() {
+function Faq() {
   return ( 
     <Grid container justifyContent= 'center'>
-      This is About
+      FAQ
     </Grid>
    );
 }
 
-export default About;
+export default Faq;

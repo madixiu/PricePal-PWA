@@ -34,28 +34,28 @@ function ContactInfoCard() {
             Lizard
           </Typography> */}
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <CallIcon  sx={{ color:'ContactPage.icon.default'}}/>
-            <Typography variant='body1' color="ContactPage.text.main" sx={typographyStyle}>تلفن:</Typography>
-            <Button size="small" sx={{color:'ContactPage.text.main',direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-              +90 554 197 1171
+            <CallIcon  color='primary' sx={{fontSize:'1.2rem'}}/>
+            <Typography variant='body1' color={'primary'} sx={typographyStyle}>تلفن:</Typography>
+            <Button size="small" sx={{direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+              +905318608573
             </Button>
-            <Button size="small" sx={{color:'ContactPage.text.main',direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-              +90 (212) 830 39 09
+            {/* <Button size="small" sx={{direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+              +905318608573
+            </Button> */}
+          </Box>
+          <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
+            <MailIcon color='primary' sx={{fontSize:'1.2rem'}}/>
+            <Typography variant='body1' color="primary" sx={typographyStyle}>ایمیل:</Typography>
+            <Button size="small" onClick={() => window.location = 'mailto:info@istapex.com'}>
+              info@istapex.com
             </Button>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <MailIcon  sx={{ color:'ContactPage.icon.default'}}/>
-            <Typography variant='body1' color="ContactPage.text.main" sx={typographyStyle}>ایمیل:</Typography>
-            <Button size="small" sx={{color:'ContactPage.text.main'}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
-              rima@rimafinance.com
-            </Button>
-          </Box>
-          <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <BusinessIcon sx={{ color:'ContactPage.icon.default'}}/>
-            <Typography variant='body1' color="ContactPage.text.main" sx={typographyStyle}>آدرس:</Typography>
+            <BusinessIcon color='primary' sx={{fontSize:'1.2rem'}}/>
+            <Typography variant='body1' color="primary" sx={typographyStyle}>آدرس:</Typography>
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
-            <Button size="small" sx={{color:'ContactPage.text.main'}} >
-              Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
+            <Button size="small">
+              CUMHURİYET MAH., GÜRPINAR YOLU CAD., BEYKENT İŞ MERKEZI, NO. 348, BÜYÜKÇEKMECE, İSTANBUL            
             </Button>
           </Box>
           <CardActions disableSpacing>
@@ -72,35 +72,35 @@ function ContactInfoCard() {
         </CardContent>
       </Card>
       <Card sx={{borderRadius:2,elevation:8,mt:1, display:{xs:'flex',md:'none'}}} variant='outlined'>
-          <CardContent>
-            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start',p:1}}>
+          <CardContent sx={{p:1}}>
+            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'flex-start'}}>
 
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,}}>
-                <CallIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
-                <Typography variant='body1' color="ContactPage.text.main" sx={typographyMobileStyle}>تلفن:</Typography>
+                <CallIcon fontSize='small' />
+                <Typography variant='body1' sx={typographyMobileStyle}>تلفن:</Typography>
                 <Box >
-                  <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-                    +90 554 197 1171
+                  <Button size="small" sx={{fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                    +905318608573
                   </Button>
-                  <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-                    +90 (212) 830 39 09
-                  </Button>
+                  {/* <Button size="small" sx={{fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+                    +905318608573
+                  </Button> */}
                 </Box>
               </Box>
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
-                <MailIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
+                <MailIcon fontSize='small' />
                 <Typography variant='body1' sx={typographyMobileStyle}>ایمیل:</Typography>
-                <Button size="small" sx={{color:'ContactPage.text.main',fontSize:10}} onClick={() => window.location = 'mailto:rima@rimafinance.com'}>
-                  rima@rimafinance.com
+                <Button size="small" sx={{fontSize:10}} onClick={() => window.location = 'mailto:info@istapex.com'}>
+                  info@istapex.com
                 </Button>
               </Box>
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
-                <BusinessIcon fontSize='small' sx={{ color:'ContactPage.icon.default'}}/>
+                <BusinessIcon fontSize='small' />
                 <Typography variant='body1' sx={typographyMobileStyle}>آدرس:</Typography>
                 {/* <Typography  sx={{color:'black',fontSize:10,display:'flex',alignItems:'flex-start',justifyContent:'flex-start'}} >
                   Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL
                 </Typography> */}
-                <span style={{fontSize:10,color:'ContactPage.text.main'}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</span>
+                <span style={{fontSize:10,color:'ContactPage.text.main'}}>CUMHURİYET MAH., GÜRPINAR YOLU CAD., BEYKENT İŞ MERKEZI, NO. 348, BÜYÜKÇEKMECE, İSTANBUL</span>
               </Box>
           
             </Box>

@@ -27,25 +27,25 @@ export default function BottomAppBar() {
         <Toolbar>
           <Box sx={{display:'flex',flex:1,flexDirection:'row', justifyContent:'space-around'}}>
             <NavLink to={'/'}>
-              <IconButton sx={{color: location.pathname === '/' ? '#3e94b3' : 'gray'}} aria-label="Home">
+              <IconButton sx={{color: location.pathname === '/' ? '#C7B40A' : 'gray'}} aria-label="Home">
                 <HomeIcon />
               </IconButton>
             </NavLink>
-            <NavLink to={'/blog'}>
-              <IconButton sx={{color: location.pathname === '/blog' ? '#3e94b3' : 'gray'}}>
+            <NavLink to={'/payment'}>
+              <IconButton sx={{color: location.pathname === '/payment' ? '#C7B40A' : 'gray'}}>
                 <RssFeedIcon />
               </IconButton>
             </NavLink>
-            <NavLink to={'/contact'}>
-              <IconButton sx={{color: location.pathname === '/contact' ? '#3e94b3' : 'gray'}} >
-                <AlternateEmailIcon />
-              </IconButton>
-            </NavLink>
-            <NavLink to={'/about'}>
-              <IconButton sx={{color: location.pathname === '/about' ? '#3e94b3' : 'gray'}}>
+            <NavLink to={'/faq'}>
+              <IconButton sx={{color: location.pathname === '/faq' ? '#C7B40A' : 'gray'}}>
                 <InfoIcon />
               </IconButton>
             </NavLink>            
+            <NavLink to={'/contact'}>
+              <IconButton sx={{color: location.pathname === '/contact' ? '#C7B40A' : 'gray'}} >
+                <AlternateEmailIcon />
+              </IconButton>
+            </NavLink>
           </Box>
         </Toolbar>
       </AppBar>

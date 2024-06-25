@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/authSlice'
@@ -19,9 +18,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const pages = [
   {name: 'خانه',link:''},
-  {name: 'بلاگ',link:'blog'},
-  {name: 'درباره ما',link:'about'},
+  {name: 'حواله جات ارزی',link:'payment'},
+  {name: 'سوالات متداول',link:'faq'},
   {name: 'ارتباط با ما',link:'contact'},
+  // {name: 'ماشین حساب',link:'calculator'},
 ]
 
 
@@ -65,12 +65,12 @@ const LogoutButton = () => {
       <>
         <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center',alignItems:'center' }}>
           <NavLink key={'dashboard'} to={'/dashboard'} style={{textDecoration:'none'}}> 
-            <Button variant="outlined" color='AppBarButtonColor' size='medium'  sx={{marginInlineEnd:1,borderRadius:2,color: '#555','&:hover':{color:'#000'}}}>
+            <Button variant="outlined" size='medium'  sx={{marginInlineEnd:1,borderRadius:2}}>
               <DashboardIcon sx={{marginInlineEnd:1,fontSize:'1rem'}}/>
               <Typography sx={{fontFamily:'Vazir',fontSize:'0.8rem'}}>داشبورد</Typography>
             </Button>
           </NavLink>
-          <Button variant="outlined" color='AppBarButtonColor' size='medium' onClick={()=> handleLogout()} sx={{borderRadius:2,color: '#555','&:hover':{color:'#000'}}}>
+          <Button variant="outlined" size='medium' onClick={()=> handleLogout()} sx={{borderRadius:2}}>
             <LogoutIcon sx={{marginInlineEnd:1,fontSize:'1rem'}}/>
             <Typography sx={{fontFamily:'Vazir',fontSize:'0.8rem'}}>خروج</Typography>
           </Button>
@@ -84,28 +84,50 @@ const LogoutButton = () => {
 };
 
   return (
-    <AppBar position="static" elevation={0}>
+    <AppBar position="static"  color='black' enableColorOnDark>
       <Container maxWidth="xxl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Toolbar disableGutters color="inherit">
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
+            color={'primary'}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              // color: 'primary',
               textDecoration: 'none',
             }}
           >
-            RIMA FINANCE
+            ISTAPEX
           </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:isAuthenticated ? 0: 6 }}>
 
+            <Typography
+              variant="h5"
+              // noWrap
+              component="a"
+              href="/"
+              color={'primary'}
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                alignSelf:'center',
+                fontSize:'1rem',
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.2rem',
+                textDecoration: 'none',
+              }}
+            >
+              ISTAPEX
+            </Typography>
+            </Box>
           <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' } }}>
             <IconButton
               size="small"
@@ -142,40 +164,20 @@ const LogoutButton = () => {
                 <Typography sx={{fontSize:10,fontFamily:'Vazir'}}>خروج</Typography>
               </MenuItem>
             </Menu>
-        </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:isAuthenticated ? 5: 0 }}>
-
-            <AdbIcon sx={{display: { xs: 'flex', md: 'none' },justifyContent: 'center',alignSelf: 'center'}} />
-            <Typography
-              variant="h5"
-              // noWrap
-              component="a"
-              href="/"
-              sx={{
-                display: { xs: 'flex', md: 'none' },
-                alignSelf:'center',
-                fontSize:'1rem',
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.2rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              RIMA FINANCE
-            </Typography>
           </Box>
+     
           
           <Box sx={{ flexGrow: 1,justifyContent: 'flex-start', display: { xs: 'none', md: 'flex' },px:2}}>
             {pages.map((page) => (
               <NavLink key={page.link} to={`/${page.link}`} style={{textDecoration:'none'}}> 
                 <Button 
                   variant="outlined"
-                  color='AppBarButtonColor'
+                  // color='AppBarButtonColor'
                   size="medium"
                   // fullWidth="true"
                   onClick={handleCloseNavMenu}
-                  sx={{ mx:1, color: '#555',minWidth:101,borderRadius:2,'&:hover':{color:'#000'},fontFamily:'Vazir'}}
+                  sx={{ mx:1,minWidth:101,borderRadius:2,fontFamily:'Vazir'}}
+                  // disabled
                 >
                   {page.name}
                 </Button>

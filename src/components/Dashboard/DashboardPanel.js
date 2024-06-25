@@ -1,23 +1,54 @@
 import React from 'react';
 import { Card, Grid,Box,Typography,TextField, Button } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Alert from '@mui/material/Alert';
 import LoadingSpinner from '../LoadingSpinner'
-function DashboardPanel({ExcessData}) {
+function DashboardPanel({ExcessData,PromotionData,PromotionStatus}) {
   const items = [{slug: "try", name: 'لیر',code:'TRYIRR'},{slug: "usd", name: 'دلار',code:'USDIRR'},{slug: "eur", name: 'یورو',code:'EURIRR'},  {slug: "gbp", name: 'پوند',code:'GBPIRR'},{slug: "cad", name: 'دلار کانادا',code:'CADIRR'},{slug: "aud", name: 'دلار استرالیا',code:'AUDIRR'}];
   const fontStyle = {
     fontFamily:'Vazir'
   }
+
+  //**************** STATES ***************************************************
   const [openSnack,setOpenSnack] = React.useState(false);
   const [successfulSubmit,setSuccessfulSubmit] = React.useState(false);
   const [loading,setLoading] = React.useState(true)
   const [ExcessValue,setExcessValue] = React.useState({});
+  const [promotionStatus,setPromotionStatus] = React.useState(false);
+  const [promotionText,setPromotionText] = React.useState("");
+//****************************************** 
 
+
+//**************** HOOK ******************
+  React.useEffect(() => {
+    if(Object.keys(ExcessValue).length === 0){
+      setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
+      setLoading(false)
+    }
+    setPromotionStatus(PromotionStatus);
+    setPromotionText(PromotionData)
+
+},[ExcessData,ExcessValue,PromotionStatus,PromotionData]);
+//****************************************** 
+
+  async function handlePromotion (e) {
+    e.preventDefault();
+      if (promotionStatus) {
+        let postdata = {"textvalue": promotionText}
+        await postPromotion(`${process.env.REACT_APP_BASE_URL}update_promo_text`,  postdata )
+      }
+      else
+      await postPromotionStatus(`${process.env.REACT_APP_BASE_URL}promo_toggle`)
+
+      return;
+  };
   const handleClose = ( reason ) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpenSnack(false);
   };
 
@@ -45,14 +76,64 @@ function DashboardPanel({ExcessData}) {
   }
 
 
-  React.useEffect(() => {
-      if(Object.keys(ExcessValue).length === 0){
-        setExcessValue(JSON.parse(JSON.stringify(ExcessData)));
-        setLoading(false)
+  const postPromotionStatus = async (url) => {
+    setLoading(true);
+    try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+             },
+          // body: JSON.stringify(dataToPost),
+      });
+      const responseData = await response.json();
+      if (responseData.status === 'success'){
+        setSuccessfulSubmit(true);
+        setOpenSnack(true);
       }
-  },[ExcessData,ExcessValue]);
-
-
+      else{
+        setSuccessfulSubmit(false);
+        setOpenSnack(true);
+      }
+    }
+    catch(error) {
+      setSuccessfulSubmit(false);
+      setOpenSnack(true);
+      console.error('Error fetching data:', error);
+    }
+    finally {
+        setLoading(false);
+    }
+  }
+  
+  const postPromotion = async (url, dataToPost) => {
+    setLoading(true);
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToPost),
+        });
+        const responseData = await response.json();
+        if (responseData.message === 'Promotion updated successfully'){
+          setSuccessfulSubmit(true);
+          setOpenSnack(true);
+        }
+        else{
+          setSuccessfulSubmit(false);
+          setOpenSnack(true);
+        }
+    }
+    catch(error) {
+      setSuccessfulSubmit(false);
+      setOpenSnack(true);
+      console.error('Error fetching data:', error);
+    }finally {
+        setLoading(false);
+    }
+  };
   const postData = async (url, dataToPost) => {
     setLoading(true);
     try {
@@ -70,8 +151,14 @@ function DashboardPanel({ExcessData}) {
           setOpenSnack(true);
           // ExcessData = ExcessValue
         }
+        else{
+          setSuccessfulSubmit(false);
+          setOpenSnack(true);
+        }
         
     } catch (error) {
+        setSuccessfulSubmit(false);
+        setOpenSnack(true);
         console.error('Error fetching data:', error);
     } finally {
         setLoading(false);
@@ -118,13 +205,12 @@ function DashboardPanel({ExcessData}) {
     return <LoadingSpinner />
   else
   return ( 
-    <Grid id="test" justifyContent= 'center' alignContent={'center'} container sx={{p:1,justifyContent: 'center',flex:1}}>
-      <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex',width:'50%'}}} >
-        <Card variant='elevation' elevation={0} sx={{flex:1,backgroundColor:'#efefef',borderRadius:2,flexDirection:'column',p:1}}>        
-
-
+    <Grid id="dashboard-grid" justifyContent= 'center' alignContent={'center'} container sx={{p:3,justifyContent: 'center',flex:1}}>
+      <Box sx={{display:'flex',flexDirection:'row',flex:1,justifyContent: 'space-around',alignItems:'center'}}>
+        <Box sx={{justifyContent: 'center',flexDirection:'row', display:{xs:'none',md:'flex'},p:1,flex:3}} >
+        <Card variant='elevation' elevation={1} sx={{flex:1,borderRadius:2,flexDirection:'column',p:5}}>        
           {items.map((item) => (
-            <Card key={item.code} variant='elevation' elevation={0} sx={{ marginBottom:1,borderRadius:2,width:'100%',py:2,px:1,backgroundColor: 'rgba(255, 255, 255, 0.9)',border: '1px solid rgba(209, 213, 219, 0.8)'}}>
+            <Card key={item.code} variant='elevation' elevation={2} sx={{ marginBottom:1,borderRadius:2,py:2,px:1,backgroundColor: 'rgba(0, 0, 0, 0.4)',border: '1px solid rgba(209, 213, 219, 0.8)'}}>
               <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
                 <Box sx={{display:'flex',justifyContent:'flex-start',alignItems:'center',flex:1}}>
                   <img src={getImageUrl(item.slug)} alt="en" width="35" style={{marginInlineEnd:'5px'}} />
@@ -168,12 +254,40 @@ function DashboardPanel({ExcessData}) {
 
 
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
-            <Button variant="outlined" color='DashboardButtonColor' size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
+            <Button variant="contained"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
+            <Button variant="outlined"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
           </Box>
         </Card>
       </Box>
+        <Box sx={{justifyContent: 'center',flexDirection:'column', display:{xs:'none',md:'flex',p:5,flex:2}}}>
+            <Card variant='elevation' elevation={1} sx={{height:'100%',width:'100%',borderRadius:2,flexDirection:'column',p:1}}>
+              <Box sx={{p:2,flexDirection:'column',justifyContent:'center',alignItems:'center',flex:1}}
+                autoComplete="off"
+                noValidate
+              >
+                <TextField
+                  fullWidth
+                  id="outlined-multiline-flexible"
+                  label="پیشنهاد ویژه"
+                  multiline
+                  rows={6}
+                  defaultValue={promotionText}
+                  onChange={(event) => setPromotionText(event.target.value)}
+                />
 
+              </Box>  
+              <Box sx={{p:2}}>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox checked={promotionStatus}  onChange={() => setPromotionStatus(!promotionStatus)} />} label="فعال" />
+              </FormGroup>
+              </Box>
+              <Box sx={{p:1,flexDirection:'column',justifyContent:'center',alignItems:'center',flex:1}}>
+                <Button variant="contained"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handlePromotion}>ثبت</Button>
+              </Box>
+            </Card>
+        </Box>
+      </Box>
+    
 
       <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleClose}>
         <Alert
