@@ -57,11 +57,6 @@ function Home() {
       })
 
   }
-  // React.useEffect(() => {
-  //   return () => {
-  //     setModalCheck(false);
-  //   };
-  // }, []);
   React.useEffect(() => {
     const modalShown = sessionStorage.getItem('modalShown');
     if(!modalShown) {
@@ -87,13 +82,13 @@ function Home() {
           <Box sx={{flex:1,p:0.5,justifyContent: 'center', }}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
               <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'1rem',marginInlineEnd:0.5}}/>
-              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal'}}>
+              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
                 نرخ ها صرفا جهت ملاحظه می باشد
               </Typography>
             </Box>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
               <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'1rem',marginInlineEnd:0.5}}/>
-              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal'}}>
+              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
                 نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
               </Typography>
             </Box>
@@ -105,10 +100,10 @@ function Home() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={ModalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Typography id="modal-modal-title" variant="h6" component="h2" sx={{fontFamily:'Vazir'}}>
                   پیشنهاد ویژه
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 7 }}>
+                <Typography id="modal-modal-description" sx={{ mt: 7 ,fontFamily:'Vazir'}}>
                   {ModalText}
                 </Typography>
               </Box>
@@ -123,14 +118,14 @@ function Home() {
           <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
             <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
-            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal'}}>
+            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
               نرخ ها صرفا جهت ملاحظه می باشد
             </Typography>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
             <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
-            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal'}}>
+            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
               نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
             </Typography>
           </Box>
