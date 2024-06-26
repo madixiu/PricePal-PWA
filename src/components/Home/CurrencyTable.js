@@ -13,6 +13,8 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { formatPrice,ChangeColor } from '../../misc/priceFixer';
 import {formatTime} from '../../misc/dateFixer'
 import { CurrencyName } from '../../misc/CurrencyNameList';
+import UpdateIcon from '@mui/icons-material/Update';
+
 const bundleImages = {
   usd: require("../../assets/flags/flag128/usd.png"),
   eur: require("../../assets/flags/flag128/eur.png"),
@@ -175,9 +177,13 @@ function CurrencyTable({CurrencyData}) {
                   </Box>
                 </TableCell>
                 <TableCell align="center" sx={tableCellStyle} >
-                  <Typography >
-                    {formatTime(row.lastUpdate)}
-                  </Typography>
+                  <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
+                    <Typography sx={{ml:0.2}}>
+                      {formatTime(row.lastUpdate)}
+                    </Typography>
+                    <UpdateIcon sx={{fontSize:'0.9rem'}}/>
+                  </Box>
+                  
                 </TableCell>
               </TableRow>
             ))}
