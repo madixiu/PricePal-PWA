@@ -15,6 +15,8 @@ import { logout } from '../redux/authSlice'
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const pages = [
   {name: 'خانه',link:''},
@@ -26,6 +28,11 @@ const pages = [
 
 
 function Appbar({isAuthenticated}) {
+
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  const isXs = useMediaQuery(theme.breakpoints.down('xs'));
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -84,11 +91,17 @@ const LogoutButton = () => {
 };
 
   return (
-    <AppBar position="static"  color='black' enableColorOnDark>
+    <AppBar position="static" elevation={isMdUp ? 5 : isXs ? 0 : 0}  color='black' enableColorOnDark>
       <Container maxWidth="xxl">
         <Toolbar disableGutters color="inherit">
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
+          <Box sx={{flexGrow:1,display: {xs:'flex',md:'none'},justifyContent: 'center',marginInlineStart : isAuthenticated ? 4: 0}}>
+            <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
+
+          </Box>
+          <Box sx={{display: {xs:'none',md:'flex'}}}>
+            <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
+          </Box>
           <Typography
             variant="h6"
             noWrap
@@ -97,17 +110,18 @@ const LogoutButton = () => {
             color={'primary'}
             sx={{
               mr: 2,
+              ml:10,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.2rem',
               // color: 'primary',
               textDecoration: 'none',
             }}
           >
             ISTAPEX
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:isAuthenticated ? 0: 6 }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:isAuthenticated ? 0: 6 }}>
 
             <Typography
               variant="h5"
@@ -127,7 +141,7 @@ const LogoutButton = () => {
             >
               ISTAPEX
             </Typography>
-            </Box>
+            </Box> */}
           <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' } }}>
             <IconButton
               size="small"

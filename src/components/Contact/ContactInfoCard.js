@@ -34,35 +34,35 @@ function ContactInfoCard() {
             Lizard
           </Typography> */}
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <CallIcon  color='primary' sx={{fontSize:'1.2rem'}}/>
-            <Typography variant='body1' color={'primary'} sx={typographyStyle}>تلفن:</Typography>
-            <Button size="small" sx={{direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-              +905318608573
+            <CallIcon sx={{fontSize:'1.2rem'}}/>
+            <Typography variant='body1' sx={typographyStyle}>تلفن:</Typography>
+            <Button size="small" sx={{direction:'ltr',color:'#ccc'}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
+              +90 (531) 860 8573
             </Button>
             {/* <Button size="small" sx={{direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
               +905318608573
             </Button> */}
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <MailIcon color='primary' sx={{fontSize:'1.2rem'}}/>
-            <Typography variant='body1' color="primary" sx={typographyStyle}>ایمیل:</Typography>
-            <Button size="small" onClick={() => window.location = 'mailto:info@istapex.com'}>
+            <MailIcon sx={{fontSize:'1.2rem'}}/>
+            <Typography variant='body1' sx={typographyStyle}>ایمیل:</Typography>
+            <Button size="small" sx={{color:'#ccc'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
               info@istapex.com
             </Button>
           </Box>
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
-            <BusinessIcon color='primary' sx={{fontSize:'1.2rem'}}/>
-            <Typography variant='body1' color="primary" sx={typographyStyle}>آدرس:</Typography>
+            <BusinessIcon sx={{fontSize:'1.2rem'}}/>
+            <Typography variant='body1' sx={typographyStyle}>آدرس:</Typography>
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
-            <Button size="small">
+            <Button size="small" sx={{color:'#ccc'}}>
               CUMHURİYET MAH., GÜRPINAR YOLU CAD., BEYKENT İŞ MERKEZI, NO. 348, BÜYÜKÇEKMECE, İSTANBUL            
             </Button>
           </Box>
           <CardActions disableSpacing>
-            <IconButton aria-label="WhatsApp" sx={{'&:hover': { color: '#25D366' }}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+            <IconButton aria-label="WhatsApp" sx={{'&:hover': { color: '#25D366' }}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
               <WhatsAppIcon  />
             </IconButton>
-            <IconButton aria-label="Telegram" sx={{'&:hover': { color: '#2CA5E0' }}} onClick={()=>(window.open("https://t.me/rimafinans", "_blank"))}>
+            <IconButton aria-label="Telegram" sx={{'&:hover': { color: '#2CA5E0' }}} onClick={()=>(window.open("https://t.me/istapp2", "_blank"))}>
               <TelegramIcon />
             </IconButton>
             <IconButton aria-label="Instagram" sx={{'&:hover': { color: '#FD1D1D' }}}>
@@ -79,8 +79,8 @@ function ContactInfoCard() {
                 <CallIcon fontSize='small' />
                 <Typography variant='body1' sx={typographyMobileStyle}>تلفن:</Typography>
                 <Box >
-                  <Button size="small" sx={{fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
-                    +905318608573
+                  <Button size="small" sx={{fontSize:10,direction:'ltr',color:'#ccc'}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
+                    +90 (531) 860 8573
                   </Button>
                   {/* <Button size="small" sx={{fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
                     +905318608573
@@ -90,7 +90,7 @@ function ContactInfoCard() {
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
                 <MailIcon fontSize='small' />
                 <Typography variant='body1' sx={typographyMobileStyle}>ایمیل:</Typography>
-                <Button size="small" sx={{fontSize:10}} onClick={() => window.location = 'mailto:info@istapex.com'}>
+                <Button size="small" sx={{fontSize:10,color:'#ccc'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
                   info@istapex.com
                 </Button>
               </Box>
@@ -106,10 +106,10 @@ function ContactInfoCard() {
             </Box>
             <Box sx={{display:'flex',justifyContent:'space-evenly',flexDirection:'row',flexGrow:1,}}>
 
-              <IconButton aria-label="WhatsApp" sx={{  color: '#25D366'}}  onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
+              <IconButton aria-label="WhatsApp" sx={{  color: '#25D366'}}  onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
                 <WhatsAppIcon  />
               </IconButton>
-              <IconButton aria-label="Telegram" sx={{  color: '#2CA5E0'}}  onClick={()=>(window.open("https://t.me/rimafinans", "_blank"))}>
+              <IconButton aria-label="Telegram" sx={{  color: '#2CA5E0'}}  onClick={()=>(window.open("https://t.me/istapp2", "_blank"))}>
                 <TelegramIcon />
               </IconButton>
               <IconButton aria-label="Instagram" sx={{color: '#FD1D1D' }}>

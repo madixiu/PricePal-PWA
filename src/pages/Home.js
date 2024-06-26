@@ -117,7 +117,9 @@ function Home() {
       </Box>
       <Box id="HomeXS" sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1 }}>
         {/* <CurrencyList CurrencyData={CurrencyData}/> */}
-        <Box sx={{flex:1,p:0.5, }}>
+        <CurrencyGrid CurrencyData={CurrencyData}/>
+
+        <Box sx={{flex:1,p:0.5,mb:10 }}>
           <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
             <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
@@ -133,7 +135,6 @@ function Home() {
             </Typography>
           </Box>
         </Box>    
-        <CurrencyGrid CurrencyData={CurrencyData}/>
       </Box>
       </>
     );
