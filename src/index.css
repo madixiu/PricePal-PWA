@@ -13,6 +13,15 @@ label {
 input {
   font-family: inherit;
 }
+span {
+  font-family: 'Vazir' !important;
+}
+label {
+  font-family: 'Vazir' !important;
+}
+textarea {
+  font-family: 'Vazir' !important;
+}
 /* td {
   font-family: Vazirmatn !important;
   -webkit-font-smoothing: antialiased;
