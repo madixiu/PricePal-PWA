@@ -38,9 +38,12 @@ const getImageUrl = (code) => bundleImages[code];
 React.useEffect(() => {
   if (oldChange.length === 0){
     let change =[];
+    let color ={}
     for (let i=0;i<CurrencyData.length;i++){
         change[i] = CurrencyData[i].change_percentage;
+        color[CurrencyData[i].slug]= '#000';
     }
+    setCellColor(color)
     setOldChange(change);
    
   }else {
