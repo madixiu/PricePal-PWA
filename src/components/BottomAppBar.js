@@ -4,13 +4,13 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import RssFeedIcon from '@mui/icons-material/RssFeed';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 
 
@@ -30,10 +30,11 @@ export default function BottomAppBar() {
               <IconButton sx={{color: location.pathname === '/' ? '#C7B40A' : 'gray'}} aria-label="Home">
                 <HomeIcon />
               </IconButton>
+              {/* <Typography sx={{color: location.pathname === '/' ? '#C7B40A' : 'gray'}}>خانه</Typography> */}
             </NavLink>
             <NavLink to={'/payment'}>
               <IconButton sx={{color: location.pathname === '/payment' ? '#C7B40A' : 'gray'}}>
-                <RssFeedIcon />
+                <CurrencyExchangeIcon />
               </IconButton>
             </NavLink>
             <NavLink to={'/faq'}>

@@ -25,7 +25,7 @@ const palette = {
     main: '#f50057',
   },
   background: {
-    default: '#000',
+    default: '#303030',
     paper: '#424242',
   },
   black: {

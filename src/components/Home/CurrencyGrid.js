@@ -12,6 +12,8 @@ import Divider from '@mui/material/Divider';
 function CurrencyGrid({CurrencyData}) {
   const[oldChange,setOldChange] = React.useState([]);
   const[cellColor,setCellColor] = React.useState({});
+  const [cardHeight, setCardHeight] = React.useState(null);
+
   const FontStyle = {fontFamily: 'Vazir'}
   const bundleImages = {
     usd: require("../../assets/flags/flag64/usd.png"),
@@ -24,17 +26,27 @@ function CurrencyGrid({CurrencyData}) {
     usdt: require("../../assets/flags/flag64/usdt.png"),
   };
 const getImageUrl = (code) => bundleImages[code];
-// function ChangeIcon({direction}) {
-//   if (direction === 'positive') {
-//     return <ArrowDropUpIcon sx={{color:'HomePage.changeUp',fontSize:'1rem'}}/>;
-//   }
-//   else if (direction === 'negative') {
-//     return <ArrowDropDownIcon  sx={{color:'HomePage.changeDown',fontSize:'1rem'}}/>;
-//   }
-//   else
-//   return <></>;
-// }
 
+React.useEffect(() => {
+  if (typeof window !== 'undefined') {
+    // setCardHeight(window.innerWidth);
+    setCardHeight(window.innerWidth * 0.5);
+    console.log(cardHeight);
+    // Optionally, you can also listen for window resize events and update dimensions accordingly:
+    window.addEventListener('resize', () => {
+      // setCardHeight(window.innerWidth);
+      setCardHeight(window.innerWidth * 0.5);
+    });
+
+    // Don't forget to clean up the event listener when unmounting the component:
+    return () => {
+      window.removeEventListener('resize', () => {
+        // setCardHeight(window.innerWidth);
+        setCardHeight(window.innerWidth * 0.5);
+      });
+    };
+  }
+}, []);
 React.useEffect(() => {
   if (oldChange.length === 0){
     let change =[];
@@ -69,10 +81,10 @@ React.useEffect(() => {
   return ( 
     <Box sx={{ display: 'flex', flexWrap: 'wrap',mb:2}}>
     {CurrencyData.map((item) => (
-      <Box key={item.code} sx={{ width: '50%', textAlign: 'center' }}>
-        <Box sx={{ m:0.5,backgroundColor: '#fff', borderRadius:3}}>
+      <Box key={item.code} sx={{ width: '50%',height:cardHeight,display:'flex' }}>
+        <Box sx={{ m:0.5,backgroundColor: '#fff', borderRadius:3,flex:'1',flexDirection:'column',display:'flex'}}>
           <Box sx={{display:'flex',flexDirection:'column',flex:1}}>
-            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',p:1}}>
+            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',p:2}}>
               <Box sx={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
                 <Typography sx={[{fontSize:'1.1rem',color:'#000'},FontStyle]}>{CurrencyName(item.slug)}</Typography>
                 <Typography sx={{color:'gray',fontSize:'0.7rem'}}>{(item.slug).toUpperCase()}</Typography>
@@ -82,41 +94,24 @@ React.useEffect(() => {
               </Box> 
             </Box>
           </Box>
-          {/* <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',alignItems:'center',flex:1}}>
-            <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center',p:0.5}}>
-              <Typography sx={{fontSize:'0.9rem'}}>{formatTime(item.lastUpdate)}</Typography>
-              <UpdateIcon sx={{fontSize:'0.9rem',color:'gray'}}/>
-            </Box>
-          </Box> */}
-          <Box sx={{display:'flex',flexDirection:'column',flex:1,p:0.5}}>
-             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',px:0.5}}>
+          <Box sx={{display:'flex',flexDirection:'column',flex:1,p:2,justifyContent: 'center',}}>
+             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{fontSize:'1.3rem',fontWeight:'700',color:cellColor[item.slug]}}>{formatPrice(item.prices.buy.price)}</Typography>
+                <Typography sx={{fontSize:'1.9rem',fontWeight:'200',color:cellColor[item.slug]}}>{formatPrice(item.prices.buy.price)}</Typography>
               </Box>
-              <Box sx={{display:'flex',flexDirection:'column'}}>
+              <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',}}>
                 <Box>
                   <Typography sx={{fontSize:'0.9rem',color:'#000'}}>Buy</Typography>
-                  <Typography sx={[{fontSize:'0.6rem',color:'gray'},FontStyle]}>خرید</Typography>
                 </Box>
               </Box>
             </Box>
-            <Divider variant="middle" sx={{"&::before, &::after": {borderColor: "gray",},}}>
-                <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-                  {/* <Typography sx={{color: ChangeColor(item.change_direction),fontSize:'0.8rem'}}>{item.change_percentage === 0 ? "-" :  `${item.change_percentage}%`}</Typography>
-                  <ChangeIcon direction={item.change_direction} /> */}
-                  <Typography sx={{fontSize:'0.9rem', color:'red'}}>{formatTime(item.lastUpdate)}</Typography>
-                  <UpdateIcon sx={{fontSize:'0.9rem',color:'red'}}/>
-                </Box>
-            </Divider>
-            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',px:0.5}}>
+            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{fontSize:'1.3rem',fontWeight:'700',color:cellColor[item.slug]}}>{formatPrice(item.prices.sell.price)}</Typography>
+                <Typography sx={{fontSize:'1rem',color:'#555'}}>{formatPrice(item.prices.sell.price)}</Typography>
               </Box>
-              <Box sx={{display:'flex',flexDirection:'column'}}>
-              
+              <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',}}>             
                 <Box>
-                  <Typography sx={{fontSize:'0.9rem',color:'#000'}}>Sell</Typography>
-                  <Typography sx={[{fontSize:'0.6rem',color:'gray'},FontStyle]}>فروش</Typography>
+                  <Typography sx={{fontSize:'0.9rem',fontWeight:'200',color:'#000'}}>Sell</Typography>
                 </Box>
               </Box>
             </Box>

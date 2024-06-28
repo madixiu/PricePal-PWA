@@ -91,7 +91,7 @@ const LogoutButton = () => {
 };
 
   return (
-    <AppBar position="static" elevation={isMdUp ? 5 : isXs ? 0 : 0}  color='black' enableColorOnDark>
+    <AppBar position="static" elevation={isMdUp ? 5 : isXs ? 5 : 5}  color='black' enableColorOnDark>
       <Container maxWidth="xxl">
         <Toolbar disableGutters color="inherit">
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -121,27 +121,6 @@ const LogoutButton = () => {
           >
             ISTAPEX
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' },justifyContent: 'center',marginInlineEnd:isAuthenticated ? 0: 6 }}>
-
-            <Typography
-              variant="h5"
-              // noWrap
-              component="a"
-              href="/"
-              color={'primary'}
-              sx={{
-                display: { xs: 'flex', md: 'none' },
-                alignSelf:'center',
-                fontSize:'1rem',
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.2rem',
-                textDecoration: 'none',
-              }}
-            >
-              ISTAPEX
-            </Typography>
-            </Box> */}
           <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' } }}>
             <IconButton
               size="small"
