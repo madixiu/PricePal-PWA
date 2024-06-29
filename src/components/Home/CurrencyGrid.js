@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box,Typography } from '@mui/material';
-import { CurrencyName } from '../../misc/CurrencyNameList';
-import UpdateIcon from '@mui/icons-material/Update';
-import {formatTime} from '../../misc/dateFixer'
+// import { CurrencyName } from '../../misc/CurrencyNameList';
+// import UpdateIcon from '@mui/icons-material/Update';
+// import {formatTime} from '../../misc/dateFixer'
 import { formatPrice } from '../../misc/priceFixer';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 // import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -14,7 +14,7 @@ function CurrencyGrid({CurrencyData}) {
   const[cellColor,setCellColor] = React.useState({});
   const [cardHeight, setCardHeight] = React.useState(null);
 
-  const FontStyle = {fontFamily: 'Vazir'}
+  // const FontStyle = {fontFamily: 'Vazir'}
   const bundleImages = {
     usd: require("../../assets/flags/flag64/usd.png"),
     eur: require("../../assets/flags/flag64/eur.png"),
@@ -30,19 +30,19 @@ const getImageUrl = (code) => bundleImages[code];
 React.useEffect(() => {
   if (typeof window !== 'undefined') {
     // setCardHeight(window.innerWidth);
-    setCardHeight(window.innerWidth * 0.5);
-    console.log(cardHeight);
+    setCardHeight((window.innerWidth * 0.5));
+    console.log(window.innerWidth);
     // Optionally, you can also listen for window resize events and update dimensions accordingly:
     window.addEventListener('resize', () => {
       // setCardHeight(window.innerWidth);
-      setCardHeight(window.innerWidth * 0.5);
+      setCardHeight((window.innerWidth * 0.5));
     });
 
     // Don't forget to clean up the event listener when unmounting the component:
     return () => {
       window.removeEventListener('resize', () => {
         // setCardHeight(window.innerWidth);
-        setCardHeight(window.innerWidth * 0.5);
+        setCardHeight((window.innerWidth * 0.5));
       });
     };
   }
@@ -85,9 +85,15 @@ React.useEffect(() => {
         <Box sx={{ m:0.5,backgroundColor: '#fff', borderRadius:3,flex:'1',flexDirection:'column',display:'flex'}}>
           <Box sx={{display:'flex',flexDirection:'column',flex:1}}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',p:2}}>
-              <Box sx={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+              {/*  //! OPTION 2   */}
+              {/* <Box sx={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
                 <Typography sx={[{fontSize:'1.1rem',color:'#000'},FontStyle]}>{CurrencyName(item.slug)}</Typography>
                 <Typography sx={{color:'gray',fontSize:'0.7rem'}}>{(item.slug).toUpperCase()}</Typography>
+              </Box> */}
+
+             {/*  //! OPTION 2   */}
+              <Box sx={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+                <Typography sx={{color:'#000',fontSize:'1.1rem',fontWeight:400}}>{(item.slug).toUpperCase()}</Typography>
               </Box>
               <Box sx={{display:'flex',flexDirection:'column'}}>
                 <img style={{width:32,height:item.slug === "usdt" ? 28 : 32}} src={getImageUrl(item.slug)} alt={`Flag of ${item.code}`} />

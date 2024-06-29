@@ -75,9 +75,6 @@ function CurrencyTable({CurrencyData}) {
           change[i] = CurrencyData[i].change_percentage;
         }
       }
-      // console.log('Color:',cellColor);
-      // console.log('oldChange:',oldChange);
-      // console.log('newChange:',change);
       setCellColor(color);
       setOldChange(change);
     }

@@ -25,11 +25,15 @@ const palette = {
     main: '#f50057',
   },
   background: {
-    default: '#303030',
+    // default: '#303030',
+    default:'#7e7e7e',
     paper: '#424242',
   },
   black: {
     main: '#000',
+  },
+  AppBarColor:{
+    main: '#535353',
   },
   AppBarButtonColor:{
     main: '#777',

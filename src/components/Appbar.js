@@ -10,13 +10,15 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { logout } from '../redux/authSlice'
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import UpdateIcon from '@mui/icons-material/Update';
+import { useLocation } from 'react-router-dom';
 
 const pages = [
   {name: 'خانه',link:''},
@@ -30,13 +32,13 @@ const pages = [
 function Appbar({isAuthenticated}) {
 
   const theme = useTheme();
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const isXs = useMediaQuery(theme.breakpoints.down('xs'));
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { updateTime } = useSelector((state) => state.updateTime)
+  const location = useLocation();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -91,13 +93,18 @@ const LogoutButton = () => {
 };
 
   return (
-    <AppBar position="static" elevation={isMdUp ? 5 : isXs ? 5 : 5}  color='black' enableColorOnDark>
+    <AppBar elevation={isMdUp ? 5 : isXs ? 0 : 0}  color={isMdUp? 'black' : 'black'} enableColorOnDark>
       <Container maxWidth="xxl">
         <Toolbar disableGutters color="inherit">
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <Box sx={{flexGrow:1,display: {xs:'flex',md:'none'},justifyContent: 'center',marginInlineStart : isAuthenticated ? 4: 0}}>
-            <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
 
+          <Box sx={{display: {xs: location.pathname === '/' ? 'flex' : 'none',md:'none'},justifyContent: 'flex-start',alignItems:'center',flex:1}}>
+            <Typography sx={{fontSize:'0.8rem'}}>
+              {updateTime}  
+            </Typography>
+            <UpdateIcon sx={{fontSize:'0.7rem'}}/>
+          </Box>          
+          <Box sx={{flexGrow:1,display: {xs:'flex',md:'none'},justifyContent: 'center',position:'fixed',left:'50%',right:'50%'}}>
+            <img height={45} width={80} src={`${process.env.PUBLIC_URL}/logo512nobg.png`} alt="Logo" />
           </Box>
           <Box sx={{display: {xs:'none',md:'flex'}}}>
             <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
@@ -121,7 +128,7 @@ const LogoutButton = () => {
           >
             ISTAPEX
           </Typography>
-          <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' } }}>
+          <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' },flex:1 ,justifyContent:'flex-end'}}>
             <IconButton
               size="small"
               aria-label="account of current user"

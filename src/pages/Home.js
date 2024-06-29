@@ -6,11 +6,15 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { sortDataArray } from '../misc/dateFixer';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import Modal from '@mui/material/Modal';
+import { setUpdateTime } from '../redux/updateTimeSlice'
+import { useDispatch } from 'react-redux';
+import {formatTime} from '../misc/dateFixer'
 function Home() {
   const [CurrencyData,setCurrencyData] = React.useState([])
   const [ModalOpen, setModalOpen] = React.useState(false);
   const [ModalText, setModalText] = React.useState('');
   const handleClose = () => setModalOpen(false);
+  const dispatch = useDispatch();
 
   const ModalStyle = {
     position: 'absolute',
@@ -37,6 +41,9 @@ function Home() {
         CurrencyData.push(tetherData);
         CurrencyData = sortDataArray(CurrencyData);
         setCurrencyData(CurrencyData);
+        let updateTime = CurrencyData.find(item => item.code === 'USDIRR').lastUpdate;
+        updateTime = formatTime(updateTime);
+        dispatch(setUpdateTime(updateTime));
       })  
       .catch(err => console.error(err));
   }
@@ -45,7 +52,6 @@ function Home() {
       .then(res => res.json())
       .then(data => {
          setModalOpen(data.enabled);
-        //  setPromotionText(data.textvalue);
        })
       .catch(err => console.error(err));
   }
@@ -72,6 +78,7 @@ function Home() {
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array to run the effect only once
   if (CurrencyData.length === 0)
     return <LoadingSpinner />
@@ -111,7 +118,7 @@ function Home() {
         <CurrencyTable CurrencyData={CurrencyData} />
       </Box>
       <Box id="HomeXS" sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1 }}>
-        {/* <CurrencyList CurrencyData={CurrencyData}/> */}
+        {/* <Box sx={{backgroundColor: 'red',width:'100%'}}>here is the time</Box> */}
         <CurrencyGrid CurrencyData={CurrencyData}/>
 
         <Box sx={{flex:1,p:0.5,mb:10 }}>

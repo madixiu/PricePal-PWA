@@ -53,8 +53,10 @@ function App() {
   }, [dispatch])
   const { isAuthenticated } = useSelector((state) => state.auth);
   return (
-    <>
-      <Appbar isAuthenticated={isAuthenticated} />
+    <Box sx={{display:'flex',flex:1,flexDirection:'column'}}>
+      <Box id='appbarDiv' sx={{display:'flex', flexDirection: 'column',mb:7.5 }}>
+        <Appbar isAuthenticated={isAuthenticated} />
+      </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', height: '90vh',gap: 0}}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -69,7 +71,7 @@ function App() {
       <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column' }}>
         <BottomAppBar style={{ display: { xs: 'flex', md: 'none' } }} />
       </Box>
-    </>
+    </Box>
   );
 }
 
