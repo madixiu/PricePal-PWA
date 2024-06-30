@@ -104,7 +104,7 @@ const LogoutButton = () => {
             <UpdateIcon sx={{fontSize:'0.7rem'}}/>
           </Box>           */}
           <Box sx={{flexGrow:1,display: {xs:'flex',md:'none'},justifyContent: 'center',position:'fixed',left:'50%',right:'50%'}}>
-            <img height={45} width={80} src={`${process.env.PUBLIC_URL}/logo512nobgBlack.png`} alt="Logo" />
+            <img height={80} width={142.22} src={`${process.env.PUBLIC_URL}/logo512nobgBlack.png`} alt="Logo" />
           </Box>
           <Box sx={{display: {xs:'none',md:'flex'}}}>
             <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
