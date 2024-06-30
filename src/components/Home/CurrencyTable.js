@@ -85,7 +85,7 @@ function CurrencyTable({CurrencyData}) {
     <>
       <TableContainer component={Paper} sx={{mt:2}}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>
-          <TableHead sx={{backgroundColor:'#2c2a2a'}}>
+          <TableHead sx={{backgroundColor:'#fafafa'}}>
             <TableRow>
               <TableCell align="right" sx={tableHeaderStyle}>
               <Box id="booo" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between' }}>
@@ -144,7 +144,7 @@ function CurrencyTable({CurrencyData}) {
                 <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'flex-start', }}>
                   <img style={{width:32,height:row.slug === "usdt" ? 28 : 32,marginInlineEnd:10}} src={getImageUrl(row.slug)} alt={`Flag of ${row.code}`} />
                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', }}>
-                    <Box sx={{backgroundColor: '#2c2a2a',borderRadius:1,p:0.2}}>
+                    <Box sx={{backgroundColor: '#eee',borderRadius:1,p:0.2}}>
                     <Typography sx={{fontSize:'0.7rem',color:'black'}}>
                       {(row.slug).toUpperCase()}
                     </Typography>

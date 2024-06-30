@@ -12,7 +12,7 @@ import { formatPrice } from '../../misc/priceFixer';
 function CurrencyGrid({CurrencyData}) {
   const[oldChange,setOldChange] = React.useState([]);
   const[cellColor,setCellColor] = React.useState({});
-  const [cardHeight, setCardHeight] = React.useState(null);
+  // const [cardHeight, setCardHeight] = React.useState(null);
 
   // const FontStyle = {fontFamily: 'Vazir'}
   const bundleImages = {
@@ -27,26 +27,26 @@ function CurrencyGrid({CurrencyData}) {
   };
 const getImageUrl = (code) => bundleImages[code];
 
-React.useEffect(() => {
-  if (typeof window !== 'undefined') {
-    // setCardHeight(window.innerWidth);
-    setCardHeight((window.innerWidth * 0.5));
-    console.log(window.innerWidth);
-    // Optionally, you can also listen for window resize events and update dimensions accordingly:
-    window.addEventListener('resize', () => {
-      // setCardHeight(window.innerWidth);
-      setCardHeight((window.innerWidth * 0.5));
-    });
+// React.useEffect(() => {
+//   if (typeof window !== 'undefined') {
+//     // setCardHeight(window.innerWidth);
+//     setCardHeight((window.innerWidth * 0.5));
+//     console.log(window.innerWidth);
+//     // Optionally, you can also listen for window resize events and update dimensions accordingly:
+//     window.addEventListener('resize', () => {
+//       // setCardHeight(window.innerWidth);
+//       setCardHeight((window.innerWidth * 0.5));
+//     });
 
-    // Don't forget to clean up the event listener when unmounting the component:
-    return () => {
-      window.removeEventListener('resize', () => {
-        // setCardHeight(window.innerWidth);
-        setCardHeight((window.innerWidth * 0.5));
-      });
-    };
-  }
-}, []);
+//     // Don't forget to clean up the event listener when unmounting the component:
+//     return () => {
+//       window.removeEventListener('resize', () => {
+//         // setCardHeight(window.innerWidth);
+//         setCardHeight((window.innerWidth * 0.5));
+//       });
+//     };
+//   }
+// }, []);
 React.useEffect(() => {
   if (oldChange.length === 0){
     let change =[];
@@ -81,8 +81,8 @@ React.useEffect(() => {
   return ( 
     <Box sx={{ display: 'flex', flexWrap: 'wrap',mb:2}}>
     {CurrencyData.map((item) => (
-      <Box key={item.code} sx={{ width: '50%',height:cardHeight,display:'flex' }}>
-        <Box sx={{ m:0.5,backgroundColor: '#fff', borderRadius:3,flex:'1',flexDirection:'column',display:'flex'}}>
+      <Box key={item.code} sx={{ width: '50%',display:'flex'}}>
+        <Box sx={{ m:0.5,backgroundColor: '#fff', borderRadius:5,flex:'1',flexDirection:'column',display:'flex'}} className='elevatedBox'>
           <Box sx={{display:'flex',flexDirection:'column',flex:1}}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',p:2}}>
               {/*  //! OPTION 2   */}
@@ -101,24 +101,24 @@ React.useEffect(() => {
             </Box>
           </Box>
           <Box sx={{display:'flex',flexDirection:'column',flex:1,p:2,justifyContent: 'center',}}>
-             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-              <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{fontSize:'1.9rem',fontWeight:'200',color:cellColor[item.slug]}}>{formatPrice(item.prices.buy.price)}</Typography>
-              </Box>
+            <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',}}>
                 <Box>
-                  <Typography sx={{fontSize:'0.9rem',color:'#000'}}>Buy</Typography>
+                  <Typography sx={{fontSize:'0.9rem',color:'#555'}}>Buy</Typography>
                 </Box>
+              </Box>
+              <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
+                <Typography sx={{fontSize:'1rem',color:cellColor[item.slug]}}>{formatPrice(item.prices.buy.price)}</Typography>
               </Box>
             </Box>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-              <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{fontSize:'1rem',color:'#555'}}>{formatPrice(item.prices.sell.price)}</Typography>
-              </Box>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'center',}}>             
                 <Box>
                   <Typography sx={{fontSize:'0.9rem',fontWeight:'200',color:'#000'}}>Sell</Typography>
                 </Box>
+              </Box>
+              <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
+                <Typography sx={{fontSize:'1.9rem',fontWeight:'200',color:'#000'}}>{formatPrice(item.prices.sell.price)}</Typography>
               </Box>
             </Box>
           </Box>

@@ -2,8 +2,8 @@ import VazirWoff2 from '../fonts/Vazir.woff2'
 
 
 const palette = {
-  // mode: 'light',
-  mode: 'dark',
+  mode: 'light',
+  // mode: 'dark',
   typography:{
     fontFamily: 'Vazirmatn'
   },
@@ -18,7 +18,8 @@ const palette = {
     },
   },
   primary: {
-    main: '#C7B40A',
+    // main: '#C7B40A',
+    main:'#000'
   },
   // primary: '#C7B40A',
   secondary: {
@@ -26,14 +27,18 @@ const palette = {
   },
   background: {
     // default: '#303030',
-    default:'#7e7e7e',
-    paper: '#424242',
+    // default:'#7e7e7e',
+    // default:'#dddddd',
+    default:'#f6f7ff',
+
+    // paper: '#eeeeee',
+    paper: '#fff'
   },
   black: {
     main: '#000',
   },
   AppBarColor:{
-    main: '#535353',
+    main: '#f6f7ff',
   },
   AppBarButtonColor:{
     main: '#777',

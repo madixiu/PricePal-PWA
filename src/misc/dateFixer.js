@@ -6,6 +6,20 @@ export function formatTime(isoString) {
   // const seconds = date.getSeconds().toString().padStart(2, '0');
   return `${hours}:${minutes}`;
 }
+export function formatTime2(isoString) {
+  const date = new Date(isoString.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+  
+  const options = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  };
+
+  return date.toLocaleString('en-US', options).replace(',', ' at');
+}
 
 
 export function formatTimeFarsiDigit(isoString) {

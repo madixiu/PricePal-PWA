@@ -36,7 +36,7 @@ function ContactInfoCard() {
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
             <CallIcon sx={{fontSize:'1.2rem'}}/>
             <Typography variant='body1' sx={typographyStyle}>تلفن:</Typography>
-            <Button size="small" sx={{direction:'ltr',color:'#ccc'}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
+            <Button size="small" sx={{direction:'ltr',color:'#000'}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
               +90 (531) 860 8573
             </Button>
             {/* <Button size="small" sx={{direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
@@ -46,7 +46,7 @@ function ContactInfoCard() {
           <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1}}>
             <MailIcon sx={{fontSize:'1.2rem'}}/>
             <Typography variant='body1' sx={typographyStyle}>ایمیل:</Typography>
-            <Button size="small" sx={{color:'#ccc'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
+            <Button size="small" sx={{color:'#000'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
               info@istapex.com
             </Button>
           </Box>
@@ -54,7 +54,7 @@ function ContactInfoCard() {
             <BusinessIcon sx={{fontSize:'1.2rem'}}/>
             <Typography variant='body1' sx={typographyStyle}>آدرس:</Typography>
             {/* <Typography variant='body1' sx={{display:'flex',mt:2,mb:2}}>Taya Hatun Mahallesi Tarakçılar sok. Yüksek han No 4 FATİH/İSTANBUL</Typography> */}
-            <Button size="small" sx={{color:'#ccc'}}>
+            <Button size="small" sx={{color:'#000'}}>
               CUMHURİYET MAH., GÜRPINAR YOLU CAD., BEYKENT İŞ MERKEZI, NO. 348, BÜYÜKÇEKMECE, İSTANBUL            
             </Button>
           </Box>
@@ -79,7 +79,7 @@ function ContactInfoCard() {
                 <CallIcon fontSize='small' />
                 <Typography variant='body1' sx={typographyMobileStyle}>تلفن:</Typography>
                 <Box >
-                  <Button size="small" sx={{fontSize:10,direction:'ltr',color:'#ccc'}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
+                  <Button size="small" sx={{fontSize:10,direction:'ltr',color:'#000'}} onClick={()=>(window.open("https://api.whatsapp.com/send/?phone=905318608573&text&type=phone_number&app_absent=0", "_blank"))}>
                     +90 (531) 860 8573
                   </Button>
                   {/* <Button size="small" sx={{fontSize:10,direction:'ltr'}} onClick={()=>(window.open("https://api.whatsapp.com/message/36WV3CP6SQO4I1?autoload=1&app_absent=0", "_blank"))}>
@@ -90,7 +90,7 @@ function ContactInfoCard() {
               <Box sx={{display:'flex',flexDirection:'row',alignItems:'center',p:1,justifyContent: 'flex-start',}}>
                 <MailIcon fontSize='small' />
                 <Typography variant='body1' sx={typographyMobileStyle}>ایمیل:</Typography>
-                <Button size="small" sx={{fontSize:10,color:'#ccc'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
+                <Button size="small" sx={{fontSize:10,color:'#000'}} onClick={() => window.location = 'mailto:info@istapex.com'}>
                   info@istapex.com
                 </Button>
               </Box>

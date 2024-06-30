@@ -210,7 +210,7 @@ function DashboardPanel({ExcessData,PromotionData,PromotionStatus}) {
         <Box sx={{justifyContent: 'center',flexDirection:'row', display:{xs:'none',md:'flex'},p:1,flex:3}} >
         <Card variant='elevation' elevation={1} sx={{flex:1,borderRadius:2,flexDirection:'column',p:5}}>        
           {items.map((item) => (
-            <Card key={item.code} variant='elevation' elevation={2} sx={{ marginBottom:1,borderRadius:2,py:2,px:1,backgroundColor: 'rgba(0, 0, 0, 0.4)',border: '1px solid rgba(209, 213, 219, 0.8)'}}>
+            <Box key={item.code}  sx={{ marginBottom:1,borderRadius:2,py:2,px:1,backgroundColor: 'rgba(255, 255, 255,1)',border: '1px solid rgba(209, 213, 219, 0.8)'}} className="elevatedBox">
               <Box sx={{display:'flex',flex:1 ,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
                 <Box sx={{display:'flex',justifyContent:'flex-start',alignItems:'center',flex:1}}>
                   <img src={getImageUrl(item.slug)} alt="en" width="35" style={{marginInlineEnd:'5px'}} />
@@ -249,12 +249,12 @@ function DashboardPanel({ExcessData,PromotionData,PromotionStatus}) {
                   />
                 </Box>
               </Box>
-            </Card>
+            </Box>
           ))}
 
 
           <Box sx={{justifyContent:'center',alignItems:'center',display:'flex'}}>
-            <Button variant="contained"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
+            <Button variant="outlined"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleSubmit}>تائید</Button>
             <Button variant="outlined"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handleReset}>تنظیم مجدد</Button>
           </Box>
         </Card>
@@ -282,7 +282,7 @@ function DashboardPanel({ExcessData,PromotionData,PromotionStatus}) {
               </FormGroup>
               </Box>
               <Box sx={{p:1,flexDirection:'column',justifyContent:'center',alignItems:'center',flex:1}}>
-                <Button variant="contained"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handlePromotion}>ثبت</Button>
+                <Button variant="outlined"  size='large' sx={[{borderRadius:2,minWidth:120,mx:4},fontStyle]} onClick={handlePromotion}>ثبت</Button>
               </Box>
             </Card>
         </Box>

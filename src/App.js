@@ -14,6 +14,9 @@ import { Box } from '@mui/material';
 import {setAuthenticated} from './redux/authSlice'
 import { useSelector,useDispatch } from 'react-redux';
 import CryptoJS from 'crypto-js';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 //! *******************TEMPORARY*******************************
 // import Calculator from './pages/Calculator';
 //! ***********************************************************
@@ -21,6 +24,9 @@ import CryptoJS from 'crypto-js';
 
 
 function App() {
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  // const isXs = useMediaQuery(theme.breakpoints.down('xs'));
 // //   console.log(process.env.REACT_APP_BASE_URL);
 // //   // console.log(window.matchMedia('(display-mode: standalone)').matches);
 //   const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
@@ -54,10 +60,10 @@ function App() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   return (
     <Box sx={{display:'flex',flex:1,flexDirection:'column'}}>
-      <Box id='appbarDiv' sx={{display:'flex', flexDirection: 'column',mb:7.5 }}>
+      <Box id='appbarDiv' sx={{display:'flex', flexDirection: 'column',mb:isMdUp ? 8 : 12.5}}>
         <Appbar isAuthenticated={isAuthenticated} />
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '90vh',gap: 0}}>
+      <Box sx={{ display: 'flex', flexDirection: 'column',gap: 0}}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/faq" element={<Faq />} />

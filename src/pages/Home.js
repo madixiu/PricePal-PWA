@@ -6,15 +6,18 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { sortDataArray } from '../misc/dateFixer';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import Modal from '@mui/material/Modal';
-import { setUpdateTime } from '../redux/updateTimeSlice'
-import { useDispatch } from 'react-redux';
-import {formatTime} from '../misc/dateFixer'
+// import { setUpdateTime } from '../redux/updateTimeSlice'
+// import { useDispatch } from 'react-redux';
+import {formatTime2} from '../misc/dateFixer'
+// import UpdateIcon from '@mui/icons-material/Update';
+
 function Home() {
   const [CurrencyData,setCurrencyData] = React.useState([])
   const [ModalOpen, setModalOpen] = React.useState(false);
   const [ModalText, setModalText] = React.useState('');
+  const [lastUpdateTime, setLastUpdateTime] = React.useState(null);
   const handleClose = () => setModalOpen(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const ModalStyle = {
     position: 'absolute',
@@ -42,8 +45,10 @@ function Home() {
         CurrencyData = sortDataArray(CurrencyData);
         setCurrencyData(CurrencyData);
         let updateTime = CurrencyData.find(item => item.code === 'USDIRR').lastUpdate;
-        updateTime = formatTime(updateTime);
-        dispatch(setUpdateTime(updateTime));
+        updateTime = formatTime2(updateTime);
+        setLastUpdateTime(updateTime);
+        //! LINE BELLOW SHOULD BE REMOVED
+        // dispatch(setUpdateTime(updateTime)); 
       })  
       .catch(err => console.error(err));
   }
@@ -88,14 +93,14 @@ function Home() {
       <Box id="HomeMD" sx={{px: 2,pt:2,display:{xs:'none',md:'flex',flexDirection:'column'}}}>
           <Box sx={{flex:1,p:0.5,justifyContent: 'center', }}>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-              <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'1rem',marginInlineEnd:0.5}}/>
-              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
+              <ErrorOutlineIcon sx={{color:'#555',fontSize:'1rem',marginInlineEnd:0.5}}/>
+              <Typography sx={{fontSize: '1rem',color: '#555',fontWeight: 'normal',fontFamily:'Vazir'}}>
                 نرخ ها صرفا جهت ملاحظه می باشد
               </Typography>
             </Box>
             <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
-              <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'1rem',marginInlineEnd:0.5}}/>
-              <Typography sx={{fontSize: '1rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
+              <ErrorOutlineIcon sx={{color:'#555',fontSize:'1rem',marginInlineEnd:0.5}}/>
+              <Typography sx={{fontSize: '1rem',color: '#555',fontWeight: 'normal',fontFamily:'Vazir'}}>
                 نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
               </Typography>
             </Box>
@@ -117,26 +122,33 @@ function Home() {
             </Modal> 
         <CurrencyTable CurrencyData={CurrencyData} />
       </Box>
-      <Box id="HomeXS" sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1 }}>
-        {/* <Box sx={{backgroundColor: 'red',width:'100%'}}>here is the time</Box> */}
-        <CurrencyGrid CurrencyData={CurrencyData}/>
 
-        <Box sx={{flex:1,p:0.5,mb:10 }}>
-          <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
-            <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
-            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
-              نرخ ها صرفا جهت ملاحظه می باشد
-            </Typography>
-          </Box>
-          <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
 
-            <ErrorOutlineIcon sx={{color:'#aaa',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
-            <Typography sx={{fontSize: '0.7rem',color: '#aaa',fontWeight: 'normal',fontFamily:'Vazir'}}>
-              نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
-            </Typography>
-          </Box>
-        </Box>    
+      <Box id="HomeXS" sx={{display:{xs:'flex',md:'none'},flexDirection:'column',flex:1,overflow:'hidden' }}>
+        <Box sx={{display:'flex',px:1,justifyContent: 'flex-start',flexDirection:'row',alignItems:'center' }}>
+          <Typography sx={{fontSize:'0.7rem',fontWeight:600,color:'#555',letterSpacing:'1px'}}>
+            {lastUpdateTime}
+          </Typography>
+          {/* <UpdateIcon sx={{fontSize:'0.9rem'}}/> */}
+        </Box>
+        <Box sx={{ overflowY: 'auto', flex: 1 }}>
+          <CurrencyGrid CurrencyData={CurrencyData} />
+          <Box sx={{flex:1,p:0.5,mb:10 }}>
+            <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
+              <ErrorOutlineIcon sx={{color:'#555',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
+              <Typography sx={{fontSize: '0.7rem',color: '#555',fontWeight: 'normal',fontFamily:'Vazir'}}>
+                نرخ ها صرفا جهت ملاحظه می باشد
+              </Typography>
+            </Box>
+            <Box sx={{display:'flex',flexDirection:'row',justifyContent: 'center',alignItems:'center'}}>
+              <ErrorOutlineIcon sx={{color:'#555',fontSize:'0.7rem',marginInlineEnd:0.5}}/>
+              <Typography sx={{fontSize: '0.7rem',color: '#555',fontWeight: 'normal',fontFamily:'Vazir'}}>
+                نرخ ها اعلامی برای مبالغ هزار دلار (یا معادل آن) می باشد          
+              </Typography>
+            </Box>
+          </Box>  
+        </Box>
       </Box>
       </>
     );
