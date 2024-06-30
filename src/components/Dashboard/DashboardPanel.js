@@ -7,7 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Alert from '@mui/material/Alert';
 import LoadingSpinner from '../LoadingSpinner'
 function DashboardPanel({ExcessData,PromotionData,PromotionStatus}) {
-  const items = [{slug: "try", name: 'لیر',code:'TRYIRR'},{slug: "usd", name: 'دلار',code:'USDIRR'},{slug: "eur", name: 'یورو',code:'EURIRR'},{slug: "usdt", name: 'تتر',code:'USDIRRt'},  {slug: "gbp", name: 'پوند',code:'GBPIRR'},{slug: "cad", name: 'دلار کانادا',code:'CADIRR'},{slug: "aud", name: 'دلار استرالیا',code:'AUDIRR'}];
+  const items = [{slug: "try", name: 'لیر',code:'TRYIRR'},{slug: "usd", name: 'دلار',code:'USDIRR'},{slug: "eur", name: 'یورو',code:'EURIRR'},{slug: "usdt", name: 'تتر',code:'USDIRRt'},  {slug: "gbp", name: 'پوند',code:'GBPIRR'},{slug: "cad", name: 'دلار کانادا',code:'CADIRR'},{slug: "aud", name: 'دلار استرالیا',code:'AUDIRR'},{slug: "chf", name: 'فرانک سوئیس',code:'CHFIRR'}];
   const fontStyle = {
     fontFamily:'Vazir'
   }
@@ -200,6 +200,7 @@ function DashboardPanel({ExcessData,PromotionData,PromotionStatus}) {
     aud: require("../../assets/flags/flag128/aud.png"),
     try: require("../../assets/flags/flag128/try.png"),
     usdt: require("../../assets/flags/flag128/usdt.png"),
+    chf: require("../../assets/flags/flag128/chf.png"),
   };
   const getImageUrl = (code) => bundleImages[code];
   if (loading)

@@ -118,7 +118,7 @@ React.useEffect(() => {
                 </Box>
               </Box>
               <Box sx={{display:'flex',flexDirection:'column',justifyContent: 'space-around',}}>
-                <Typography sx={{fontSize:'1.9rem',fontWeight:'200',color:'#000'}}>{formatPrice(item.prices.sell.price)}</Typography>
+                <Typography sx={{fontSize:'1.9rem',fontWeight:'200',color:cellColor[item.slug]}}>{formatPrice(item.prices.sell.price)}</Typography>
               </Box>
             </Box>
           </Box>
