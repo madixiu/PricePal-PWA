@@ -106,10 +106,10 @@ const LogoutButton = () => {
           <Box sx={{flexGrow:1,display: {xs:'flex',md:'none'},justifyContent: 'center',position:'fixed',left:'50%',right:'50%'}}>
             <img height={80} width={142.22} src={`${process.env.PUBLIC_URL}/logo512nobgBlack.png`} alt="Logo" />
           </Box>
-          <Box sx={{display: {xs:'none',md:'flex'}}}>
-            <img height={48} width={48} src={`${process.env.PUBLIC_URL}/logo192.png`} alt="Logo" />
+          <Box sx={{display: {xs:'none',md:'flex'},ml:14}}>
+            <img height={48} width={80} src={`${process.env.PUBLIC_URL}/logo512nobgBlack.png`} alt="Logo" />
           </Box>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -127,7 +127,7 @@ const LogoutButton = () => {
             }}
           >
             ISTAPEX
-          </Typography>
+          </Typography> */}
           <Box sx={{ display: { xs: isAuthenticated ? 'flex' : 'none', md: 'none' },flex:1 ,justifyContent:'flex-end'}}>
             <IconButton
               size="small"
@@ -176,7 +176,7 @@ const LogoutButton = () => {
                   size="medium"
                   // fullWidth="true"
                   onClick={handleCloseNavMenu}
-                  sx={{ mx:1,minWidth:101,borderRadius:2,fontFamily:'Vazir'}}
+                  sx={{ mx:1,minWidth:125,borderRadius:2,fontFamily:'Vazir'}}
                   // disabled
                 >
                   {page.name}
